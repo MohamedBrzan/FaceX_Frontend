@@ -61,15 +61,31 @@ If you are developing a production application, we recommend updating the config
 ```
 src/
 assets
-components
-constants
+components/
+      Alert
+      Posts
+      SearchBar
+constants/
+      Logo
 functions
 middleware
-pages
+pages/
+   Home
+   Jobs
+   Messages
+   Notifications
+   UserNetwork
 routes
 sass
 scss
 services
-store
+store/
+   actions
+   apis
+   reducers
 utils
+views/
+   Header
+   Main
+   Footer
 ```
