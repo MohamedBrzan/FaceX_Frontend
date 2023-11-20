@@ -55,3 +55,19 @@ If you are developing a production application, we recommend updating the config
   "include": ["vite.config.ts"]
 }
 ```
+
+- React-TS App File STructure
+
+  src/
+  assets
+  components
+  constants
+  functions
+  middleware
+  pages
+  routes
+  sass
+  scss
+  services
+  store
+  utils
