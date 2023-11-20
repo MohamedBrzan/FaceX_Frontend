@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 const Logo = () => {
   const logoRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    logoRef.current.addEventListener('click', () => {
+    logoRef.current?.addEventListener('click', () => {
       Array.from(document.querySelectorAll('ul.head_icons li')).forEach(
         (icon) => {
           icon.classList.remove('active');

@@ -28,10 +28,12 @@ const Header = () => {
         icon.classList.add('active');
       });
     });
-    userRef.current.onclick = () => {
-      dropMenuRef.current.classList.toggle('active');
-      dropMenuModalRef.current.classList.toggle('active');
-    };
+
+    userRef.current?.addEventListener('click', () => {
+      dropMenuRef.current?.classList.toggle('active');
+      dropMenuModalRef.current?.classList.toggle('active');
+    });
+
     const links = document.querySelectorAll('a');
     links.forEach((link) => {
       link.addEventListener('click', () => {
@@ -64,35 +66,35 @@ const Header = () => {
               <li title='Home' className='active'>
                 <Link className='icon' to='/'>
                   <FontAwesomeIcon icon={faHome} />
-                <small>Home</small>
+                  <small>Home</small>
                 </Link>
               </li>
               <li title='Network' className='notify'>
                 <Link className='icon' to='/networks'>
                   <FontAwesomeIcon icon={faPeopleGroup} />
                   <span className='badge'>99+</span>
-                <small>Networks</small>
+                  <small>Networks</small>
                 </Link>
               </li>
               <li title='Jobs' className='notify'>
                 <Link className='icon' to='/jobs'>
                   <FontAwesomeIcon icon={faBriefcase} />
                   <span className='badge'>99+</span>
-                <small>Jobs</small>
+                  <small>Jobs</small>
                 </Link>
               </li>
               <li title='Messages' className='notify'>
                 <Link className='icon' to='/messages'>
                   <FontAwesomeIcon icon={faCommentDots} />
                   <span className='badge'>99+</span>
-                <small>Messages</small>
+                  <small>Messages</small>
                 </Link>
               </li>
               <li title='Notifications' className='notify'>
                 <Link className='icon' to='/notifications'>
                   <FontAwesomeIcon icon={faBell} />
                   <span className='badge'>99+</span>
-                <small>Notifications</small>
+                  <small>Notifications</small>
                 </Link>
               </li>
             </ul>

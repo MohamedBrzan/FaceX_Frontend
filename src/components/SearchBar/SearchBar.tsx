@@ -13,13 +13,13 @@ const SearchBar = () => {
     const inputEle = inputRef.current;
     const searchIcon = iconRef.current;
 
-    searchDiv.addEventListener('click', () =>
+    searchDiv?.addEventListener('click', () =>
       searchDiv.classList.add('full_width')
     );
-    inputEle.addEventListener('blur', () =>
-      searchRef.current.classList.remove('full_width')
+    inputEle?.addEventListener('blur', () =>
+      searchRef.current?.classList.remove('full_width')
     );
-    searchIcon.addEventListener('click', () => inputEle.focus());
+    searchIcon?.addEventListener('click', () => inputEle?.focus());
   }, []);
 
   return (
