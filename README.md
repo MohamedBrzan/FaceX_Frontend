@@ -60,32 +60,32 @@ If you are developing a production application, we recommend updating the config
 
 ```
 src/
-assets
-components/
-      Alert
-      Posts
-      SearchBar
-constants/
-      Logo
-functions
-middleware
-pages/
-   Home
-   Jobs
-   Messages
-   Notifications
-   UserNetwork
-routes
-sass
-scss
-services
-store/
-   actions
-   apis
-   reducers
-utils
-views/
-   Header
-   Main
-   Footer
+   assets
+   components/
+         Alert
+         Posts
+         SearchBar
+   constants/
+         Logo
+   functions
+   middleware
+   pages/
+      Home
+      Jobs
+      Messages
+      Notifications
+      UserNetwork
+   routes
+   sass
+   scss
+   services
+   store/
+      actions
+      apis
+      reducers
+   utils
+   views/
+      Header
+      Main
+      Footer
 ```
