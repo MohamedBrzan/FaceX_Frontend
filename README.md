@@ -60,31 +60,31 @@ If you are developing a production application, we recommend updating the config
 
 ```
 src/
-   |assets
-   |components/
+   * assets
+   * components/
          - Alert
          - Posts
          - SearchBar
-   |constants/
+   * constants/
          - Logo
-   |functions
-   |middleware
-   |pages/
+   * functions
+   * middleware
+   * pages/
       - Home
       - Jobs
       - Messages
       - Notifications
       - UserNetwork
-   |routes
-   |sass
-   |scss
+   * routes
+   * sass
+   * scss
    |services
    |store/
       - actions
       - apis
       - reducers
-   |utils
-   |views/
+   * utils
+   * views/
       - Header
       - Main
       - Footer
