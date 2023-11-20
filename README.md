@@ -62,30 +62,30 @@ If you are developing a production application, we recommend updating the config
 src/
    |assets
    |components/
-         |Alert
-         |Posts
-         |SearchBar
+         ||Alert
+         ||Posts
+         ||SearchBar
    |constants/
-         |Logo
+         ||Logo
    |functions
    |middleware
    |pages/
-      |Home
-      |Jobs
-      |Messages
-      |Notifications
-      |UserNetwork
+      ||Home
+      ||Jobs
+      ||Messages
+      ||Notifications
+      ||UserNetwork
    |routes
    |sass
    |scss
    |services
    |store/
-      |actions
-      |apis
-      |reducers
+      ||actions
+      ||apis
+      ||reducers
    |utils
    |views/
-      |Header
-      |Main
-      |Footer
+      ||Header
+      ||Main
+      ||Footer
 ```
