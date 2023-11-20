@@ -1,5 +1,7 @@
 # FaceX Website [FACEX](https://facex-frontend.onrender.com)
 
+![FACEX Image](src/assets/interface.png)
+
 This social media website Inspired by ( [facebook](https://facebook.com), [linkedin](https://linkedin.com) and [x](https://x.com) (Twitter previously)).
 
 - We use React Vite TS `npm create vite@latest` For Building This Website (FACEX)
@@ -53,5 +55,3 @@ If you are developing a production application, we recommend updating the config
   "include": ["vite.config.ts"]
 }
 ```
-
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
