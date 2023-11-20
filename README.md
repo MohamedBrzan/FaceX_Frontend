@@ -56,20 +56,20 @@ If you are developing a production application, we recommend updating the config
 }
 ```
 
-- React-TS App File STructure
+- React-TS App Folder STructure
 
-```
-src/
-assets
-components
-constants
-functions
-middleware
-pages
-routes
-sass
-scss
-services
-store
-utils
-```
+      ```
+      src/
+      assets
+      components
+      constants
+      functions
+      middleware
+      pages
+      routes
+      sass
+      scss
+      services
+      store
+      utils
+      ```
