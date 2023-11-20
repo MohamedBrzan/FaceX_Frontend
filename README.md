@@ -58,6 +58,7 @@ If you are developing a production application, we recommend updating the config
 
 - React-TS App File STructure
 
+```
 src/
 assets
 components
@@ -71,3 +72,4 @@ scss
 services
 store
 utils
+```
