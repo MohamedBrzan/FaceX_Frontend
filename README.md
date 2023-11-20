@@ -1,6 +1,6 @@
 # FaceX Website [FACEX](https://facex-frontend.onrender.com)
 
-This social media website Inspired by ( [facebook](https://facebook.com) && [linkedin](https://linkedin.com) && [x](https://x.com) (Twitter previously)).
+This social media website Inspired by ( [facebook](https://facebook.com), [linkedin](https://linkedin.com) and [x](https://x.com) (Twitter previously)).
 
 ## Expanding the ESLint configuration
 
