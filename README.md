@@ -6,39 +6,7 @@ This social media website Inspired by ( [facebook](https://facebook.com), [linke
 
 - We use React Vite TS `npm create vite@latest` For Building This Website (FACEX)
 
-## Expanding the TS Configuration File
-
-If you are developing a production application, we recommend updating the configuration to enable type aware TS rules:
-
-- this code under blow is for the `tsconfig.json` file
-
-```js
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
-}
-```
+## Expanding Configuration Files
 
 - this code under blow is for the `package.json` file
 
@@ -86,6 +54,36 @@ If you are developing a production application, we recommend updating the config
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
+}
+```
+
+- this code under blow is for the `tsconfig.json` file
+
+```js
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
 ```
 
