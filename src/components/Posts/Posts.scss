@@ -87,7 +87,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
+        @include Responsive('xs') {
+          gap: 2px;
+          font-size: 13px;
+          flex-wrap: wrap;
+        }
+
+        @include Responsive('md') {
+          gap: 20px;
+          font-size: 1rem;
+        }
 
         cursor: pointer;
         padding: 5px;
@@ -103,6 +112,12 @@
           &:hover {
             background-color: rgb(230, 230, 230);
             border-radius: 3px;
+          }
+          @include Responsive('xs') {
+            justify-content: flex-start;
+          }
+          @include Responsive('md') {
+            justify-content: center;
           }
         }
       }

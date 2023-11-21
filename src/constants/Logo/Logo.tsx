@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/black_logo.png';
+import logo from '../../assets/FaceX_logo.svg';
 
 import './Logo.scss';
 import { useEffect, useRef } from 'react';

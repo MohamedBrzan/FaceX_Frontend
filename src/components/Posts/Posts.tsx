@@ -864,6 +864,16 @@ const Posts = () => {
               <div className='interact expressions'>
                 <FontAwesomeIcon icon={faThumbsUp} />
                 <div className='identifier'>Like</div>
+                <div className='expressions'>
+                  <div className='like'></div>
+                  <div className='smile'></div>
+                  <div className='sad'></div>
+                  <div className='support'></div>
+                  <div className='agree'></div>
+                  <div className='disagree'></div>
+                  <div className='love'></div>
+                  <div className='thanks'></div>
+                </div>
               </div>
               <div className='interact comment'>
                 <FontAwesomeIcon icon={faComment} />

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,47 +13,25 @@ import {
 import Logo from '../../constants/Logo/Logo';
 import './Header.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Me from '../../assets/me.jpg';
 
 const Header = () => {
-  const userRef = useRef<HTMLDivElement>(null);
   const dropMenuRef = useRef<HTMLDivElement>(null);
   const dropMenuModalRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const icons = document.querySelectorAll('ul.head_icons li');
-    icons.forEach((icon) => {
-      icon.addEventListener('click', () => {
-        icons.forEach((icon) => icon.classList.remove('active'));
-        icon.classList.add('active');
-      });
-    });
 
-    userRef.current?.addEventListener('click', () => {
-      dropMenuRef.current?.classList.toggle('active');
-      dropMenuModalRef.current?.classList.toggle('active');
-    });
+  const ShowDropdownMenu = () => {
+    dropMenuRef.current?.classList.toggle('active');
+    dropMenuModalRef.current?.classList.toggle('active');
+  };
 
-    const links = document.querySelectorAll('a');
-    links.forEach((link) => {
-      link.addEventListener('click', () => {
-        Array.from(document.querySelectorAll('a')).forEach((link) => {
-          const ele = link.parentNode as HTMLLIElement;
-          ele.classList.remove('active');
-        });
-
-        const a = link.parentNode as HTMLLIElement;
-        a.classList.add('active');
-      });
-    });
-  }, []);
   return (
     <header>
       <Container>
         <Row className='m-0'>
           <Col xs={12} md={6} className='mb-2'>
             <Row>
-              <Col xs={4} md={4} lg={3}>
+              <Col xs={4} md={4} lg={3} className='logo_container'>
                 <Logo />
               </Col>
               <Col>
@@ -61,70 +39,70 @@ const Header = () => {
               </Col>
             </Row>
           </Col>
-          <Col xs={12} md={4}>
+          <Col xs={10} md={4}>
             <ul className='head_icons list-unstyled'>
-              <li title='Home' className='active'>
-                <Link className='icon' to='/'>
+              <NavLink className='icon' to='/'>
+                <li title='Home' className='active'>
                   <FontAwesomeIcon icon={faHome} />
                   <small>Home</small>
-                </Link>
-              </li>
-              <li title='Network' className='notify'>
-                <Link className='icon' to='/networks'>
+                </li>
+              </NavLink>
+              <NavLink className='icon' to='/networks'>
+                <li title='Network' className='notify'>
                   <FontAwesomeIcon icon={faPeopleGroup} />
                   <span className='badge'>99+</span>
                   <small>Networks</small>
-                </Link>
-              </li>
-              <li title='Jobs' className='notify'>
-                <Link className='icon' to='/jobs'>
+                </li>
+              </NavLink>
+              <NavLink className='icon' to='/jobs'>
+                <li title='Jobs' className='notify'>
                   <FontAwesomeIcon icon={faBriefcase} />
                   <span className='badge'>99+</span>
                   <small>Jobs</small>
-                </Link>
-              </li>
-              <li title='Messages' className='notify'>
-                <Link className='icon' to='/messages'>
+                </li>
+              </NavLink>
+              <NavLink className='icon' to='/messages'>
+                <li title='Messages' className='notify'>
                   <FontAwesomeIcon icon={faCommentDots} />
                   <span className='badge'>99+</span>
                   <small>Messages</small>
-                </Link>
-              </li>
-              <li title='Notifications' className='notify'>
-                <Link className='icon' to='/notifications'>
+                </li>
+              </NavLink>
+              <NavLink className='icon' to='/notifications'>
+                <li title='Notifications' className='notify'>
                   <FontAwesomeIcon icon={faBell} />
                   <span className='badge'>99+</span>
                   <small>Notifications</small>
-                </Link>
-              </li>
+                </li>
+              </NavLink>
             </ul>
           </Col>
-          <Col xs={12} md={2}>
-            <div className='user' ref={userRef}>
+          <Col xs={2}>
+            <div className='user' onClick={ShowDropdownMenu}>
               <div className='user_img'>
                 <img src={Me} alt='User Photo' />
               </div>
               <div className='drop_menu' ref={dropMenuRef}>
                 <ul className='list-unstyled'>
                   <li>
-                    <Link to='/'>
+                    <NavLink to='/'>
                       <small>Hello world</small>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to='/'>
+                    <NavLink to='/'>
                       <small>Hello world</small>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to='/'>
+                    <NavLink to='/'>
                       <small>Hello world</small>
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to='/'>
+                    <NavLink to='/'>
                       <small>Hello world</small>
-                    </Link>
+                    </NavLink>
                   </li>
                 </ul>
               </div>

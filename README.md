@@ -4,7 +4,7 @@
 
 This social media website Inspired by ( [facebook](https://facebook.com), [linkedin](https://linkedin.com) and [x](https://x.com) (Twitter previously)).
 
-- We use React Vite TS `npm create vite@latest` For Building This Website (FACEX)
+- We use React Vite TS `npm create vite@latest` For Building FACEX Website
 
 ## Expanding Configuration Files
 
@@ -103,36 +103,36 @@ This social media website Inspired by ( [facebook](https://facebook.com), [linke
 }
 ```
 
-- React-TS App Folder STructure
+- FACEX Folder STructure
 
 ```
-src/
-   assets
-   components/
-         - Alert
-         - Posts
-         - SearchBar
-   constants/
-         - Logo
-   functions
-   middleware
-   pages/
-      - Home
-      - Jobs
-      - Messages
-      - Notifications
-      - UserNetwork
-   routes
-   sass
-   scss
-   services
-   store/
-      - actions
-      - apis
-      - reducers
-   utils
-   views/
-      - Header
-      - Main
-      - Footer
+|--- src/
+   |--- assets
+   |--- components/
+         |--- Alert
+         |--- Posts
+         |--- SearchBar
+   |--- constants/
+         |--- Logo
+   |--- functions
+   |--- middleware
+   |--- pages/
+      |--- Home
+      |--- Jobs
+      |--- Messages
+      |--- Notifications
+      |--- UserNetwork
+   |--- routes
+   |--- sass
+   |--- scss
+   |--- services
+   |--- store/
+      |--- actions
+      |--- apis
+      |--- reducers
+   |--- utils
+   |--- views/
+      |--- Header
+      |--- Main
+      |--- Footer
 ```
