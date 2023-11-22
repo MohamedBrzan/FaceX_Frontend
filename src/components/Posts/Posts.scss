@@ -1,13 +1,97 @@
 @use '../../sass/Mixins' as *;
+@use '../../sass/Colors' as *;
+
+%displayFlex {
+  display: flex;
+  text-align: center;
+}
 
 .posts {
+  .upload {
+    overflow: hidden;
+    background-color: $general;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px rgba(9, 30, 66, 0.25),
+      0px 0px 1px 1px rgba(9, 30, 66, 0.13);
+    @include Responsive('xs') {
+      font-size: 11px;
+    }
+    @include Responsive('md') {
+      font-size: 1rem;
+    }
+    .text {
+      @extend %displayFlex;
+      justify-content: flex-start;
+      gap: 15px;
+      figure {
+        margin: 0;
+        min-width: 50px;
+        min-height: 50px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
+      }
+      .input {
+        @extend %displayFlex;
+        justify-content: center;
+        width: 100%;
+        input {
+          width: 100%;
+          padding: 10px;
+          border-radius: 30px;
+          border: 1px solid $third;
+          &:hover {
+            background-color: $hover_secondary;
+          }
+        }
+      }
+    }
+    .files {
+      margin-top: 10px;
+      @extend %displayFlex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      .file {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: pointer;
+
+        > figure {
+          margin: 0;
+          width: 24px;
+          height: 24px;
+          img {
+            width: 100%;
+          }
+        }
+
+        &:hover {
+          background-color: $hover_secondary;
+        }
+      }
+    }
+  }
   .post {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
     min-width: 200px;
-    background-color: white;
+    background-color: $general;
     box-shadow: 0px 1px 1px rgba(9, 30, 66, 0.25),
       0px 0px 1px 1px rgba(9, 30, 66, 0.13);
     padding: 10px;
-    margin: 15px 0;
     border-radius: 5px;
     overflow: hidden;
 
@@ -23,6 +107,7 @@
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-start;
+        gap: 5px;
         @include Responsive('xs') {
           font-size: 12px;
         }
@@ -31,6 +116,8 @@
         }
 
         figure.avatar {
+          min-width: 50px;
+          min-height: 50px;
           width: 50px;
           height: 50px;
           aspect-ratio: 1;
@@ -49,6 +136,7 @@
           -webkit-box-orient: vertical;
           display: -webkit-box;
           white-space: normal;
+
           .username {
             opacity: 0.9;
           }
@@ -62,21 +150,28 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        border: 1px solid purple;
-        border-radius: 30px;
+        border-radius: 3px;
         padding: 0.3rem 0.5rem;
+        color: $primary;
         transition: background-color 0.2s linear;
         .icon {
           padding: 0 5px 0 0;
         }
         &:hover {
-          background-color: rgba(128, 0, 128, 0.123);
+          background-color: $hover_primary;
         }
       }
     }
 
     .post_body {
-      .content {
+      p.content {
+        @include Responsive('xs') {
+          font-size: 13px;
+        }
+
+        @include Responsive('md') {
+          font-size: 1rem;
+        }
         padding: 10px;
       }
     }
@@ -89,8 +184,8 @@
         align-items: center;
         @include Responsive('xs') {
           gap: 2px;
-          font-size: 13px;
-          flex-wrap: wrap;
+          font-size: 15px;
+          flex-wrap: nowrap;
         }
 
         @include Responsive('md') {
@@ -102,19 +197,78 @@
         padding: 5px;
         .identifier {
           padding: 0 5px;
+          @include Responsive('xs') {
+            display: none;
+          }
+
+          @include Responsive('md') {
+            display: flex;
+          }
         }
         .interact {
+          position: relative;
           display: flex;
           justify-content: center;
           align-items: center;
           padding: 0.7rem 0.5rem;
           flex: 1;
-          &:hover {
-            background-color: rgb(230, 230, 230);
-            border-radius: 3px;
+          color: $third;
+          font-weight: 600;
+          .show_interact {
+            margin: 0;
+            width: 20px;
+            @include Responsive('xs') {
+              width: 18px;
+              height: auto;
+            }
+            @include Responsive('md') {
+              width: 30px;
+              height: 30px;
+            }
+            overflow: hidden;
+            object-fit: cover;
+            img {
+              width: 100%;
+            }
           }
-          @include Responsive('xs') {
-            justify-content: flex-start;
+          .expressions_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background-color: $general;
+            border: 1px solid $hover_secondary;
+            border-radius: 3px;
+            display: none;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            padding: 5px 10px;
+            figure {
+              margin: 0;
+              transition: transform 0.1s ease-in-out;
+              &:hover {
+                transform: scale(1.1);
+              }
+              height: 30px;
+              @include Responsive('xs') {
+                width: 18px;
+              }
+              @include Responsive('md') {
+                width: 30px;
+              }
+              img {
+                width: 100%;
+              }
+            }
+          }
+          &:hover {
+            background-color: $hover_secondary;
+            border-radius: 3px;
+            > .expressions_container {
+              display: flex;
+            }
           }
           @include Responsive('md') {
             justify-content: center;

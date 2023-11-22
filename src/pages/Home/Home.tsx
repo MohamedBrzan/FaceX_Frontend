@@ -1,19 +1,25 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import './Home.scss';
 import Col from 'react-bootstrap/esm/Col';
 import Posts from '../../components/Posts/Posts';
+import SideBar from '../../Views/SideBar/SideBar';
+import Aside from '../../Views/Aside/Aside';
+import './Home.scss';
 
 const Home = () => {
   return (
     <section className='home'>
       <Container>
         <Row>
-          <Col md={3}>hi</Col>
-          <Col >
+          <Col xs={12} md={3} xl={2}>
+            <SideBar />
+          </Col>
+          <Col>
             <Posts />
           </Col>
-          <Col md={3}>holla</Col>
+          <Col md={3} className='aside_col'>
+            <Aside />
+          </Col>
         </Row>
       </Container>
     </section>

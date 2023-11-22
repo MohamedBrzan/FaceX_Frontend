@@ -1,13 +1,23 @@
+import { useEffect } from 'react';
 import me from '../../assets/me.jpg';
+import thumbsUp from '../../assets/expressions/thumbsUp.png';
+import happy from '../../assets/expressions/happy.png';
+import angry from '../../assets/expressions/angry.png';
+import grin from '../../assets/expressions/grin.png';
+import exciting from '../../assets/expressions/exciting.png';
+import laugh from '../../assets/expressions/laugh.png';
+import love from '../../assets/expressions/love.png';
+import sad from '../../assets/expressions/sad.png';
+import shock from '../../assets/expressions/shock.png';
+import sick from '../../assets/expressions/sick.png';
+import media from '../../assets/media.svg';
+import event from '../../assets/event.svg';
+import writeArticle from '../../assets/article.svg';
+
 import './Posts.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faThumbsUp,
-  faComment,
-  faPaperPlane,
-} from '@fortawesome/free-regular-svg-icons';
+import { faComment, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faRepeat, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { useEffect } from 'react';
 
 const Posts = () => {
   useEffect(() => {
@@ -19,13 +29,26 @@ const Posts = () => {
         );
       }
     );
+    Array.from(
+      document.querySelectorAll('.expressions_container .expression')
+    ).forEach((expression) => {
+      expression.addEventListener('click', () => {
+        const firstParent = expression.parentElement as HTMLDivElement;
+        const secondParent = firstParent.parentElement as HTMLDivElement;
+        secondParent.children[1].textContent = expression.getAttribute('title');
+        const selectedImg = expression.children[0] as HTMLImageElement;
+        const showInteract = secondParent.children[0]
+          .children[0] as HTMLImageElement;
+        showInteract.src = selectedImg.src;
+      });
+    });
   }, []);
 
   const fetchPosts = [
     {
       id: 1,
       user: {
-        name: 'Sherif Eldeeb',
+        name: 'Mohamed Mahmoud',
         position: 'Software Instructor | team lead | mentor | youtuber',
         avatar: me,
       },
@@ -293,7 +316,7 @@ const Posts = () => {
     {
       id: 2,
       user: {
-        name: 'Sherif Eldeeb',
+        name: 'Mohamed Mahmoud',
         position: 'Software Instructor | team lead | mentor | youtuber',
         avatar: me,
       },
@@ -561,7 +584,7 @@ const Posts = () => {
     {
       id: 3,
       user: {
-        name: 'Sherif Eldeeb',
+        name: 'Mohamed Mahmoud',
         position: 'Software Instructor | team lead | mentor | youtuber',
         avatar: me,
       },
@@ -827,8 +850,52 @@ const Posts = () => {
       },
     },
   ];
+
+  const expressions = [
+    { id: 1, name: 'Like', image: thumbsUp },
+    { id: 2, name: 'Aha', image: happy },
+    { id: 3, name: 'mad', image: angry },
+    { id: 4, name: 'Grin', image: grin },
+    { id: 5, name: 'Wow', image: exciting },
+    { id: 6, name: 'Haha', image: laugh },
+    { id: 7, name: 'Love', image: love },
+    { id: 8, name: 'Sad', image: sad },
+    { id: 9, name: 'Ops', image: shock },
+    { id: 10, name: 'Sick', image: sick },
+  ];
   return (
     <section className='posts'>
+      <div className='upload'>
+        <div className='text'>
+          <figure className='avatar'>
+            <img src={me} alt='User' />
+          </figure>
+          <div className='input'>
+            <input type='text' placeholder='Start a post' />
+          </div>
+        </div>
+        <div className='files'>
+          <div className='file media'>
+            <figure>
+              <img src={media} alt='User' />
+            </figure>
+            <div className='text'> media</div>
+          </div>
+          <div className='file event'>
+            <figure>
+              <img src={event} alt='User' />
+            </figure>
+            <div className='text'> Event</div>
+          </div>
+          <div className='file article'>
+            <figure>
+              <img src={writeArticle} alt='User' />
+            </figure>
+            <div className='text'> write article</div>
+          </div>
+        </div>
+      </div>
+      <hr />
       {fetchPosts.map(({ user, content }, i) => (
         <article className='post' key={i}>
           <div className='post_head'>
@@ -862,17 +929,16 @@ const Posts = () => {
           <div className='post_footer'>
             <div className='interactions_icons'>
               <div className='interact expressions'>
-                <FontAwesomeIcon icon={faThumbsUp} />
+                <figure className='show_interact'>
+                  <img src={thumbsUp} alt='Interaction Emoji' />
+                </figure>
                 <div className='identifier'>Like</div>
-                <div className='expressions'>
-                  <div className='like'></div>
-                  <div className='smile'></div>
-                  <div className='sad'></div>
-                  <div className='support'></div>
-                  <div className='agree'></div>
-                  <div className='disagree'></div>
-                  <div className='love'></div>
-                  <div className='thanks'></div>
+                <div className='expressions_container'>
+                  {expressions.map(({ name, image }, i) => (
+                    <figure className='expression' key={i} title={name}>
+                      <img src={image} alt={name} />
+                    </figure>
+                  ))}
                 </div>
               </div>
               <div className='interact comment'>

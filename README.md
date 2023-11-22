@@ -107,7 +107,7 @@ This social media website Inspired by ( [facebook](https://facebook.com), [linke
 
 ```
 |--- src/
-   |--- **assets**
+   |--- assets
    |--- components/
          |--- Alert
          |--- Posts
