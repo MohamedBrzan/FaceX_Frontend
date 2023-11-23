@@ -99,6 +99,14 @@
   }
 
   .recent_identity {
+    a {
+      text-decoration: none;
+      font-weight: 500;
+      color: $primary;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
     small {
       font-size: 12px;
     }
@@ -109,6 +117,9 @@
         &:hover {
           background-color: $hover_secondary;
         }
+      }
+      svg {
+        padding: 0 0.3rem;
       }
     }
     .discover_btn {

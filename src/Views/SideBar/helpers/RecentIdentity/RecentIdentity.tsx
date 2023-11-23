@@ -8,27 +8,31 @@ const RecentIdentity = () => {
       <small className='padding'>Recent</small>
       <section className='general'>
         <div className='padding item'>
-          <FontAwesomeIcon icon={faPeopleGroup} />{' '}
+          <FontAwesomeIcon icon={faPeopleGroup} />
           <small>Coaching Business</small>
         </div>
         <div className='padding item'>
           <FontAwesomeIcon icon={faHashtag} /> <small>شغل</small>
         </div>
       </section>
-      <small className='padding'>Groups</small>
+      <Link to='/groups'>
+        <small className='padding'>Groups</small>
+      </Link>
       <section className='group'>
         <div className='padding item'>
-          <FontAwesomeIcon icon={faPeopleGroup} />{' '}
+          <FontAwesomeIcon icon={faPeopleGroup} />
           <small>Coaching Business</small>
         </div>
         <div className='padding item'>
           <FontAwesomeIcon icon={faHashtag} /> <small>شغل</small>
         </div>
       </section>
-      <small className='padding'>Events</small>
+      <Link to='/events'>
+        <small className='padding'>Events</small>
+      </Link>
       <section className='events'>
         <div className='padding item'>
-          <FontAwesomeIcon icon={faPeopleGroup} />{' '}
+          <FontAwesomeIcon icon={faPeopleGroup} />
           <small>Coaching Business</small>
         </div>
         <div className='padding item'>

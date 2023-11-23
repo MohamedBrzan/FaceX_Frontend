@@ -18,6 +18,8 @@ import './Posts.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faRepeat, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const Posts = () => {
   useEffect(() => {
@@ -320,7 +322,7 @@ const Posts = () => {
         position: 'Software Instructor | team lead | mentor | youtuber',
         avatar: me,
       },
-      content: 'Junior or fresh software engineer',
+      content: 'Hey Guys ✌️',
       comments: [
         {
           id: 1,
@@ -923,7 +925,9 @@ const Posts = () => {
           </div>
 
           <div className='post_body'>
-            <p className='content'>{content}</p>
+            <Markdown className='content' remarkPlugins={[remarkGfm]}>
+              {content}
+            </Markdown>
           </div>
           <hr />
           <div className='post_footer'>

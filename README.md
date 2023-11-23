@@ -135,4 +135,10 @@ This social media website Inspired by ( [facebook](https://facebook.com), [linke
       |--- Header
       |--- Main
       |--- Footer
+      |--- SideBar/
+          |--- Helpers/
+              |--- FeedIdentity
+              |--- RecentIdentity
+      |--- Aside
+
 ```
