@@ -1,7 +1,26 @@
+@use '../../sass/Colors' as *;
+
 footer {
-  background-color: grey;
-  color: white;
+  color: $third;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 70%;
+  margin: auto;
+  word-wrap: break-word;
+  line-height: 1.6;
+  a {
+    font-size: 12px;
+    color: $third;
+    text-decoration: none;
+    margin: 5px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .bottom_line {
+    font-size: 12px;
+  }
 }

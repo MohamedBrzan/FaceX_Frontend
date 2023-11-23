@@ -1,0 +1,87 @@
+@use '../../sass/Colors' as *;
+@use '../../sass/Styles' as *;
+
+aside {
+  width: 100%;
+  height: 100%;
+  section.add_feed {
+    @extend %sectionStyle;
+    padding: 0.8rem 1rem;
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .feeds {
+      .feed {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+        figure {
+          margin: 0;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          overflow: hidden;
+          vertical-align: middle;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .info {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .user {
+            h6.title {
+              margin: 0;
+              color: $secondary;
+            }
+            p.subtitle {
+              color: $third;
+              margin: 0;
+            }
+          }
+          .follow_btn {
+            @extend %followBtnStyle;
+            color: $secondary;
+            border-radius: 30px;
+            border: 1px solid $secondary;
+            padding: 0.3rem 0.8rem;
+            margin: 0.3rem 0 0;
+            &:hover {
+              background-color: $hover_secondary;
+              outline: auto;
+            }
+          }
+        }
+      }
+    }
+
+    a.recommendations {
+      text-decoration: none;
+      color: $third;
+      opacity: 0.7;
+      font-weight: 700;
+      padding: 0 3px;
+      border-radius: 3px;
+      transition: 0.1s ease-in-out;
+      &:hover {
+        background-color: $hover_secondary;
+        color: $secondary;
+      }
+    }
+  }
+  .line {
+    margin-top: 5px;
+    width: 100%;
+    height: 3px;
+    @extend %sectionStyle;
+  }
+}
