@@ -1,3 +1,4 @@
+import Activity from './Helpers/Activity';
 import Analytics from './Helpers/Anlaystics';
 import Info from './Helpers/Info';
 
@@ -6,6 +7,7 @@ const ProfileSections = () => {
     <section className='profile_sections'>
       <Analytics />
       <Info />
+      <Activity />
     </section>
   );
 };

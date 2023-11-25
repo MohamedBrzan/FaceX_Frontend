@@ -224,13 +224,69 @@
           }
           .arrows_btns {
             @extend %displayFlexContentSpaceBetween;
-            transform: translateY(-200%);
+            transform: translate(-1%, -200%);
             svg {
               color: $secondary_icon;
               cursor: pointer;
               &:hover {
                 color: black;
               }
+            }
+          }
+        }
+      }
+    }
+    .activity {
+      @extend %sectionStyle;
+      margin-top: 5px;
+      padding: 1.8rem;
+      flex-wrap: wrap;
+      .head {
+        @extend %displayFlexContentSpaceBetween;
+        .title {
+          h4 {
+            font-weight: 500;
+            margin: 0;
+          }
+          a {
+            text-decoration: none;
+            font-weight: 500;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        .actions {
+          @extend %displayFlexContentSpaceBetween;
+          gap: 10px;
+          .create_btn {
+            @extend %primaryCircledOutlinedBtn;
+          }
+          .edit_icon {
+            @extend %editBtn;
+            position: relative;
+            right: 0;
+            top: 0;
+            svg {
+              color: $secondary_icon;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      .switches {
+        @extend %displayFlexContentStart;
+        gap: 5px;
+        margin: 1rem 0 0;
+        .switch {
+          @extend %secondaryCircledOutlinedBtn;
+          &.selected {
+            background-color: $green_primary;
+            color: $general;
+            border: none;
+            outline: none;
+            &:hover {
+              background-color: $hover_green_primary;
             }
           }
         }
