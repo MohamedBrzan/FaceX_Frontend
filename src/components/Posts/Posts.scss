@@ -54,8 +54,7 @@
     }
     .files {
       margin-top: 10px;
-      @extend %displayFlex;
-      justify-content: space-evenly;
+      @extend %displayFlexContentSpaceEvenly;
       flex-wrap: wrap;
       .file {
         display: flex;
@@ -141,7 +140,7 @@
         }
       }
       .follow_btn {
-        @extend %followBtnStyle;
+        @extend %primaryBtn;
       }
     }
 

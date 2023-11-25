@@ -4,6 +4,9 @@ import Jobs from '../pages/Jobs/Jobs';
 import Home from '../pages/Home/Home';
 import Messages from '../pages/Messages/Messages';
 import Notifications from '../pages/Notifications/Notifications';
+import User from '../pages/User/User';
+import Admin from '../pages/Admin/Admin';
+import Profile from '../pages/Profile/Profile';
 
 const AppRoutes = () => {
   return (
@@ -14,6 +17,9 @@ const AppRoutes = () => {
         <Route path='/jobs' element={<Jobs />} />
         <Route path='/messages' element={<Messages />} />
         <Route path='/notifications' element={<Notifications />} />
+        <Route path='/me/profile' element={<Profile />} />
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/user/:id' element={<User />} />
       </Route>
       <Route
         path='*'

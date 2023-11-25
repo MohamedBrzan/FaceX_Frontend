@@ -1,0 +1,240 @@
+@use '../../sass/Colors' as *;
+@use '../../sass/Styles' as *;
+@use '../../sass/Mixins' as *;
+
+.profile {
+  margin: 15px 0 0;
+  .profile_sections {
+    .analytics {
+      @extend %sectionStyle;
+      @extend %displayFlexContentSpaceBetween;
+      padding: 1.1rem;
+      .analytics_link {
+        a {
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .head {
+          color: $secondary;
+          margin: 0;
+        }
+        .tail {
+          color: $third;
+          margin: 0;
+          font-size: 13px;
+          .degree {
+            padding: 0.3rem;
+            color: $green_primary;
+            svg {
+              padding: 0 0.3rem;
+            }
+          }
+        }
+      }
+      .arrow {
+        color: $secondary;
+      }
+    }
+    .info {
+      @extend %sectionStyle;
+      margin: 5px 0 0;
+      .head {
+        @extend %displayFlexCenter;
+        flex-direction: column;
+        position: relative;
+        figure {
+          margin: 0;
+          overflow: hidden;
+          img {
+            object-fit: cover;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        figure.cover {
+          width: 100%;
+          height: 200px;
+          border-top-right-radius: 5px;
+          border-top-left-radius: 5px;
+          .edit_icon {
+            @extend %editBtn;
+          }
+        }
+        figure.avatar {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          border: 4px solid $general;
+          position: absolute;
+          top: 120px;
+          left: 30px;
+          z-index: 2;
+        }
+      }
+      .middle {
+        margin: 1.8rem 0 0;
+        padding: 0 0 0 1rem;
+        overflow: hidden;
+        .pencil_svg {
+          @extend %darkPencilIconStyle;
+          @extend %displayFlexContentEnd;
+          margin: auto 0.5rem auto auto;
+        }
+        .user_info {
+          margin-top: 20px;
+          @extend %displayFlexStart;
+          width: 100%;
+          .name {
+            .title,
+            .position {
+              margin: 0;
+            }
+            .title {
+              color: $secondary;
+            }
+            .position {
+              font-size: 500;
+            }
+            .talking_about {
+              color: $third;
+              p {
+                margin: 0;
+              }
+            }
+            .address a,
+            .portfolio,
+            .networks span {
+              font-weight: 500;
+            }
+
+            .portfolio {
+              @include Responsive('xs') {
+                font-size: 12px;
+              }
+              @include Responsive('md') {
+                font-size: 0.8rem;
+              }
+            }
+
+            .address {
+              color: $third;
+              @extend %displayFlexContentStart;
+              p {
+                margin: 0;
+              }
+              a {
+                padding: 0 0.4rem;
+                text-decoration: none;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+
+            .networks {
+              span {
+                color: $primary;
+                padding: 0 1rem 0 0;
+              }
+            }
+          }
+          .work {
+            font-weight: 500;
+            @include Responsive('xs') {
+              margin: 0.4rem 0;
+              order: -1;
+            }
+            @include Responsive('md') {
+              order: 1;
+            }
+            svg {
+              color: $hover_primary_dark;
+            }
+          }
+        }
+        .actions_btns {
+          @extend %displayFlexContentStart;
+          gap: 10px;
+          margin: 0 0 30px;
+
+          @include Responsive('xs') {
+            font-size: 13px;
+            margin: 0.7rem 0;
+          }
+          @include Responsive('md') {
+            font-size: 1rem;
+          }
+          .open {
+            position: relative;
+            @extend %primaryCircledBtn;
+          }
+          .add {
+            @extend %primaryCircledOutlinedBtn;
+          }
+          .more {
+            @extend %secondaryCircledOutlinedBtn;
+          }
+        }
+        .info_carousel {
+          position: relative;
+          .carousel_slides {
+            @extend %displayFlexContentSpaceBetween;
+            gap: 20px;
+            transition: transform 0.4s ease-in-out;
+            width: auto;
+            .slide {
+              min-width: 322px;
+              max-height: 100px;
+              overflow: hidden;
+              height: 100px;
+              @extend %sectionStyle;
+              padding: 1rem 1.3rem;
+              position: relative;
+              background-color: $blue_card;
+              @include Responsive('xs') {
+                max-width: 150px;
+              }
+              h6,
+              p {
+                margin: 0;
+                overflow: hidden;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                display: -webkit-box;
+                white-space: normal;
+              }
+              > .edit_icon {
+                @extend %editBtn;
+                svg {
+                  color: $secondary_icon;
+                  background: none;
+                }
+              }
+              a {
+                text-decoration: none;
+                font-weight: 500;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+          .arrows_btns {
+            @extend %displayFlexContentSpaceBetween;
+            transform: translateY(-200%);
+            svg {
+              color: $secondary_icon;
+              cursor: pointer;
+              &:hover {
+                color: black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -85,23 +85,23 @@ const Header = () => {
               <div className='drop_menu' ref={dropMenuRef}>
                 <ul className='list-unstyled'>
                   <li>
-                    <NavLink to='/'>
-                      <small>Hello world</small>
+                    <NavLink to='/me/profile'>
+                      <small>profile</small>
                     </NavLink>
                   </li>
                   <li>
                     <NavLink to='/'>
-                      <small>Hello world</small>
+                      <small>Home</small>
                     </NavLink>
                   </li>
                   <li>
                     <NavLink to='/'>
-                      <small>Hello world</small>
+                      <small>Home</small>
                     </NavLink>
                   </li>
                   <li>
                     <NavLink to='/'>
-                      <small>Hello world</small>
+                      <small>Home</small>
                     </NavLink>
                   </li>
                 </ul>

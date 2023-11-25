@@ -49,16 +49,7 @@ aside {
             }
           }
           .follow_btn {
-            @extend %followBtnStyle;
-            color: $secondary;
-            border-radius: 30px;
-            border: 1px solid $secondary;
-            padding: 0.3rem 0.8rem;
-            margin: 0.3rem 0 0;
-            &:hover {
-              background-color: $hover_secondary;
-              outline: auto;
-            }
+            @extend %secondaryCircledOutlinedBtn;
           }
         }
       }

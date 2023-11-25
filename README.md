@@ -117,10 +117,16 @@ This social media website Inspired by ( [facebook](https://facebook.com), [linke
    |--- functions
    |--- middleware
    |--- pages/
+      |--- Admin
       |--- Home
       |--- Jobs
       |--- Messages
       |--- Notifications
+      |--- Profile/
+          |--- Helpers/
+              |--- Aside
+              |--- Sections
+      |--- User
       |--- UserNetwork
    |--- routes
    |--- sass
