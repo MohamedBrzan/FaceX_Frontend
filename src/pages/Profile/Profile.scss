@@ -275,18 +275,28 @@
         }
       }
       .switches {
-        @extend %displayFlexContentStart;
-        gap: 5px;
-        margin: 1rem 0 0;
-        .switch {
-          @extend %secondaryCircledOutlinedBtn;
-          &.selected {
-            background-color: $green_primary;
-            color: $general;
-            border: none;
-            outline: none;
-            &:hover {
-              background-color: $hover_green_primary;
+        .btns {
+          @extend %displayFlexContentStart;
+          gap: 5px;
+          margin: 1rem 0 0;
+          .switch {
+            @extend %secondaryCircledOutlinedBtn;
+            &.selected {
+              background-color: $green_primary;
+              color: $general;
+              border: none;
+              outline: none;
+              &:hover {
+                background-color: $hover_green_primary;
+              }
+            }
+          }
+        }
+        .contents {
+          .content {
+            display: none;
+            &.active {
+              display: block;
             }
           }
         }

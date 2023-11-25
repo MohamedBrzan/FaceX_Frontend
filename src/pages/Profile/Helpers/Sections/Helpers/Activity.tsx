@@ -1,21 +1,35 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from 'react';
 
 const Activity = () => {
-  const switchBtn = () => {
-    const switches = Array.from(
-      document.querySelectorAll('section.activity article.switches .switch')
+  useEffect(() => {
+    const btns = Array.from(
+      document.querySelectorAll(
+        'section.activity article.switches .btns .switch'
+      )
+    ) as HTMLDivElement[];
+    const contents = Array.from(
+      document.querySelectorAll(
+        'section.activity article.switches .contents .content'
+      )
     ) as HTMLDivElement[];
 
-    switches.forEach((sw) => {
+    btns.forEach((sw) => {
       sw.onclick = (btn) => {
-        switches.forEach((swi) => swi.classList.remove('selected'));
+        btns.forEach((b) => b.classList.remove('selected'));
+        contents.forEach((c) => c.classList.remove('active'));
         const button = btn.target as HTMLDivElement;
         button.classList.add('selected');
+        contents.forEach((c) => {
+          if (button.getAttribute('id') === c.getAttribute('data-content')) {
+            c.classList.add('active');
+          }
+        });
       };
     });
-  };
+  }, []);
   return (
     <section className='activity'>
       <article className='head'>
@@ -36,17 +50,33 @@ const Activity = () => {
         </div>
       </article>
       <article className='switches'>
-        <div className='switch' onClick={switchBtn}>
-          Posts
+        <div className='btns'>
+          <div className='switch posts selected' id='profile_posts'>
+            Posts
+          </div>
+          <div className='switch comments' id='profile_comments'>
+            Comments
+          </div>
+          <div className='switch images' id='profile_images'>
+            Images
+          </div>
+          <div className='switch documents' id='profile_documents'>
+            Documents
+          </div>
         </div>
-        <div className='switch' onClick={switchBtn}>
-          Comments
-        </div>
-        <div className='switch' onClick={switchBtn}>
-          Images
-        </div>
-        <div className='switch' onClick={switchBtn}>
-          Documents
+        <div className='contents'>
+          <p className='content active' data-content='profile_posts'>
+            Posts Guys Hello ✌️
+          </p>
+          <p className='content' data-content='profile_comments'>
+            Comments Guys Hello ✌️
+          </p>
+          <p className='content' data-content='profile_images'>
+            Images Guys Hello ✌️
+          </p>
+          <p className='content' data-content='profile_documents'>
+            Documents Guys Hello ✌️
+          </p>
         </div>
       </article>
     </section>
