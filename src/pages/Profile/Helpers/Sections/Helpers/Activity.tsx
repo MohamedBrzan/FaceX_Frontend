@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { useEffect } from 'react';
 
 const Activity = () => {
   const switchBtn = () => {
