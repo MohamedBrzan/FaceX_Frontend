@@ -45,7 +45,7 @@ aside {
             }
             p.subtitle {
               color: $third;
-              margin: 0;
+              margin: 0 0 0.3rem;
             }
           }
           .follow_btn {
@@ -70,9 +70,6 @@ aside {
     }
   }
   .line {
-    margin-top: 5px;
-    width: 100%;
-    height: 3px;
-    @extend %sectionStyle;
+    @extend %hrLine;
   }
 }

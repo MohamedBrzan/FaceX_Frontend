@@ -23,14 +23,6 @@ import remarkGfm from 'remark-gfm';
 
 const Posts = () => {
   useEffect(() => {
-    Array.from(document.querySelectorAll('.follow_btn')).forEach(
-      (followBtn) => {
-        followBtn.addEventListener(
-          'click',
-          () => (followBtn.children[1].textContent = 'Connected')
-        );
-      }
-    );
     Array.from(
       document.querySelectorAll('.expressions_container .expression')
     ).forEach((expression) => {

@@ -1,17 +1,11 @@
-import {
-  faArrowRight,
-  faInfoCircle,
-  faUserPlus,
-} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import me from '../../assets/me.jpg';
-import './Aside.scss';
+import me from '../../../../../assets/me_opentowork.jpeg';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import Footer from '../Footer/Footer';
 import { useEffect } from 'react';
-import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
+import ChangeButtonTextContent from '../../../../../functions/ChangeButtonTextContent';
 
-const Aside = () => {
+const PeopleViewed = () => {
   const data = [
     {
       id: 1,
@@ -34,20 +28,25 @@ const Aside = () => {
   ];
 
   useEffect(() => {
-    ChangeButtonTextContent('.add_feed .info .follow_btn', 'Connected', 1);
+    ChangeButtonTextContent(
+      '.people_viewed .viewed .info .follow_btn',
+      'Connected',
+      1
+    );
   }, []);
   return (
-    <aside>
-      <section className='add_feed'>
+    <section className='people_viewed'>
+      <article className='head'>
         <div className='title'>
-          <div className='text'>Add to your feed</div>
-          <div className='icon'>
-            <FontAwesomeIcon icon={faInfoCircle} />
-          </div>
+          <h5 className='head'>
+            <small>People also viewed</small>
+          </h5>
         </div>
-        <div className='feeds'>
-          {data.map(({ image, title, subtitle }, i) => (
-            <section key={i} className='feed'>
+      </article>{' '}
+      <article className='viewed'>
+        {data.map(({ image, title, subtitle }, i) => (
+          <section key={i} className='feed_content'>
+            <div className='feed'>
               <figure>
                 <img src={image} alt={title} />
               </figure>
@@ -66,17 +65,17 @@ const Aside = () => {
                   <span className='text'>follow</span>
                 </div>
               </div>
-            </section>
-          ))}
-        </div>
-        <Link to='/networks' className='recommendations'>
-          View all recommendations <FontAwesomeIcon icon={faArrowRight} />
-        </Link>
-      </section>
-      <div className='line'></div>
-      <Footer />
-    </aside>
+            </div>
+            {i < data.length - 1 && <hr />}
+          </section>
+        ))}
+      </article>
+      <hr className='down_hr' />
+      <Link className='show_all_btn' to='/networks'>
+        Show All
+      </Link>
+    </section>
   );
 };
 
-export default Aside;
+export default PeopleViewed;

@@ -493,5 +493,93 @@
         }
       }
     }
+
+    //** Profile Aside ClassNames **
+  }
+  aside {
+    max-width: 300px;
+    .profile_actions {
+      @extend %miniSectionStyle;
+      .title {
+        color: $secondary;
+        @extend %displayFlexContentSpaceBetween;
+        svg {
+          cursor: pointer;
+        }
+      }
+      p {
+        margin: 0;
+        color: $third;
+        font-size: 13px;
+      }
+      .line {
+        @extend %hrLine;
+      }
+    }
+    .people_viewed {
+      @extend %miniSectionStyle;
+      padding: 1.8rem 0 0;
+      .head {
+        padding: 0 1rem 0.5rem 1rem;
+      }
+      .viewed {
+        .feed_content {
+          padding: 0 1rem 0.5rem 1rem;
+          .feed {
+            @extend %displayFlexStart;
+            gap: 10px;
+            margin-bottom: 10px;
+            // padding: 0 1rem 0.5rem 1rem;
+            figure {
+              margin: 0;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              overflow: hidden;
+              vertical-align: middle;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .info {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              .user {
+                h6.title {
+                  margin: 0;
+                  color: $secondary;
+                }
+                p.subtitle {
+                  color: $third;
+                  margin: 0 0 0.3rem;
+                }
+              }
+              .follow_btn {
+                @extend %secondaryCircledOutlinedBtn;
+              }
+            }
+            hr {
+              color: $third;
+            }
+          }
+        }
+      }
+      .down_hr {
+        margin: 0;
+      }
+      .show_all_btn {
+        padding: 10px;
+        @extend %displayFlexCenter;
+        text-decoration: none;
+        color: $third;
+        font-weight: 500;
+        &:hover {
+          background-color: $hover_secondary;
+        }
+      }
+    }
   }
 }
