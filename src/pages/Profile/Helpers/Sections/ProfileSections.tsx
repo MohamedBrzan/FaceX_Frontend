@@ -4,6 +4,7 @@ import Analytics from './Helpers/Anlaystics';
 import Education from './Helpers/Education';
 import Experience from './Helpers/Experience';
 import Info from './Helpers/Info';
+import Interests from './Helpers/Interests';
 import Skills from './Helpers/Skills';
 
 const ProfileSections = () => {
@@ -16,6 +17,7 @@ const ProfileSections = () => {
       <Experience />
       <Education />
       <Skills />
+      <Interests />
     </section>
   );
 };

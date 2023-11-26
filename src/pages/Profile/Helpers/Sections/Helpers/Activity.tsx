@@ -2,33 +2,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
+import Switches from '../../../../../functions/Switches';
 
 const Activity = () => {
   useEffect(() => {
-    const btns = Array.from(
-      document.querySelectorAll(
-        'section.activity article.switches .btns .switch'
-      )
-    ) as HTMLDivElement[];
-    const contents = Array.from(
-      document.querySelectorAll(
-        'section.activity article.switches .contents .content'
-      )
-    ) as HTMLDivElement[];
-
-    btns.forEach((sw) => {
-      sw.onclick = (btn) => {
-        btns.forEach((b) => b.classList.remove('selected'));
-        contents.forEach((c) => c.classList.remove('active'));
-        const button = btn.target as HTMLDivElement;
-        button.classList.add('selected');
-        contents.forEach((c) => {
-          if (button.getAttribute('id') === c.getAttribute('data-content')) {
-            c.classList.add('active');
-          }
-        });
-      };
-    });
+    Switches(
+      'section.activity article.switches .buttons .switch',
+      'section.activity article.switches .contents .content',
+      'selected',
+      'active',
+      'data-content'
+    );
   }, []);
   return (
     <section className='activity'>
@@ -50,7 +34,7 @@ const Activity = () => {
         </div>
       </article>
       <article className='switches'>
-        <div className='btns'>
+        <div className='buttons'>
           <div className='switch posts selected' id='profile_posts'>
             Posts
           </div>
