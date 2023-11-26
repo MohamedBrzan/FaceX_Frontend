@@ -8,6 +8,12 @@
   overflow: hidden;
 }
 
+%miniSectionStyle {
+  @extend %sectionStyle;
+  margin: 5px 0 0;
+  padding: 1.8rem;
+}
+
 %followBtnStyle {
   @extend %displayFlexContentSpaceBetween;
   cursor: pointer;

@@ -919,7 +919,7 @@ const Posts = () => {
             <div className='follow_btn'>
               <div className='icon'>
                 <FontAwesomeIcon icon={faUserPlus} />
-              </div>{' '}
+              </div>
               <span className='text'>follow</span>
             </div>
           </div>
