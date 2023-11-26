@@ -1,6 +1,7 @@
 import About from './Helpers/About';
 import Activity from './Helpers/Activity';
 import Analytics from './Helpers/Anlaystics';
+import Education from './Helpers/Education';
 import Experience from './Helpers/Experience';
 import Info from './Helpers/Info';
 
@@ -12,6 +13,7 @@ const ProfileSections = () => {
       <Activity />
       <About />
       <Experience />
+      <Education />
     </section>
   );
 };

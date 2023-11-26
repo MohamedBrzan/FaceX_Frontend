@@ -372,5 +372,37 @@
         color: $third;
       }
     }
+    .education {
+      @extend %miniSectionStyle;
+      .head {
+        @extend %sectionHead;
+        .actions {
+          @extend %displayFlexCenter;
+          gap: 10px;
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+      .education_container {
+        .degree {
+          @extend %displayFlexContentStart;
+          .info {
+            box-shadow: none;
+            .title,
+            p {
+              margin: 0;
+            }
+            .title {
+              color: $secondary;
+            }
+            p {
+              color: $third;
+            }
+          }
+        }
+      }
+    }
   }
 }
