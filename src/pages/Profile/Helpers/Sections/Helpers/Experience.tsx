@@ -99,16 +99,14 @@ const Experience = () => {
                 </small>
               </p>
               {skills.length ? (
-                <div className='skills'>
+                <>
                   <span className='title'>
                     <strong>Skills: </strong>
                   </span>
                   {skills.map((skill, i) => (
-                    <span className='skill' key={i}>
-                      {skill + ' . '}
-                    </span>
+                    <span key={i}>{skill + ' . '}</span>
                   ))}
-                </div>
+                </>
               ) : null}
               <p>
                 <small>{link}</small>

@@ -7,7 +7,6 @@
   .title {
     h4 {
       font-weight: 500;
-      margin: 0 0 2rem;
     }
     a {
       text-decoration: none;
@@ -401,6 +400,64 @@
               color: $third;
             }
           }
+        }
+      }
+    }
+    .skills {
+      @extend %miniSectionStyle;
+      padding: 0;
+
+      .head {
+        padding: 1rem;
+        @extend %sectionHead;
+        .actions {
+          @extend %displayFlexCenter;
+          gap: 10px;
+          svg {
+            width: 20px;
+          }
+        }
+        .create_btn {
+          @extend %primaryCircledOutlinedBtn;
+        }
+        .edit_icon {
+          @extend %displayFlexCenter;
+        }
+      }
+      .skill {
+        padding: 1rem 1.8rem;
+        figure {
+          // margin: 0;
+          width: 25px;
+          height: 25px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .details {
+          @extend %displayFlexContentStart;
+          gap: 10px;
+        }
+        hr {
+          margin: 0;
+        }
+      }
+      .all_skills_link {
+        padding: 10px;
+        @extend %displayFlexCenter;
+        text-decoration: none;
+        color: $third;
+        font-weight: 500;
+
+        &:hover {
+          background-color: $hover_secondary;
+          text-decoration: underline;
+        }
+        > svg {
+          margin: 0 0 0 5px;
         }
       }
     }
