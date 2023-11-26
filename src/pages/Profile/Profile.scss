@@ -463,6 +463,7 @@
     }
     .interests {
       @extend %miniSectionStyle;
+
       .switches {
         .buttons {
           @extend %displayFlexContentStart;
@@ -470,6 +471,10 @@
           color: $third;
           font-weight: 500;
           border-bottom: 1px solid $hover_secondary;
+          @include Responsive('xs') {
+            gap: 1px;
+            font-size: 14px;
+          }
           > div {
             padding: 0.7rem;
             cursor: pointer;
@@ -497,7 +502,12 @@
     //** Profile Aside ClassNames **
   }
   aside {
-    max-width: 300px;
+    @include Responsive('xs') {
+      max-width: 100%;
+    }
+    @include Responsive('md') {
+      max-width: 300px;
+    }
     .profile_actions {
       @extend %miniSectionStyle;
       .title {
