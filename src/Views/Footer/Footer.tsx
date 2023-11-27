@@ -12,7 +12,7 @@ const Footer = () => {
   ];
   return (
     <footer>
-      <div className='links'>
+      <div className='footer_links'>
         {links.map(({ title, to }, i) => (
           <Link key={i} to={to}>
             {title}
