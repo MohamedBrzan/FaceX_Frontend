@@ -9,6 +9,7 @@ import {
   faBell,
   faCommentDots,
   faHome,
+  faEllipsis,
 } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../../constants/Logo/Logo';
 import './Header.scss';
@@ -29,7 +30,7 @@ const Header = () => {
     <header>
       <Container>
         <Row className='m-0'>
-          <Col xs={12} md={6} className='mb-2'>
+          <Col xs={12} md={6}>
             <Row>
               <Col xs={4} md={4} lg={3} className='logo_container'>
                 <Logo />
@@ -39,7 +40,7 @@ const Header = () => {
               </Col>
             </Row>
           </Col>
-          <Col xs={10} md={4}>
+          <Col xs={10} md={4} className='head_icons_col'>
             <ul className='head_icons list-unstyled'>
               <NavLink className='icon' to='/'>
                 <li title='Home' className='active'>
@@ -77,10 +78,13 @@ const Header = () => {
               </NavLink>
             </ul>
           </Col>
-          <Col xs={2}>
+          <Col xs={2} className='user_col'>
             <div className='user' onClick={ShowDropdownMenu}>
               <div className='user_img'>
                 <img src={Me} alt='User Photo' />
+              </div>
+              <div className='user_svg'>
+                <FontAwesomeIcon icon={faEllipsis} />
               </div>
               <div className='drop_menu' ref={dropMenuRef}>
                 <ul className='list-unstyled'>
