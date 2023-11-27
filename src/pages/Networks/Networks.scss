@@ -50,5 +50,12 @@
         display: none;
       }
     }
+    hr {
+      margin: 0.3rem 0;
+      color: $third;
+    }
+    footer {
+      padding: 1rem 0;
+    }
   }
 }

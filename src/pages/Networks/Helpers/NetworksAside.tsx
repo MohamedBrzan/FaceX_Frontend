@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
+import Footer from '../../../Views/Footer/Footer';
 
 const NetworksAside = () => {
   const links = [
@@ -123,6 +124,9 @@ const NetworksAside = () => {
           <FontAwesomeIcon icon={faAngleDown} />
         </span>
       </button>
+      <hr />
+      <hr />
+      <Footer />
     </aside>
   );
 };
