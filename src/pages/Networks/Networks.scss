@@ -31,6 +31,9 @@
         .counts {
           color: $third;
         }
+        &.hidden {
+          display: none;
+        }
       }
     }
     button {
@@ -43,6 +46,9 @@
       }
       background: none;
       font-weight: 500;
+      &.hidden {
+        display: none;
+      }
     }
   }
 }

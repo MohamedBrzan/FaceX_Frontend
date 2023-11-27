@@ -1,4 +1,5 @@
 import {
+  faAngleDown,
   faAngleUp,
   faCalendar,
   faContactBook,
@@ -9,6 +10,7 @@ import {
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect } from 'react';
 
 const NetworksAside = () => {
   const links = [
@@ -61,6 +63,36 @@ const NetworksAside = () => {
       counts: 23,
     },
   ];
+
+  useEffect(() => {
+    const showLessBtn = document.querySelector(
+      '.aside_networks .show_less_btn'
+    );
+    const showMoreBtn = document.querySelector(
+      '.aside_networks .show_more_btn'
+    );
+    const linkManagement = document.querySelectorAll(
+      '.aside_networks .links_management .link_management'
+    );
+    showLessBtn?.addEventListener('click', () => {
+      linkManagement.forEach((link, i) => {
+        if (i > 0) {
+          link.classList.add('hidden');
+          showLessBtn.classList.add('hidden');
+          showMoreBtn?.classList.remove('hidden');
+        }
+      });
+    });
+    showMoreBtn?.addEventListener('click', () => {
+      linkManagement.forEach((link, i) => {
+        if (i > 0) {
+          link.classList.remove('hidden');
+          showLessBtn?.classList.remove('hidden');
+          showMoreBtn.classList.add('hidden');
+        }
+      });
+    });
+  }, []);
   return (
     <aside className='aside_networks'>
       <article className='head'>
@@ -79,10 +111,16 @@ const NetworksAside = () => {
           </section>
         ))}
       </article>
-      <button>
+      <button className='show_less_btn'>
         Show Less
         <span className='icon'>
           <FontAwesomeIcon icon={faAngleUp} />
+        </span>
+      </button>
+      <button className='show_more_btn hidden'>
+        Show More
+        <span className='icon'>
+          <FontAwesomeIcon icon={faAngleDown} />
         </span>
       </button>
     </aside>

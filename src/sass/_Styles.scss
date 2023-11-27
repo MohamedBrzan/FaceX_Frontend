@@ -105,9 +105,10 @@
 
 %secondaryBtn {
   @extend %primaryBtn;
-  color: $secondary;
+  color: $third;
   &:hover {
     background-color: $hover_secondary;
+    color: $secondary;
   }
 }
 
