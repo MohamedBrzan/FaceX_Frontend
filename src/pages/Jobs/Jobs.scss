@@ -1,0 +1,44 @@
+@use '../../sass/Styles' as *;
+@use '../../sass/Colors' as *;
+@use '../../sass/Mixins' as *;
+
+.jobs {
+  margin: 1rem 0 0;
+  .left_aside {
+    @include Responsive('xs') {
+      max-width: 100%;
+    }
+    @include Responsive('md') {
+      max-width: 225px;
+    }
+    .links {
+      @extend %miniSectionStyle;
+      a {
+        @extend %displayFlexContentStart;
+        padding: 0.5rem 0;
+        text-decoration: none;
+        color: $secondary;
+        font-weight: 500;
+      }
+      .text {
+        padding: 0 0.7rem;
+        font-size: 14px;
+      }
+    }
+    .post_job {
+      margin-top: 1.5rem;
+      width: 100%;
+      @extend %displayFlexCenter;
+      .create_btn {
+       width: 100%;
+       text-align: center;
+        @extend %primaryCircledOutlinedBtn;
+        background-color: transparent;
+        text-decoration: none;
+        display: block;
+        padding: .8rem 0rem;
+        border-radius: 60px;
+      }
+    }
+  }
+}
