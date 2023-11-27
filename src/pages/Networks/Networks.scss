@@ -7,6 +7,7 @@
   .aside_networks {
     @extend %sectionStyle;
     @extend %miniSectionSize;
+    height: auto;
     .title {
       margin: 0;
       color: $third;
@@ -56,6 +57,90 @@
     }
     footer {
       padding: 1rem 0;
+    }
+  }
+  .discover_networks {
+    @extend %miniSectionStyle;
+
+    article {
+      margin: 0 0 2rem;
+      .head {
+        @extend %displayFlexContentSpaceBetween;
+        color: $third;
+        margin: 0 0 0.5rem;
+        a {
+          @extend %secondaryBtn;
+          text-decoration: none;
+          font-weight: 500;
+        }
+      }
+      .data_row {
+        margin: 0;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        .person {
+          @extend %miniSectionStyle;
+          padding: 0;
+          max-width: 350px;
+          @include Responsive('xs') {
+            width: auto;
+          }
+          @include Responsive('lg') {
+            width: 250px;
+          }
+
+          figure.cover {
+            margin: 0;
+            width: 100%;
+            height: 50px;
+            position: relative;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          figure.avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            transform: translate(30%, -50%);
+            position: absolute;
+            margin: 0;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .info {
+            padding: 0 1.4rem;
+            margin: 3rem 0 0;
+            .name,
+            p,
+            .mutual {
+              margin: 0;
+            }
+            .name {
+              color: $secondary;
+            }
+            .position,
+            .mutual {
+              color: $third;
+            }
+          }
+          .follow_btn {
+            width: 90%;
+            @extend %primaryCircledOutlinedBtn;
+            margin: 1rem auto;
+            display: block;
+          }
+        }
+      }
     }
   }
 }
