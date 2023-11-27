@@ -127,7 +127,7 @@ This social media website Inspired by ( [facebook](https://facebook.com), [linke
               |--- Aside
               |--- Sections
       |--- User
-      |--- UserNetwork
+      |--- Networks
    |--- routes
    |--- sass
    |--- scss

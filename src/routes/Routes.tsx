@@ -1,5 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom';
-import UserNetwork from '../pages/UserNetwork/UserNetwork';
+import UserNetwork from '../pages/Networks/Networks';
 import Jobs from '../pages/Jobs/Jobs';
 import Home from '../pages/Home/Home';
 import Messages from '../pages/Messages/Messages';
