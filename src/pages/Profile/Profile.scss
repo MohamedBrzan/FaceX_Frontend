@@ -501,13 +501,8 @@
 
     //** Profile Aside ClassNames **
   }
-  aside {
-    @include Responsive('xs') {
-      max-width: 100%;
-    }
-    @include Responsive('md') {
-      max-width: 300px;
-    }
+  .profile_aside {
+    @extend %miniSectionSize;
     .profile_actions {
       @extend %miniSectionStyle;
       .title {

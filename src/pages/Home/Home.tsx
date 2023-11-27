@@ -11,10 +11,10 @@ const Home = () => {
     <section className='home'>
       <Container>
         <Row>
-          <Col xs={12} md={3} xl={2}>
+          <Col xs={12} md={3}>
             <SideBar />
           </Col>
-          <Col>
+          <Col md={6}>
             <Posts />
           </Col>
           <Col md={3} className='aside_col'>

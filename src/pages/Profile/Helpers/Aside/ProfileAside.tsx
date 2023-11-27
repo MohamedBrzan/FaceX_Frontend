@@ -3,7 +3,7 @@ import ProfileActions from './Helpers/ProfileActions';
 
 const ProfileAside = () => {
   return (
-    <aside>
+    <aside className='profile_aside'>
       <ProfileActions />
       <div className='line'></div>
       <PeopleViewed />

@@ -1,4 +1,5 @@
 @use './Colors' as *;
+@use './Mixins' as *;
 
 %hrLine {
   margin-top: 5px;
@@ -19,6 +20,15 @@
   @extend %sectionStyle;
   margin: 5px 0 0;
   padding: 1.8rem;
+}
+
+%miniSectionSize {
+  @include Responsive('xs') {
+    max-width: 100%;
+  }
+  @include Responsive('md') {
+    max-width: 300px;
+  }
 }
 
 %followBtnStyle {
@@ -90,6 +100,14 @@
   }
   &:hover {
     background-color: $hover_primary;
+  }
+}
+
+%secondaryBtn {
+  @extend %primaryBtn;
+  color: $secondary;
+  &:hover {
+    background-color: $hover_secondary;
   }
 }
 

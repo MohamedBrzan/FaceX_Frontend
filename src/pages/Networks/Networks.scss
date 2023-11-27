@@ -1,0 +1,48 @@
+@use '../../sass/Colors' as *;
+@use '../../sass/Mixins' as *;
+@use '../../sass/Styles' as *;
+
+.networks {
+  margin: 15px 0 0;
+  .aside_networks {
+    @extend %sectionStyle;
+    @extend %miniSectionSize;
+    .title {
+      margin: 0;
+      color: $third;
+      padding: 1.4rem;
+    }
+    .links_management {
+      display: flex;
+      flex-direction: column;
+      .link_management {
+        @extend %displayFlexContentSpaceBetween;
+        padding: 0.5rem 0;
+        padding: 0.5rem 1.4rem;
+        cursor: pointer;
+        &:hover {
+          background-color: $hover_secondary;
+        }
+        .info {
+          @extend %displayFlexContentStart;
+          gap: 10px;
+          color: $third;
+        }
+        .counts {
+          color: $third;
+        }
+      }
+    }
+    button {
+      @extend %secondaryBtn;
+      outline: none;
+      border: none;
+      margin: 1rem;
+      .icon {
+        padding: 0 0.3rem;
+      }
+      background: none;
+      font-weight: 500;
+    }
+  }
+}

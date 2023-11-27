@@ -7,6 +7,7 @@
   height: 100%;
   border-radius: 5px;
   overflow: hidden;
+  @extend %miniSectionSize;
   .feed_identity,
   .recent_identity {
     @extend %sectionStyle;
