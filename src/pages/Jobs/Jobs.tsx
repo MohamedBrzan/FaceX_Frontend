@@ -14,10 +14,10 @@ const Jobs = () => {
           <Col md={4} lg={3}>
             <LeftAside />
           </Col>
-          <Col md={6} >
+          <Col md={6}>
             <JobsView />
           </Col>
-          <Col lg={3}>
+          <Col md={3}>
             <RightAside />
           </Col>
         </Row>

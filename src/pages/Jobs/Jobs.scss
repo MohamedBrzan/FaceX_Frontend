@@ -143,4 +143,66 @@
       }
     }
   }
+  .right_aside {
+    @extend %miniSectionSize;
+    @include Responsive('xs') {
+      margin: 1rem 0;
+    }
+    @include Responsive('md') {
+      margin: 0;
+    }
+    .job_seeker {
+      @extend %sectionStyle;
+      margin: 0 0 1rem;
+      .head {
+        padding: 1rem;
+        .title,
+        .subtitle {
+          margin: 0;
+        }
+        .title {
+          color: $secondary;
+        }
+        .subtitle {
+          color: $third;
+        }
+      }
+      .middle {
+        @extend %displayFlexContentSpaceBetween;
+        padding: 0.3rem 1rem;
+        background-color: #f8fafd;
+        margin: 0.1rem;
+        figure {
+          background-color: #f8fafd;
+          margin: 0;
+          padding: 0;
+          width: 50px;
+          height: 50px;
+          border: 1px solid black;
+          border-radius: 5px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      .last {
+        padding: 1rem;
+        line-height: 1.2;
+        a {
+          font-weight: 500;
+          color: #c398f5;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+            color: #a575db;
+          }
+        }
+        svg {
+          padding: 0 0.3rem;
+        }
+      }
+    }
+  }
 }
