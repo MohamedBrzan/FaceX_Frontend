@@ -223,7 +223,7 @@
   align-items: center;
 }
 
-%darkPencilIconStyle {
+%darkIconStyle {
   border-radius: 50%;
   background-color: $general;
   width: 35px;
@@ -238,15 +238,15 @@
   }
 }
 
-%lightPencilIconStyle {
-  @extend %darkPencilIconStyle;
+%lightIconStyle {
+  @extend %darkIconStyle;
   &:hover {
     background-color: none;
   }
 }
 
-%bigDarkPencilIconStyle {
-  @extend %darkPencilIconStyle;
+%bigDarkIconStyle {
+  @extend %darkIconStyle;
   width: 50px;
   height: 50px;
 }

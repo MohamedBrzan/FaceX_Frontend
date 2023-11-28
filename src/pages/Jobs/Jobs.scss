@@ -30,14 +30,116 @@
       width: 100%;
       @extend %displayFlexCenter;
       .create_btn {
-       width: 100%;
-       text-align: center;
+        width: 100%;
+        text-align: center;
         @extend %primaryCircledOutlinedBtn;
         background-color: transparent;
         text-decoration: none;
         display: block;
-        padding: .8rem 0rem;
+        padding: 0.8rem 0rem;
         border-radius: 60px;
+      }
+    }
+  }
+  .jobs_view {
+    @include Responsive('xs') {
+      margin: 1rem 0 0 0;
+    }
+    @include Responsive('md') {
+      margin: 0;
+    }
+    .recommendation {
+      @extend %sectionStyle;
+      .head {
+        padding: 1rem;
+        .title {
+          margin: 0;
+          color: $secondary;
+        }
+        .subtitle {
+          margin: 0;
+          color: $third;
+        }
+        margin: 0 0 1rem;
+      }
+      .job_recommend {
+        cursor: pointer;
+        padding: 1rem;
+        .data_info {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          .text_sec {
+            @extend %displayFlexStart;
+            gap: 10px;
+            figure {
+              margin: 0;
+              width: 50px;
+              height: 50px;
+              overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .title {
+              color: $secondary;
+            }
+            .subtitle,
+            .job_info,
+            .job_time {
+              margin: 0;
+              color: $third;
+            }
+            .subtitle,
+            .job_info {
+              font-size: 15px;
+            }
+            .job_time {
+              font-size: 12px;
+              span {
+                &:first-child {
+                  color: $green_primary;
+                  font-weight: 500;
+                }
+              }
+            }
+          }
+        }
+        .svg {
+          @extend %displayFlexContentSpaceBetween;
+          > div {
+            @extend %darkIconStyle;
+            &.eye {
+              display: none;
+            }
+          }
+        }
+        &:hover {
+          .svg {
+            .eye {
+              display: flex;
+            }
+          }
+        }
+      }
+      hr {
+        color: $third;
+        margin: 1rem 0 0;
+      }
+      .show_link {
+        padding: 10px;
+        @extend %displayFlexCenter;
+        text-decoration: none;
+        color: $third;
+        font-weight: 500;
+        &:hover {
+          background-color: $hover_secondary;
+        }
+        svg {
+          padding: 0 1rem;
+        }
       }
     }
   }
