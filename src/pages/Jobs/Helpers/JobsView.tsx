@@ -57,58 +57,7 @@ const JobsView = () => {
       type: 'Easy Apply',
     },
   ];
-  const specific = [
-    {
-      id: 1,
-      image,
-      title: 'Senior Frontend Developer',
-      subtitle: 'Techy Business Services',
-      country: 'Egypt',
-      work: 'Remote',
-      time: '8 hours ago',
-      type: 'Easy Apply',
-    },
-    {
-      id: 2,
-      image,
-      title: 'Senior Frontend Developer',
-      subtitle: 'Techy Business Services',
-      country: 'Egypt',
-      work: 'Remote',
-      time: '8 hours ago',
-      type: 'Easy Apply',
-    },
-    {
-      id: 3,
-      image,
-      title: 'Senior Frontend Developer',
-      subtitle: 'Techy Business Services',
-      country: 'Egypt',
-      work: 'Remote',
-      time: '8 hours ago',
-      type: 'Easy Apply',
-    },
-    {
-      id: 4,
-      image,
-      title: 'Senior Frontend Developer',
-      subtitle: 'Techy Business Services',
-      country: 'Egypt',
-      work: 'Remote',
-      time: '8 hours ago',
-      type: 'Easy Apply',
-    },
-    {
-      id: 5,
-      image,
-      title: 'Senior Frontend Developer',
-      subtitle: 'Techy Business Services',
-      country: 'Egypt',
-      work: 'Remote',
-      time: '8 hours ago',
-      type: 'Easy Apply',
-    },
-  ];
+
   return (
     <section className='jobs_view'>
       <article className='recommendation'>
