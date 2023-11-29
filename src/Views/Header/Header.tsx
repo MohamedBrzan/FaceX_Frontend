@@ -36,7 +36,7 @@ const Header = () => {
                 <Logo />
               </Col>
               <Col>
-                <SearchBar />
+                <SearchBar placeholder='Search' />
               </Col>
             </Row>
           </Col>
