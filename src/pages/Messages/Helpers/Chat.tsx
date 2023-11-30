@@ -271,7 +271,7 @@ const Chat = () => {
             </div>
             <div className='switches'>
               <div className='switch_tabs'>
-                <div className='switch_tab' id='focused_messages'>
+                <div className='switch_tab selected' id='focused_messages'>
                   Focused
                 </div>
                 <div className='switch_tab' id='other_messages'>
