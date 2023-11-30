@@ -279,7 +279,7 @@ const Chat = () => {
                 </div>
               </div>
               <div className='contents'>
-                <div className='content' data-content='focused_messages'>
+                <div className='content active' data-content='focused_messages'>
                   <section className='networks_messages'>
                     {messages.map(
                       ({ image, name, position, slug, date }, i) => (
