@@ -1,12 +1,12 @@
-// import FeedIdentity from './Helpers/FeedIdentity/FeedIdentity';
-// import RecentIdentity from './Helpers/RecentIdentity/RecentIdentity';
+import FeedSideBar from './Helpers/FeedSideBar/FeedSideBar';
+import RecentSideBar from './Helpers/RecentSideBar/RecentSideBar';
 import './SideBar.scss';
 
 const SideBar = () => {
   return (
     <section className='sidebar'>
-      {/* <FeedIdentity /> */}
-      {/* <RecentIdentity /> */}
+      <FeedSideBar />
+      <RecentSideBar />
     </section>
   );
 };

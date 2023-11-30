@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import cover from '../../../../assets/cover.jpeg';
 import me from '../../../../assets/me.jpg';
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 
-const FeedIdentity = () => {
+const FeedSideBar = () => {
   return (
     <article className='feed_identity'>
       <figure className='cover'>
@@ -35,4 +35,4 @@ const FeedIdentity = () => {
   );
 };
 
-export default FeedIdentity;
+export default FeedSideBar;

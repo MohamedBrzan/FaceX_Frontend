@@ -2,7 +2,7 @@ import { faHashtag, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-const RecentIdentity = () => {
+const RecentSideBar = () => {
   return (
     <article className='recent_identity'>
       <small className='padding'>Recent</small>
@@ -47,4 +47,4 @@ const RecentIdentity = () => {
   );
 };
 
-export default RecentIdentity;
+export default RecentSideBar;
