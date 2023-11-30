@@ -19,6 +19,7 @@ const Chat = () => {
       image: strangerImage,
       name: 'Andrej Kitanovski',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Andrej',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -38,8 +39,9 @@ const Chat = () => {
     {
       id: 1,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'zena',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'zena',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -51,16 +53,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi zena This is Me ✌️' },
+          { id: 2, text: 'Hi zena This is Me ✌️' },
         ],
       },
     },
     {
       id: 3,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'Mazen',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Mazen',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -72,16 +75,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi Mazen This is Me ✌️' },
+          { id: 2, text: 'Hi Mazen This is Me ✌️' },
         ],
       },
     },
     {
       id: 4,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'Khaled',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Khaled',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -93,16 +97,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi Khaled This is Me ✌️' },
+          { id: 2, text: 'Hi Khaled This is Me ✌️' },
         ],
       },
     },
     {
       id: 5,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'Wael',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Wael',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -114,16 +119,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi Wael This is Me ✌️' },
+          { id: 2, text: 'Hi Wael This is Me ✌️' },
         ],
       },
     },
     {
       id: 7,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'Adel',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Adel',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -135,16 +141,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi Adel This is Me ✌️' },
+          { id: 2, text: 'Hi Adel This is Me ✌️' },
         ],
       },
     },
     {
       id: 9,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'Khames',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Khames',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -156,16 +163,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi Khames This is Me ✌️' },
+          { id: 2, text: 'Hi Khames This is Me ✌️' },
         ],
       },
     },
     {
       id: 11,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'Toni',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'Toni',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -177,16 +185,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi Toni This is Me ✌️' },
+          { id: 2, text: 'Hi Toni This is Me ✌️' },
         ],
       },
     },
     {
       id: 13,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'zonzon',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'zonzon',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -198,16 +207,17 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi zonzon This is Me ✌️' },
+          { id: 2, text: 'Hi zonzon This is Me ✌️' },
         ],
       },
     },
     {
       id: 15,
       image: strangerImage,
-      name: 'Andrej Kitanovski',
+      name: 'swisi',
       position: 'Market Research Specialist at Newtonx',
+      slug: 'swisi',
       date: 'Nov 15',
       msgs: [
         { id: 1, text: 'Hi Mohamed This is Me ✌️' },
@@ -219,8 +229,8 @@ const Chat = () => {
         name: 'Mohamed Mahmoud',
         position: 'Web Developer',
         msgs: [
-          { id: 1, text: 'Hi Andrej This is Me ✌️' },
-          { id: 2, text: 'Hi Andrej This is Me ✌️' },
+          { id: 1, text: 'Hi swisi This is Me ✌️' },
+          { id: 2, text: 'Hi swisi This is Me ✌️' },
         ],
       },
     },
@@ -271,32 +281,34 @@ const Chat = () => {
               <div className='contents'>
                 <div className='content' data-content='focused_messages'>
                   <section className='networks_messages'>
-                    {messages.map(({ image, name, position, date }, i) => (
-                      <section key={i} className='msg'>
-                        <div className='data'>
-                          <div className='data_info'>
-                            <figure>
-                              <img src={image} alt={name} />
-                            </figure>
-                            <div className='info'>
-                              <h6 className='name'>
-                                <small>{name}</small>
-                              </h6>
-                              <p className='position'>
-                                <small>{position}</small>
-                              </p>
+                    {messages.map(
+                      ({ image, name, position, slug, date }, i) => (
+                        <section key={i} className='msg' id={slug}>
+                          <div className='data'>
+                            <div className='data_info'>
+                              <figure>
+                                <img src={image} alt={name} />
+                              </figure>
+                              <div className='info'>
+                                <h6 className='name'>
+                                  <small>{name}</small>
+                                </h6>
+                                <p className='position'>
+                                  <small>{position}</small>
+                                </p>
+                              </div>
+                            </div>
+                            <div className='date_container'>
+                              <div className='date'>{date}</div>
+                              <div className='svg'>
+                                <FontAwesomeIcon icon={faEllipsis} />
+                              </div>
                             </div>
                           </div>
-                          <div className='date_container'>
-                            <div className='date'>{date}</div>
-                            <div className='svg'>
-                              <FontAwesomeIcon icon={faEllipsis} />
-                            </div>
-                          </div>
-                        </div>
-                        {i < messages.length - 1 && <hr />}
-                      </section>
-                    ))}
+                          {i < messages.length - 1 && <hr />}
+                        </section>
+                      )
+                    )}
                   </section>
                 </div>
                 <div className='content' data-content='other_messages'>
@@ -307,7 +319,36 @@ const Chat = () => {
           </section>
         </Col>
         <Col>
-          <section className='message_thread'></section>
+          <section className='message_thread'>
+            <section className='networks_messages'>
+              {messages.map(({ image, name, position, slug, date }, i) => (
+                <section key={i} className='msg' id={slug}>
+                  <div className='data'>
+                    <div className='data_info'>
+                      <figure>
+                        <img src={image} alt={name} />
+                      </figure>
+                      <div className='info'>
+                        <h6 className='name'>
+                          <small>{name}</small>
+                        </h6>
+                        <p className='position'>
+                          <small>{position}</small>
+                        </p>
+                      </div>
+                    </div>
+                    <div className='date_container'>
+                      <div className='date'>{date}</div>
+                      <div className='svg'>
+                        <FontAwesomeIcon icon={faEllipsis} />
+                      </div>
+                    </div>
+                  </div>
+                  {i < messages.length - 1 && <hr />}
+                </section>
+              ))}
+            </section>
+          </section>
         </Col>
       </Row>
     </section>
