@@ -1,6 +1,6 @@
-import './SideBar.scss';
 import FeedIdentity from './Helpers/FeedIdentity/FeedIdentity';
 import RecentIdentity from './Helpers/RecentIdentity/RecentIdentity';
+import './SideBar.scss';
 
 const SideBar = () => {
   return (
