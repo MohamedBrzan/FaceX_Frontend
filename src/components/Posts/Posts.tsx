@@ -20,6 +20,7 @@ import { faComment, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faRepeat, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
 
 const Posts = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const Posts = () => {
         showInteract.src = selectedImg.src;
       });
     });
+    ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
   }, []);
 
   const fetchPosts = [
