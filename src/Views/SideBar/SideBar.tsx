@@ -1,5 +1,5 @@
-import FeedIdentity from './Helpers/FeedIdentity/FeedIdentity.tsx';
-import RecentIdentity from './Helpers/RecentIdentity/RecentIdentity.tsx';
+import FeedIdentity from './Helpers/FeedIdentity/FeedIdentity';
+import RecentIdentity from './Helpers/RecentIdentity/RecentIdentity';
 import './SideBar.scss';
 
 const SideBar = () => {
