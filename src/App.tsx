@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useGetUsersQuery } from './store/apis/Users';
+import { useGetPostQuery } from './store/apis/Posts';
 import Header from './Views/Header/Header';
 import AppRoutes from './routes/Routes';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -7,7 +7,7 @@ import './App.scss';
 
 function App() {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
-    useGetUsersQuery('');
+    useGetPostQuery('');
 
   useEffect(() => {
     if (isFetching) console.log('fetching...');
