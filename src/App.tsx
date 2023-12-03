@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useGetPostQuery } from './store/apis/Posts';
 import Header from './Views/Header/Header';
 import AppRoutes from './routes/Routes';
+import { useGetVideoQuery } from './store/apis/Videos';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
 function App() {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
-    useGetPostQuery('');
+    useGetVideoQuery('');
 
   useEffect(() => {
     if (isFetching) console.log('fetching...');
