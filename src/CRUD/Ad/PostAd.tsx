@@ -13,6 +13,9 @@ const PostAd = () => {
   return (
     <section className='upload_ad'>
       <Container>
+        <h3>
+          <small>Upload An Ad : </small>
+        </h3>
         <Form>
           <FormGroup className='mb-3'>
             <FormLabel>Images : </FormLabel>
@@ -69,10 +72,17 @@ const PostAd = () => {
           </FormGroup>
           <FormGroup className='mb-3'>
             <FormLabel>Choose Payment : </FormLabel>
-            <FormCheck type='radio' name='payment' label='Payment One' />
+            <FormCheck
+              type='radio'
+              name='payment'
+              label='Payment One'
+              required
+            />
             <FormCheck type='radio' name='payment' label='Payment Two' />
           </FormGroup>
-          <Button type='submit' className='submit_btn'>Upload</Button>
+          <Button type='submit' className='submit_btn'>
+            Upload
+          </Button>
         </Form>
       </Container>
     </section>
