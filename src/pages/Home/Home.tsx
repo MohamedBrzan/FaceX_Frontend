@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/esm/Col';
-import Posts from '../../components/Posts/Posts';
+import Posts from '../Posts/Posts';
 import SideBar from '../../Views/SideBar/SideBar';
 import Aside from '../../Views/Aside/Aside';
 import './Home.scss';

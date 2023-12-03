@@ -10,9 +10,6 @@ import love from '../../assets/expressions/love.png';
 import sad from '../../assets/expressions/sad.png';
 import shock from '../../assets/expressions/shock.png';
 import sick from '../../assets/expressions/sick.png';
-import media from '../../assets/media.svg';
-import event from '../../assets/event.svg';
-import writeArticle from '../../assets/article.svg';
 
 import './Posts.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +18,7 @@ import { faRepeat, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
+import PostPost from '../../CRUD/Post/PostPost';
 
 const Posts = () => {
   useEffect(() => {
@@ -861,36 +859,7 @@ const Posts = () => {
   ];
   return (
     <section className='posts'>
-      <div className='upload'>
-        <div className='text'>
-          <figure className='avatar'>
-            <img src={me} alt='User' />
-          </figure>
-          <div className='input'>
-            <input type='text' placeholder='Start a post' />
-          </div>
-        </div>
-        <div className='files'>
-          <div className='file media'>
-            <figure>
-              <img src={media} alt='User' />
-            </figure>
-            <div className='text'> media</div>
-          </div>
-          <div className='file event'>
-            <figure>
-              <img src={event} alt='User' />
-            </figure>
-            <div className='text'> Event</div>
-          </div>
-          <div className='file article'>
-            <figure>
-              <img src={writeArticle} alt='User' />
-            </figure>
-            <div className='text'> write article</div>
-          </div>
-        </div>
-      </div>
+      <PostPost />
       <hr />
       {fetchPosts.map(({ user, content }, i) => (
         <article className='post' key={i}>
