@@ -10,6 +10,9 @@ import Profile from '../pages/Profile/Profile';
 import PostAd from '../CRUD/Ad/PostAd';
 import PostBlog from '../CRUD/Blog/PostBlog';
 import PostPayment from '../CRUD/Payment/PostPayment';
+import PostReel from '../CRUD/Reel/PostReel';
+import SignIn from '../pages/Authentication/SignIn';
+import SignOut from '../pages/Authentication/signOut';
 
 const AppRoutes = () => {
   return (
@@ -26,6 +29,9 @@ const AppRoutes = () => {
         <Route path='/ad/post' element={<PostAd />} />
         <Route path='/blog/post' element={<PostBlog />} />
         <Route path='/payment/post' element={<PostPayment />} />
+        <Route path='/reel/post' element={<PostReel />} />
+        <Route path='/authentication/sign_out' element={<SignOut />} />
+        <Route path='/authentication/sign_in' element={<SignIn />} />
       </Route>
       <Route
         path='*'
