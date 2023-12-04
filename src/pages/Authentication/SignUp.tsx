@@ -14,7 +14,7 @@ const SignUp = () => {
           <small>Sign up</small>
         </h5>
         <p>
-          <small>Stay updated on your professional world</small>
+          <small>Make the most of your professional life</small>
         </p>
         <Form>
           <FormGroup className='mb-3'>
