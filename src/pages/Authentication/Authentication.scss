@@ -4,13 +4,14 @@
 
 .authentication {
   margin: auto;
-  &.sign_in {
+  &.sign_in,
+  &.sign_up {
     @extend %sectionStyle;
     @include Responsive('xs') {
       transform: translateY(5%);
     }
     @include Responsive('md') {
-      transform: translateY(20%);
+      transform: translateY(10%);
     }
     background-color: transparent;
     box-shadow: none;
@@ -47,7 +48,8 @@
       }
     }
     .forget_password a,
-    .sign_up a {
+    .sign_up a,
+    .sign_in a {
       text-decoration: none;
       color: $primary;
       font-weight: 500;
@@ -59,8 +61,9 @@
         text-decoration: underline;
       }
     }
-    .sign_up {
-      margin: 2rem;
+    .sign_up,
+    .sign_in {
+      margin: 2rem 1rem;
     }
   }
 }

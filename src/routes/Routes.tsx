@@ -12,7 +12,7 @@ import PostBlog from '../CRUD/Blog/PostBlog';
 import PostPayment from '../CRUD/Payment/PostPayment';
 import PostReel from '../CRUD/Reel/PostReel';
 import SignIn from '../pages/Authentication/SignIn';
-import SignOut from '../pages/Authentication/signOut';
+import SignUp from '../pages/Authentication/SignUp';
 
 const AppRoutes = () => {
   return (
@@ -30,7 +30,7 @@ const AppRoutes = () => {
         <Route path='/blog/post' element={<PostBlog />} />
         <Route path='/payment/post' element={<PostPayment />} />
         <Route path='/reel/post' element={<PostReel />} />
-        <Route path='/authentication/sign_out' element={<SignOut />} />
+        <Route path='/authentication/sign_up' element={<SignUp />} />
         <Route path='/authentication/sign_in' element={<SignIn />} />
       </Route>
       <Route
