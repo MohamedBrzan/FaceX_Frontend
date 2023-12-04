@@ -1,0 +1,66 @@
+@use '../../sass/Colors' as *;
+@use '../../sass/Styles' as *;
+@use '../../sass/Mixins' as *;
+
+.authentication {
+  margin: auto;
+  &.sign_in {
+    @extend %sectionStyle;
+    @include Responsive('xs') {
+      transform: translateY(5%);
+    }
+    @include Responsive('md') {
+      transform: translateY(20%);
+    }
+    background-color: transparent;
+    box-shadow: none;
+    @extend %displayFlexCenter;
+    flex-direction: column;
+    section.form {
+      @extend %miniSectionSize;
+      background-color: $general;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      margin: auto;
+      padding: 1rem;
+      .submit_btn {
+        @extend %primaryCircledBtn;
+        width: 100%;
+        margin: 1rem 0;
+      }
+      .hr {
+        position: relative;
+        color: $third;
+        .or {
+          color: $third;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: $general;
+          padding: 0 0.2rem;
+        }
+      }
+      .auth_btn {
+        @extend %primaryCircledOutlinedBtn;
+        margin: 1rem auto;
+        text-align: center;
+      }
+    }
+    .forget_password a,
+    .sign_up a {
+      text-decoration: none;
+      color: $primary;
+      font-weight: 500;
+      @extend %primaryCircledOutlinedBtn;
+      display: inline;
+      border: 0;
+      background-color: transparent;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .sign_up {
+      margin: 2rem;
+    }
+  }
+}
