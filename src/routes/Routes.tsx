@@ -9,6 +9,7 @@ import Admin from '../pages/Admin/Admin';
 import Profile from '../pages/Profile/Profile';
 import PostAd from '../CRUD/Ad/PostAd';
 import PostBlog from '../CRUD/Blog/PostBlog';
+import PostPayment from '../CRUD/Payment/PostPayment';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
         <Route path='/user/:id' element={<User />} />
         <Route path='/ad/post' element={<PostAd />} />
         <Route path='/blog/post' element={<PostBlog />} />
+        <Route path='/payment/post' element={<PostPayment />} />
       </Route>
       <Route
         path='*'
