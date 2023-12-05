@@ -19,9 +19,19 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
 import PostPost from '../../CRUD/Post/PostPost';
+import { useGetPostsQuery } from '../../store/apis/Posts';
 
 const Posts = () => {
+  const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
+    useGetPostsQuery('');
+
   useEffect(() => {
+    if (isFetching) console.log('fetching...');
+    if (isLoading) console.log('loading...');
+    if (isSuccess) console.log('success ✌️');
+    if (isUninitialized) console.log('uninitialized 🤔');
+    if (isError) console.log('error 🤔');
+    console.log(data);
     Array.from(
       document.querySelectorAll('.expressions_container .expression')
     ).forEach((expression) => {
@@ -36,7 +46,7 @@ const Posts = () => {
       });
     });
     ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
-  }, []);
+  }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
 
   const fetchPosts = [
     {

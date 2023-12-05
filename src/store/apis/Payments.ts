@@ -6,10 +6,10 @@ export const PaymentApi = createApi({
   reducerPath: 'PaymentApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getPayment: builder.query<Payment, string>({
+    getPayments: builder.query<Payment, string>({
       query: () => '/payment',
     }),
   }),
 });
 
-export const { useGetPaymentQuery } = PaymentApi;
+export const { useGetPaymentsQuery } = PaymentApi;

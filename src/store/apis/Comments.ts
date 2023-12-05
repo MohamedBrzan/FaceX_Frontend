@@ -6,10 +6,10 @@ export const CommentApi = createApi({
   reducerPath: 'CommentApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getComment: builder.query<Comment, string>({
+    getComments: builder.query<Comment, string>({
       query: () => '/comment',
     }),
   }),
 });
 
-export const { useGetCommentQuery } = CommentApi;
+export const { useGetCommentsQuery } = CommentApi;

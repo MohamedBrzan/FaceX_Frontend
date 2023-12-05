@@ -6,10 +6,10 @@ export const BlogApi = createApi({
   reducerPath: 'BlogApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getBlog: builder.query<Blog, string>({
+    getBlogs: builder.query<Blog, string>({
       query: () => '/blog',
     }),
   }),
 });
 
-export const { useGetBlogQuery } = BlogApi;
+export const { useGetBlogsQuery } = BlogApi;

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useGetNotificationsQuery } from '../../store/apis/Notifications';
+import { useGetAdsQuery } from '../../store/apis/Ads';
 
-const Notifications = () => {
+const Ads = () => {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
-    useGetNotificationsQuery('');
+    useGetAdsQuery('');
 
   useEffect(() => {
     if (isFetching) console.log('fetching...');
@@ -13,7 +13,7 @@ const Notifications = () => {
     if (isError) console.log('error 🤔');
     console.log(data);
   }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
-  return <div>Notifications</div>;
+  return <div>Ads</div>;
 };
 
-export default Notifications;
+export default Ads;

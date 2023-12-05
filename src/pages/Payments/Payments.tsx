@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useGetNotificationsQuery } from '../../store/apis/Notifications';
+import { useGetPaymentsQuery } from '../../store/apis/Payments';
 
-const Notifications = () => {
+const Payments = () => {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
-    useGetNotificationsQuery('');
+    useGetPaymentsQuery('');
 
   useEffect(() => {
     if (isFetching) console.log('fetching...');
@@ -13,7 +13,7 @@ const Notifications = () => {
     if (isError) console.log('error 🤔');
     console.log(data);
   }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
-  return <div>Notifications</div>;
+  return <div>Payments</div>;
 };
 
-export default Notifications;
+export default Payments;

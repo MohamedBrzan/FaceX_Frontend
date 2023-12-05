@@ -6,10 +6,10 @@ export const ImageApi = createApi({
   reducerPath: 'ImageApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getImage: builder.query<Image, string>({
+    getImages: builder.query<Image, string>({
       query: () => '/image',
     }),
   }),
 });
 
-export const { useGetImageQuery } = ImageApi;
+export const { useGetImagesQuery } = ImageApi;

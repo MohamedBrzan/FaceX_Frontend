@@ -6,10 +6,10 @@ export const AdApi = createApi({
   reducerPath: 'AdApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getAd: builder.query<Ad, string>({
+    getAds: builder.query<Ad, string>({
       query: () => '/ad',
     }),
   }),
 });
 
-export const { useGetAdQuery } = AdApi;
+export const { useGetAdsQuery } = AdApi;

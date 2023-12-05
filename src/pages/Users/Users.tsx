@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useGetNotificationsQuery } from '../../store/apis/Notifications';
+import { useGetUsersQuery } from '../../store/apis/Users';
+import './Users.scss';
 
-const Notifications = () => {
+const Users = () => {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
-    useGetNotificationsQuery('');
+    useGetUsersQuery('');
 
   useEffect(() => {
     if (isFetching) console.log('fetching...');
@@ -13,7 +14,7 @@ const Notifications = () => {
     if (isError) console.log('error 🤔');
     console.log(data);
   }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
-  return <div>Notifications</div>;
+  return <section className='user'>User</section>;
 };
 
-export default Notifications;
+export default Users;

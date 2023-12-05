@@ -6,10 +6,10 @@ export const HashTagApi = createApi({
   reducerPath: 'HashTagApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getHashTag: builder.query<HashTag, string>({
+    getHashTags: builder.query<HashTag, string>({
       query: () => '/hashTag',
     }),
   }),
 });
 
-export const { useGetHashTagQuery } = HashTagApi;
+export const { useGetHashTagsQuery } = HashTagApi;

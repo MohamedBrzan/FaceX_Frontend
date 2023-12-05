@@ -6,10 +6,10 @@ export const ReelApi = createApi({
   reducerPath: 'ReelApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getReel: builder.query<Reel, string>({
+    getReels: builder.query<Reel, string>({
       query: () => '/reel',
     }),
   }),
 });
 
-export const { useGetReelQuery } = ReelApi;
+export const { useGetReelsQuery } = ReelApi;

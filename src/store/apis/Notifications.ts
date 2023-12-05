@@ -6,10 +6,10 @@ export const NotificationApi = createApi({
   reducerPath: 'NotificationApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getNotification: builder.query<Notification, string>({
+    getNotifications: builder.query<Notification, string>({
       query: () => '/notification',
     }),
   }),
 });
 
-export const { useGetNotificationQuery } = NotificationApi;
+export const { useGetNotificationsQuery } = NotificationApi;
