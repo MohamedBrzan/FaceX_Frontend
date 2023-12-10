@@ -10,234 +10,236 @@
 header {
   background-color: white;
   padding: 8px 0 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 
   .logo_container {
     flex-basis: 3.5rem;
   }
-    .head_icons_col {
-      @extend %displayFlexCenter;
-      ul.head_icons {
-        @extend %displayFlexEnd;
-        margin: 0;
-        @include Responsive('xs') {
-          gap: 0.5rem;
-        }
-        @include Responsive('md') {
-          gap: 2rem;
-        }
-        a {
-          position: relative;
-          text-decoration: none;
-          color: black;
-          &::before {
-            content: '';
-            width: 0;
-            height: 2px;
-            background-color: black;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            border-radius: 2px;
-            transition: 0.2s ease-in-out;
-          }
-          &.active {
-            opacity: 1;
-            &::before {
-              width: 100%;
-            }
-          }
-          li {
-            position: relative;
-            width: 100%;
-            @include Responsive('xs') {
-              margin: 10px 0 0;
-            }
-            @include Responsive('md') {
-              margin: 0;
-            }
-            small {
-              display: block;
-              margin-bottom: 2px;
-              @include Responsive('xs') {
-                font-size: 8px;
-              }
-              @include Responsive('md') {
-                font-size: 10px;
-              }
-            }
-            transition: opacity 0.2s;
-            opacity: 0.7;
-            &:hover {
-              opacity: 1;
-            }
-
-            & {
-              text-align: center;
-              .bell {
-                margin: auto;
-              }
-            }
-            svg {
-              color: black;
-              position: relative;
-              font-size: 1.5rem;
-            }
-
-            &.notify {
-              a {
-                position: relative;
-              }
-              .badge {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 50%;
-                background-color: rgb(212, 16, 16);
-                color: rgb(255, 255, 255);
-                padding: 5px;
-                position: absolute;
-                top: 0;
-                font: {
-                  size: 12px;
-                  weight: bold;
-                }
-                right: 0;
-                @include Responsive('xs') {
-                  width: 25px;
-                  height: 25px;
-                  font: {
-                    size: 10px;
-                  }
-                }
-              }
-            }
-          }
-        }
+  .head_icons_col {
+    @extend %displayFlexCenter;
+    ul.head_icons {
+      @extend %displayFlexEnd;
+      margin: 0;
+      @include Responsive('xs') {
+        gap: 0.5rem;
       }
-    }
-    .user_col {
-      @extend %displayFlexCenter;
-      .user {
-        @extend %fa-icon;
-        @extend .fa-solid;
+      @include Responsive('md') {
+        gap: 2rem;
+      }
+      a {
         position: relative;
-        cursor: pointer;
-        @include Responsive('xs') {
-          display: flex;
-          justify-content: center;
-        }
-        @include Responsive('md') {
-          display: inline-flex;
-        }
-        .user_img {
-          border-radius: 50%;
-          @extend %displayFlexCenter;
-          overflow: hidden;
-          min-width: 35px;
-          min-height: 35px;
-          @include Responsive('xs') {
-            display: none; //! Changed
-          }
-          @include Responsive('lg') {
-            width: 35px;
-            height: 35px;
-            display: flex;
-          }
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .user_svg {
-          @include Responsive('lg') {
-            display: none;
-          }
-        }
-
+        text-decoration: none;
+        color: black;
         &::before {
-          content: fa-content($fa-var-sort-down);
+          content: '';
+          width: 0;
+          height: 2px;
+          background-color: black;
           position: absolute;
           bottom: 0;
-          left: 50%;
-          transform: translate(-50%, 60%);
-          @include Responsive('xs') {
-            font-size: 10px;
-            display: none; //! Changed
-          }
-          @include Responsive('lg') {
-            display: flex;
+          left: 0;
+          border-radius: 2px;
+          transition: 0.2s ease-in-out;
+        }
+        &.active {
+          opacity: 1;
+          &::before {
+            width: 100%;
           }
         }
-        .drop_menu {
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform: translate(-35%, 20%);
-
-          background-color: rgb(239, 241, 239);
-          box-shadow: 0 3px 6px rgba(192, 181, 181, 0.16),
-            0 3px 6px rgba(0, 0, 0, 0.23);
-          border-radius: 5px;
-          padding: 3px 5px;
-          z-index: 2;
-          display: none;
+        li {
+          position: relative;
+          width: 100%;
           @include Responsive('xs') {
-            width: 80px;
-            height: 80px;
+            margin: 10px 0 0;
           }
           @include Responsive('md') {
-            width: 200px;
-            height: 200px;
+            margin: 0;
           }
-          ul {
-            li {
-              text-align: center;
-              border-bottom: 1px solid grey;
-              @include Responsive('xs') {
-                padding: 1px;
-              }
-              @include Responsive('md') {
-                padding: 10px;
-              }
-              a {
-                text-decoration: none;
-                color: black;
-                font-weight: 500;
-                @include Responsive('xs') {
-                  font-size: 13px;
-                }
-                @include Responsive('md') {
-                  font-size: 15px;
-                }
-              }
-              &:hover {
-                text-decoration: underline;
-              }
+          small {
+            display: block;
+            margin-bottom: 2px;
+            @include Responsive('xs') {
+              font-size: 8px;
+            }
+            @include Responsive('md') {
+              font-size: 10px;
             }
           }
-          &.active {
-            display: block;
+          transition: opacity 0.2s;
+          opacity: 0.7;
+          &:hover {
+            opacity: 1;
           }
-          @include Responsive('md') {
-            transform: translate(-35%, 30%);
+
+          & {
+            text-align: center;
+            .bell {
+              margin: auto;
+            }
           }
-        }
-        .drop_menu_modal {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100vh;
-          opacity: 0.6;
-          z-index: 1;
-          display: none;
-          &.active {
-            display: block;
+          svg {
+            color: black;
+            position: relative;
+            font-size: 1.5rem;
+          }
+
+          &.notify {
+            a {
+              position: relative;
+            }
+            .badge {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 50%;
+              background-color: rgb(212, 16, 16);
+              color: rgb(255, 255, 255);
+              padding: 5px;
+              position: absolute;
+              top: 0;
+              font: {
+                size: 12px;
+                weight: bold;
+              }
+              right: 0;
+              @include Responsive('xs') {
+                width: 25px;
+                height: 25px;
+                font: {
+                  size: 10px;
+                }
+              }
+            }
           }
         }
       }
     }
-  
+  }
+  .user_col {
+    @extend %displayFlexCenter;
+    .user {
+      @extend %fa-icon;
+      @extend .fa-solid;
+      position: relative;
+      cursor: pointer;
+      @include Responsive('xs') {
+        display: flex;
+        justify-content: center;
+      }
+      @include Responsive('md') {
+        display: inline-flex;
+      }
+      .user_img {
+        border-radius: 50%;
+        @extend %displayFlexCenter;
+        overflow: hidden;
+        min-width: 35px;
+        min-height: 35px;
+        @include Responsive('xs') {
+          display: none; //! Changed
+        }
+        @include Responsive('lg') {
+          width: 35px;
+          height: 35px;
+          display: flex;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .user_svg {
+        @include Responsive('lg') {
+          display: none;
+        }
+      }
+
+      &::before {
+        content: fa-content($fa-var-sort-down);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 60%);
+        @include Responsive('xs') {
+          font-size: 10px;
+          display: none; //! Changed
+        }
+        @include Responsive('lg') {
+          display: flex;
+        }
+      }
+      .drop_menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-35%, 20%);
+
+        background-color: rgb(239, 241, 239);
+        box-shadow: 0 3px 6px rgba(192, 181, 181, 0.16),
+          0 3px 6px rgba(0, 0, 0, 0.23);
+        border-radius: 5px;
+        padding: 3px 5px;
+        z-index: 2;
+        display: none;
+        @include Responsive('xs') {
+          width: 80px;
+          height: 80px;
+        }
+        @include Responsive('md') {
+          width: 200px;
+          height: 200px;
+        }
+        ul {
+          li {
+            text-align: center;
+            border-bottom: 1px solid grey;
+            @include Responsive('xs') {
+              padding: 1px;
+            }
+            @include Responsive('md') {
+              padding: 10px;
+            }
+            a {
+              text-decoration: none;
+              color: black;
+              font-weight: 500;
+              @include Responsive('xs') {
+                font-size: 13px;
+              }
+              @include Responsive('md') {
+                font-size: 15px;
+              }
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        &.active {
+          display: block;
+        }
+        @include Responsive('md') {
+          transform: translate(-35%, 30%);
+        }
+      }
+      .drop_menu_modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        opacity: 0.6;
+        z-index: 1;
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
 }
 
 @keyframes opacityAnime {

@@ -5,7 +5,9 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Footer from '../../Views/Footer/Footer';
 import Input from '../../components/Input/Input';
+import appleImg from '../../assets/apple.png';
 import googleImg from '../../assets/google_logo.jpeg';
+import facebookImg from '../../assets/facebook.png';
 import './Authentication.scss';
 
 const SignIn = () => {
@@ -25,7 +27,7 @@ const SignIn = () => {
               value={email}
               type='email'
               placeholder='Email Address'
-              label='Email'
+              label='Email Address'
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const targetVal = e.target as HTMLInputElement;
                 setEmail(targetVal.value);
@@ -57,14 +59,9 @@ const SignIn = () => {
           <hr />
           <div className='or'>or</div>
         </div>
-        <p className='notice'>
-          By clicking Continue, you agree to LinkedIn’s User Agreement,
-          <Link to='/privacy_policy'>Privacy Policy</Link>, and
-          <Link to='/cookie_policy'>Cookie Policy</Link> .
-        </p>
         <div className='auth_btn'>
           <figure>
-            <img src={googleImg} alt='Google Sign in' />
+            <img src={appleImg} alt='Google Sign in' />
           </figure>
           <span> Sign in with Apple</span>
         </div>
@@ -76,7 +73,7 @@ const SignIn = () => {
         </div>
         <div className='auth_btn'>
           <figure>
-            <img src={googleImg} alt='Google Sign in' />
+            <img src={facebookImg} alt='Google Sign in' />
           </figure>
           <span> Sign in with Facebook</span>
         </div>
