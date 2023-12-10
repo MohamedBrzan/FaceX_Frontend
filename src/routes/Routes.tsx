@@ -33,15 +33,7 @@ const AppRoutes = () => {
         <Route path='/authentication/sign_up' element={<SignUp />} />
         <Route path='/authentication/sign_in' element={<SignIn />} />
       </Route>
-      <Route
-        path='*'
-        element={
-          <>
-            <h1>Page Not Found !</h1>
-            <Link to='/'>Go Back To Home</Link>
-          </>
-        }
-      />
+      <Route path='*' element={<Link to='/' className='not_found_link'>Go Back To Home</Link>} />
     </Routes>
   );
 };
