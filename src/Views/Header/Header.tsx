@@ -94,13 +94,13 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/'>
-                      <small>Home</small>
+                    <NavLink to='/authentication/sign_in'>
+                      <small>Sign in</small>
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/'>
-                      <small>Home</small>
+                    <NavLink to='/authentication/sign_up'>
+                      <small>Sign Up</small>
                     </NavLink>
                   </li>
                   <li>

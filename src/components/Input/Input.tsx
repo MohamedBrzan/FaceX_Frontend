@@ -8,6 +8,7 @@ interface InputProps {
   placeholder?: string;
   error?: boolean;
   disabled?: boolean;
+  required?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   errorMessage?: string;
 }
@@ -21,6 +22,7 @@ const Input: FC<InputProps> = ({
   error,
   disabled,
   onChange,
+  required,
   errorMessage,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -57,6 +59,7 @@ const Input: FC<InputProps> = ({
         placeholder={placeholder}
         onChange={onChange}
         disabled={disabled}
+        required={required}
         ref={inputRef}
       />{' '}
       <label ref={labelRef} htmlFor={label}>

@@ -10,9 +10,7 @@ const SignUp = () => {
   return (
     <section className='authentication sign_up'>
       <section className='form'>
-        <h5>
-          <small>Sign up</small>
-        </h5>
+        <h2>Sign up</h2>
         <p>
           <small>Make the most of your professional life</small>
         </p>
