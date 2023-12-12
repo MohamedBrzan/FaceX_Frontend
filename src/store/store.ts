@@ -12,6 +12,7 @@ import { NotificationApi } from './apis/Notifications';
 import { PaymentApi } from './apis/Payments';
 import { ReelApi } from './apis/Reels';
 import { VideoApi } from './apis/Videos';
+import { JobApi } from './apis/Jobs';
 
 export const store = configureStore({
   reducer: {
@@ -27,6 +28,7 @@ export const store = configureStore({
     [PaymentApi.reducerPath]: PaymentApi.reducer,
     [ReelApi.reducerPath]: ReelApi.reducer,
     [VideoApi.reducerPath]: VideoApi.reducer,
+    [JobApi.reducerPath]: JobApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -41,7 +43,8 @@ export const store = configureStore({
       .concat(NotificationApi.middleware)
       .concat(PaymentApi.middleware)
       .concat(ReelApi.middleware)
-      .concat(VideoApi.middleware),
+      .concat(VideoApi.middleware)
+      .concat(JobApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
