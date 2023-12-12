@@ -6,7 +6,7 @@ import './Post.scss';
 
 const UploadPost = () => {
   return (
-    <section className='create_post'>
+    <section className='upload_post'>
       <div className='text'>
         <figure className='avatar'>
           <img src={me} alt='User' />
