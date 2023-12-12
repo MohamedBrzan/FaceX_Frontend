@@ -7,9 +7,9 @@ import FormLabel from 'react-bootstrap/FormLabel';
 import FormControl from 'react-bootstrap/FormControl';
 import FormCheck from 'react-bootstrap/FormCheck';
 import Button from 'react-bootstrap/Button';
-import './PostAd.scss';
+import './Ad.scss';
 
-const PostAd = () => {
+const UploadAd = () => {
   return (
     <section className='upload_ad'>
       <Container>
@@ -89,4 +89,4 @@ const PostAd = () => {
   );
 };
 
-export default PostAd;
+export default UploadAd;

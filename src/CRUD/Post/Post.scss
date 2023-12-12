@@ -1,0 +1,74 @@
+@use '../../sass/Styles' as *;
+@use '../../sass/Mixins' as *;
+@use '../../sass/Colors' as *;
+
+.upload_post {
+  @extend %sectionStyle;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  @include Responsive('xs') {
+    font-size: 11px;
+  }
+  @include Responsive('md') {
+    font-size: 1rem;
+  }
+  .text {
+    @extend %displayFlexContentStart;
+    gap: 15px;
+    figure {
+      margin: 0;
+      min-width: 50px;
+      min-height: 50px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+    .input {
+      @extend %displayFlexContentCenter !optional;
+      width: 100%;
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 30px;
+        border: 1px solid $third;
+        &:hover {
+          background-color: $hover_secondary;
+        }
+      }
+    }
+  }
+  .files {
+    margin-top: 10px;
+    @extend %displayFlexContentSpaceEvenly;
+    flex-wrap: wrap;
+    .file {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem;
+      border-radius: 5px;
+      gap: 10px;
+      cursor: pointer;
+
+      > figure {
+        margin: 0;
+        width: 24px;
+        height: 24px;
+        img {
+          width: 100%;
+        }
+      }
+
+      &:hover {
+        background-color: $hover_secondary;
+      }
+    }
+  }
+}
