@@ -1,5 +1,6 @@
 @use '../../sass/Mixins' as *;
 @use '../../sass/Styles' as *;
+@use '../../sass/Colors' as *;
 
 // importing core styling file
 @import '../../scss/fontawesome.scss';
@@ -13,7 +14,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 999;
-
+  border-bottom: 1px solid $hover_secondary;
   .logo_container {
     flex-basis: 3.5rem;
   }

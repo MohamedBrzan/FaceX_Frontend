@@ -2,6 +2,194 @@
 @use '../../sass/Mixins' as *;
 @use '../../sass/Styles' as *;
 
-.article {
- 
+.upload_article {
+  background-color: $general;
+  .row {
+    @extend %displayFlexCenter;
+    margin: 0;
+    text-align: center;
+    padding: 0.5rem;
+    flex-wrap: wrap;
+    .user_entity {
+      @extend %displayFlexStart;
+      position: relative;
+      @include Responsive('xs') {
+        margin: 0 0 10px;
+      }
+      @include Responsive('md') {
+        margin: 0;
+      }
+      .information {
+        @extend %secondaryBtn;
+        @extend %displayFlexStart;
+        gap: 10px;
+        figure {
+          margin: 0;
+          min-width: 40px;
+          min-height: 40px;
+          width: 40px;
+          height: 40px;
+          @include borderRadius('all', 50%);
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .info {
+          @extend %displayFlexStart;
+          gap: 10px;
+
+          .text {
+            h5,
+            p {
+              @include overflowText(1);
+            }
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+      .user_dropdown {
+        // display: none;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 320px;
+        height: 250px;
+        background-color: $general;
+        padding: 1rem;
+        @include borderRadius('right', 5px);
+        @include borderRadius('bottom-left', 5px);
+
+        .publish_as {
+          text-align: start;
+          .availability {
+            margin-top: 2rem;
+            .user_info {
+              @extend %displayFlexStart;
+              align-items: center;
+              gap: 10px;
+              figure {
+                margin: 0;
+                min-width: 40px;
+                min-height: 40px;
+                width: 40px;
+                height: 40px;
+                @include borderRadius('all', 50%);
+                overflow: hidden;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+              }
+              .username {
+                color: $fourth;
+                @include overflowText(1);
+              }
+            }
+          }
+        }
+        hr {
+          color: $third;
+        }
+        .publish_to {
+          .availability {
+            @extend %displayFlexStart;
+            align-items: center;
+            gap: 10px;
+            .svg {
+              font-size: 2rem;
+              background-color: $body_color;
+              padding: 0 0.5rem;
+              @include borderRadius('all', 5px);
+            }
+            .name {
+              color: $fourth;
+            }
+          }
+        }
+        .publish_as,
+        .publish_to {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .styling {
+      margin: 0 auto;
+      @include Responsive('xs') {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @include Responsive('md') {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      gap: 10px;
+      background-color: $body_color;
+      @include borderRadius('all', 30px);
+      padding: 0.5rem;
+      flex-wrap: wrap;
+      .clickable {
+        cursor: pointer;
+      }
+
+      .style_btn,
+      .bold,
+      .italic,
+      .unorder_list,
+      .order_list,
+      .quote_right,
+      .parentheses,
+      .link,
+      .code,
+      .image {
+        @extend %secondaryBtn;
+        font: {
+          weight: bold;
+        }
+      }
+      .style_btn {
+        .text {
+          @include Responsive('xs') {
+            font: {
+              size: 14px;
+              weight: 500;
+            }
+          }
+        }
+        margin: 0 0 0 1rem;
+        .svg {
+          padding: 0 5px;
+        }
+      }
+    }
+    .buttons {
+      @extend %displayFlexContentSpaceEvenly;
+      @include Responsive('xs') {
+        margin: 10px 0 0;
+      }
+      @include Responsive('md') {
+        margin: 0;
+      }
+      .svg {
+        padding: 0 5px;
+      }
+      .manage_btn {
+        @extend %displayFlexContentSpaceBetween;
+        @extend %primaryCircledOutlinedBtn;
+      }
+      .next_btn {
+        @extend %displayFlexContentSpaceBetween;
+        @extend %primaryCircledBtn;
+      }
+    }
+  }
 }
