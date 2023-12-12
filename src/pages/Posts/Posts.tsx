@@ -18,7 +18,7 @@ import { faRepeat, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
-import PostPost from '../../CRUD/Post/PostPost';
+import UploadPost from '../../CRUD/Post/UploadPost';
 import { useGetPostsQuery } from '../../store/apis/Posts';
 
 const Posts = () => {
@@ -869,7 +869,7 @@ const Posts = () => {
   ];
   return (
     <section className='posts'>
-      <PostPost />
+      <UploadPost />
       <hr />
       {fetchPosts.map(({ user, content }, i) => (
         <article className='post' key={i}>

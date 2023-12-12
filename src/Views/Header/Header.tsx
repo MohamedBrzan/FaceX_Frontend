@@ -136,8 +136,8 @@ const Header = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/'>
-                      <small>Home</small>
+                    <NavLink to='/upload/article'>
+                      <small>Upload Article</small>
                     </NavLink>
                   </li>
                 </ul>

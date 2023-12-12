@@ -7,12 +7,13 @@ import Notifications from '../pages/Notifications/Notifications';
 import User from '../pages/Users/Users';
 import Admin from '../pages/Admin/Admin';
 import Profile from '../pages/Profile/Profile';
-import PostAd from '../CRUD/Ad/PostAd';
-import PostBlog from '../CRUD/Blog/PostBlog';
-import PostPayment from '../CRUD/Payment/PostPayment';
-import PostReel from '../CRUD/Reel/PostReel';
+import UploadAd from '../CRUD/Ad/UploadAd';
+import UploadBlog from '../CRUD/Blog/UploadBlog';
+import UploadPayment from '../CRUD/Payment/UploadPayment';
+import UploadReel from '../CRUD/Reel/UploadReel';
 import SignIn from '../pages/Authentication/SignIn';
 import SignUp from '../pages/Authentication/SignUp';
+import UploadArticle from '../CRUD/Article/UploadArticle';
 
 const AppRoutes = () => {
   return (
@@ -26,14 +27,24 @@ const AppRoutes = () => {
         <Route path='/me/profile' element={<Profile />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/user/:id' element={<User />} />
-        <Route path='/ad/post' element={<PostAd />} />
-        <Route path='/blog/post' element={<PostBlog />} />
-        <Route path='/payment/post' element={<PostPayment />} />
-        <Route path='/reel/post' element={<PostReel />} />
+        //** Upload Section **/
+        <Route path='/upload/ad' element={<UploadAd />} />
+        <Route path='/upload/article' element={<UploadArticle />} />
+        <Route path='/upload/blog' element={<UploadBlog />} />
+        <Route path='/upload/payment' element={<UploadPayment />} />
+        <Route path='/upload/reel' element={<UploadReel />} />
+        //** Authentication Section **/
         <Route path='/authentication/sign_up' element={<SignUp />} />
         <Route path='/authentication/sign_in' element={<SignIn />} />
       </Route>
-      <Route path='*' element={<Link to='/' className='not_found_link'>Go Back To Home</Link>} />
+      <Route
+        path='*'
+        element={
+          <Link to='/' className='not_found_link'>
+            Go Back To Home
+          </Link>
+        }
+      />
     </Routes>
   );
 };

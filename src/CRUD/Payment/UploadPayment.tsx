@@ -9,7 +9,7 @@ import FormSelect from 'react-bootstrap/FormSelect';
 
 import './Payment.scss';
 
-const PostPayment = () => {
+const UploadPayment = () => {
   return (
     <section className='add_payment'>
       <Container>
@@ -101,11 +101,13 @@ const PostPayment = () => {
               </FormGroup>
             </Col>
           </Row>
-          <Button type='submit' className='submit_btn'>Add Payment</Button>
+          <Button type='submit' className='submit_btn'>
+            Add Payment
+          </Button>
         </Form>
       </Container>
     </section>
   );
 };
 
-export default PostPayment;
+export default UploadPayment;

@@ -2,8 +2,9 @@ import me from '../../assets/me.jpg';
 import media from '../../assets/media.svg';
 import event from '../../assets/event.svg';
 import writeArticle from '../../assets/article.svg';
+import './Post.scss';
 
-const PostPost = () => {
+const UploadPost = () => {
   return (
     <section className='create_post'>
       <div className='text'>
@@ -38,4 +39,4 @@ const PostPost = () => {
   );
 };
 
-export default PostPost;
+export default UploadPost;

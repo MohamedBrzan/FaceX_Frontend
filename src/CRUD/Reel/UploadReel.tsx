@@ -7,7 +7,7 @@ import FormSelect from 'react-bootstrap/FormSelect';
 import Button from 'react-bootstrap/Button';
 import './Reel.scss';
 
-const PostReel = () => {
+const UploadReel = () => {
   return (
     <section className='upload_reel'>
       <Container>
@@ -62,4 +62,4 @@ const PostReel = () => {
   );
 };
 
-export default PostReel;
+export default UploadReel;
