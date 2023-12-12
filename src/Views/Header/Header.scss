@@ -19,18 +19,21 @@ header {
   }
   .head_icons_col {
     @extend %displayFlexCenter;
+
     ul.head_icons {
-      @extend %displayFlexEnd;
+      @extend %displayFlexContentSpaceBetween;
+      flex: 1;
       margin: 0;
       @include Responsive('xs') {
-        gap: 0.5rem;
+        gap: 1rem;
       }
-      @include Responsive('md') {
-        gap: 2rem;
+      @include Responsive('lg') {
+        gap: 0;
       }
       a {
         position: relative;
         text-decoration: none;
+        width: 100%;
         color: black;
         &::before {
           content: '';
@@ -50,8 +53,6 @@ header {
           }
         }
         li {
-          position: relative;
-          width: 100%;
           @include Responsive('xs') {
             margin: 10px 0 0;
           }
@@ -83,35 +84,39 @@ header {
           svg {
             color: black;
             position: relative;
-            font-size: 1.5rem;
+            @include Responsive('xs') {
+              font-size: 1rem;
+            }
+            @include Responsive('md') {
+              font-size: 1.5rem;
+            }
           }
 
           &.notify {
-            a {
-              position: relative;
-            }
+            @extend %displayFlexCenter;
+            flex: 1;
+            flex-direction: column;
             .badge {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              border-radius: 50%;
-              background-color: rgb(212, 16, 16);
+              background-color: rgb(168, 10, 10);
               color: rgb(255, 255, 255);
-              padding: 5px;
               position: absolute;
+              z-index: 9;
               top: 0;
-              font: {
-                size: 12px;
-                weight: bold;
-              }
-              right: 0;
+              right: -15px;
+
               @include Responsive('xs') {
-                width: 25px;
-                height: 25px;
                 font: {
-                  size: 10px;
+                  size: 8px;
                 }
               }
+              @include Responsive('md') {
+                font: {
+                  size: 0.7rem;
+                }
+              }
+            }
+            .icon {
+              position: relative;
             }
           }
         }
