@@ -44,36 +44,68 @@ const Header = () => {
             <ul className='head_icons list-unstyled'>
               <NavLink className='icon' to='/'>
                 <li title='Home' className='active'>
-                  <FontAwesomeIcon icon={faHome} />
-                  <small>Home</small>
+                  <div className='icon'>
+                    <div className='svg'>
+                      <FontAwesomeIcon icon={faHome} />
+                    </div>
+                    {/* <div className='badge'>23</div> */}
+                  </div>
+                  <div className='title'>
+                    <small>Home</small>
+                  </div>
                 </li>
               </NavLink>
               <NavLink className='icon' to='/networks'>
                 <li title='Network' className='notify'>
-                  <FontAwesomeIcon icon={faPeopleGroup} />
-                  <span className='badge'>99+</span>
-                  <small>Networks</small>
+                  <div className='icon'>
+                    <div className='svg'>
+                      <FontAwesomeIcon icon={faPeopleGroup} />
+                    </div>
+                    <div className='badge'>23</div>
+                  </div>
+                  <div className='title'>
+                    <small>Networks</small>
+                  </div>
                 </li>
               </NavLink>
               <NavLink className='icon' to='/jobs'>
                 <li title='Jobs' className='notify'>
-                  <FontAwesomeIcon icon={faBriefcase} />
-                  <span className='badge'>99+</span>
-                  <small>Jobs</small>
+                  <div className='icon'>
+                    <div className='svg'>
+                      <FontAwesomeIcon icon={faBriefcase} />
+                    </div>
+                    <div className='badge'>77</div>
+                  </div>
+                  <div className='title'>
+                    <small>Jobs</small>
+                  </div>
                 </li>
               </NavLink>
               <NavLink className='icon' to='/messages'>
                 <li title='Messages' className='notify'>
-                  <FontAwesomeIcon icon={faCommentDots} />
-                  <span className='badge'>99+</span>
-                  <small>Messages</small>
+                  <div className='icon'>
+                    <div className='badge'>12</div>
+                    <div className='svg'>
+                      <FontAwesomeIcon icon={faCommentDots} />
+                    </div>
+                  </div>
+                  <div className='title'>
+                    <small>Messages</small>
+                  </div>
                 </li>
               </NavLink>
+
               <NavLink className='icon' to='/notifications'>
                 <li title='Notifications' className='notify'>
-                  <FontAwesomeIcon icon={faBell} />
-                  <span className='badge'>99+</span>
-                  <small>Notifications</small>
+                  <div className='icon'>
+                    <div className='svg'>
+                      <FontAwesomeIcon icon={faBell} />
+                    </div>
+                    <div className='badge'>33</div>
+                  </div>
+                  <div className='title'>
+                    <small>Notifications</small>
+                  </div>
                 </li>
               </NavLink>
             </ul>
