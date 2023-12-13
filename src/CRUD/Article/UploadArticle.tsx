@@ -23,43 +23,33 @@ import { Link } from 'react-router-dom';
 
 const UploadArticle = () => {
   const userButtonRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const dropdownModalRef = useRef<HTMLDivElement>(null);
-  const manageBtnDropdownRef = useRef<HTMLDivElement>(null);
+  const userDropDownRef = useRef<HTMLDivElement>(null);
   const manageBtnRef = useRef<HTMLDivElement>(null);
-  const manageBtnModalRef = useRef<HTMLDivElement>(null);
+  const manageBtnDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     //* Handle User Dropdown
-    const button = userButtonRef?.current;
-    button!.onclick = () => {
-      dropdownRef.current?.classList.toggle('active');
-    };
-
-    //* Handle User Modal of Dropdown
-    const userModal = dropdownModalRef?.current;
-    userModal!.onclick = () => {
-      dropdownRef.current?.classList.remove('active');
+    const userDropDownbutton = userButtonRef?.current;
+    userDropDownbutton!.onclick = () => {
+      userDropDownRef.current?.classList.toggle('active');
     };
 
     //*************************************************** */
 
-    //* Handle Manage Button Dropdown
+    // //* Handle Manage Button Dropdown
 
+    //* Handle User Dropdown
     const manageBtn = manageBtnRef?.current;
-    const manageBtnModal = dropdownModalRef?.current;
-
     manageBtn!.onclick = () => {
       manageBtnDropdownRef.current?.classList.toggle('active');
-      manageBtnModal!.classList.toggle('active');
-    };
-
-    //* Handle Manage Button Modal of Dropdown
-    manageBtnModal!.onclick = () => {
-      manageBtnDropdownRef.current?.classList.remove('active');
-      manageBtnModal!.classList.remove('active');
     };
   }, []);
+
+  const handleUserDropDownModalOnClick = () =>
+    userDropDownRef.current?.classList.remove('active');
+
+  const handleManageModalOnClick = () =>
+    manageBtnDropdownRef.current?.classList.remove('active');
 
   return (
     <section className='upload_article'>
@@ -87,45 +77,50 @@ const UploadArticle = () => {
                   </div>
                 </div>
               </div>
-              <section className='user_dropdown' ref={dropdownRef}>
-                <article className='publish_as'>
-                  <h6 className='title'>Publish as</h6>
-                  <div className='availability'>
-                    <div className='info'>
-                      <figure>
-                        <img src={me} alt='User Image' />
-                      </figure>
-                      <div className='username'>
-                        <h6>
-                          <small>Mohamed Mahmoud</small>
-                        </h6>
+              <section className='user_dropdown' ref={userDropDownRef}>
+                <div className='dropdown_details'>
+                  <article className='publish_as'>
+                    <h6 className='title'>Publish as</h6>
+                    <div className='availability'>
+                      <div className='info'>
+                        <figure>
+                          <img src={me} alt='User Image' />
+                        </figure>
+                        <div className='username'>
+                          <h6>
+                            <small>Mohamed Mahmoud</small>
+                          </h6>
+                        </div>
+                      </div>
+                      <div className='radio_1'>
+                        <div className='radio_2'></div>
                       </div>
                     </div>
-                    <div className='radio_1'>
-                      <div className='radio_2'></div>
-                    </div>
-                  </div>
-                </article>
-                <hr />
-                <article className='publish_to'>
-                  <h6 className='title'>Publish as</h6>
-                  <div className='availability'>
-                    <div className='info'>
-                      <div className='svg'>
-                        <FontAwesomeIcon icon={faIdCard} />
+                  </article>
+                  <hr />
+                  <article className='publish_to'>
+                    <h6 className='title'>Publish as</h6>
+                    <div className='availability'>
+                      <div className='info'>
+                        <div className='svg'>
+                          <FontAwesomeIcon icon={faIdCard} />
+                        </div>
+                        <div className='name'>
+                          <h6>
+                            <small>Individual article</small>
+                          </h6>
+                        </div>
+                      </div>{' '}
+                      <div className='radio_1'>
+                        <div className='radio_2'></div>
                       </div>
-                      <div className='name'>
-                        <h6>
-                          <small>Individual article</small>
-                        </h6>
-                      </div>
-                    </div>{' '}
-                    <div className='radio_1'>
-                      <div className='radio_2'></div>
                     </div>
-                  </div>
-                </article>
-                <div className='dropdown_modal' ref={dropdownModalRef}></div>
+                  </article>
+                </div>
+                <div
+                  className='user_dropdown_modal'
+                  onClick={handleUserDropDownModalOnClick}
+                ></div>
               </section>
             </section>
           </Col>
@@ -187,7 +182,7 @@ const UploadArticle = () => {
                   </div>
                   <div
                     className='manage_btn_modal'
-                    ref={manageBtnModalRef}
+                    onClick={handleManageModalOnClick}
                   ></div>
                 </div>
               </div>

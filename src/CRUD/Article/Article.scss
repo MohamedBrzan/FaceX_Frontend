@@ -54,115 +54,116 @@
       }
       .user_dropdown {
         display: none;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-        position: absolute;
-        top: 70px;
-        left: 0;
-        @include Responsive('xs') {
-          width: 100%;
-        }
-        @include Responsive('md') {
-          width: 320px;
-        }
-        height: auto;
-        background-color: $general;
-        padding: 1rem;
-        @include borderRadius('right', 5px);
-        @include borderRadius('bottom-left', 5px);
-        z-index: 2;
-        cursor: pointer;
         &.active {
           display: block;
         }
+        .dropdown_details {
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+          position: absolute;
+          top: 70px;
+          left: 0;
+          @include Responsive('xs') {
+            width: 100%;
+          }
+          @include Responsive('md') {
+            width: 320px;
+          }
+          height: auto;
+          background-color: $general;
+          padding: 1rem;
+          @include borderRadius('right', 5px);
+          @include borderRadius('bottom-left', 5px);
+          z-index: 2;
 
-        .publish_as {
-          text-align: start;
-          .availability {
-            margin-top: 2rem;
-            @extend %displayFlexContentSpaceBetween;
-            .info {
-              @extend %displayFlexStart;
-              align-items: center;
-              gap: 10px;
-              figure {
-                margin: 0;
-                min-width: 40px;
-                min-height: 40px;
-                width: 40px;
-                height: 40px;
-                @include borderRadius('all', 50%);
-                overflow: hidden;
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
+          .publish_as {
+            text-align: start;
+            .availability {
+              margin-top: 2rem;
+              @extend %displayFlexContentSpaceBetween;
+              .info {
+                @extend %displayFlexStart;
+                align-items: center;
+                gap: 10px;
+                figure {
+                  margin: 0;
+                  min-width: 40px;
+                  min-height: 40px;
+                  width: 40px;
+                  height: 40px;
+                  @include borderRadius('all', 50%);
+                  overflow: hidden;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                }
+                .username {
+                  color: $fourth;
+                  @include overflowText(1);
                 }
               }
-              .username {
-                color: $fourth;
-                @include overflowText(1);
-              }
-            }
-            .radio_1 {
-              width: 25px;
-              height: 25px;
-              @include borderRadius('all', 50%);
-              background-color: $green_primary;
-              @extend %displayFlexCenter;
-              .radio_2 {
-                width: 13px;
-                height: 13px;
+              .radio_1 {
+                width: 25px;
+                height: 25px;
                 @include borderRadius('all', 50%);
-                background-color: $general;
+                background-color: $green_primary;
+                @extend %displayFlexCenter;
+                .radio_2 {
+                  width: 13px;
+                  height: 13px;
+                  @include borderRadius('all', 50%);
+                  background-color: $general;
+                }
               }
             }
           }
-        }
-        hr {
-          color: $third;
-        }
-        .publish_to {
-          text-align: start;
-          .availability {
-            margin-top: 2rem;
-            @extend %displayFlexContentSpaceBetween;
+          hr {
+            color: $third;
+          }
+          .publish_to {
+            text-align: start;
+            .availability {
+              margin-top: 2rem;
+              @extend %displayFlexContentSpaceBetween;
 
-            .info {
-              @extend %displayFlexStart;
-              align-items: center;
-              gap: 10px;
-              .svg {
-                font-size: 2rem;
-                background-color: $body_color;
-                padding: 0 0.5rem;
-                @include borderRadius('all', 5px);
+              .info {
+                @extend %displayFlexStart;
+                align-items: center;
+                gap: 10px;
+                .svg {
+                  font-size: 2rem;
+                  background-color: $body_color;
+                  padding: 0 0.5rem;
+                  @include borderRadius('all', 5px);
+                }
+                .name {
+                  color: $fourth;
+                  @include overflowText(1);
+                }
               }
-              .name {
-                color: $fourth;
-                @include overflowText(1);
-              }
-            }
-            .radio_1 {
-              width: 25px;
-              height: 25px;
-              @include borderRadius('all', 50%);
-              background-color: $green_primary;
-              @extend %displayFlexCenter;
-              .radio_2 {
-                width: 13px;
-                height: 13px;
+              .radio_1 {
+                width: 25px;
+                height: 25px;
                 @include borderRadius('all', 50%);
-                background-color: $general;
+                background-color: $green_primary;
+                @extend %displayFlexCenter;
+                .radio_2 {
+                  width: 13px;
+                  height: 13px;
+                  @include borderRadius('all', 50%);
+                  background-color: $general;
+                }
               }
             }
           }
+          .publish_as,
+          .publish_to {
+            cursor: pointer;
+          }
         }
-        .publish_as,
-        .publish_to {
-          cursor: pointer;
-        }
-
-        .dropdown_modal {
+        .user_dropdown_modal {
           position: fixed;
           top: 0;
           left: 0;
