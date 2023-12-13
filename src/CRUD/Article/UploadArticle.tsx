@@ -19,22 +19,45 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import me from '../../assets/me_opentowork.jpeg';
+import { Link } from 'react-router-dom';
 
 const UploadArticle = () => {
   const userButtonRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownModalRef = useRef<HTMLDivElement>(null);
+  const manageBtnDropdownRef = useRef<HTMLDivElement>(null);
+  const manageBtnRef = useRef<HTMLDivElement>(null);
+  const manageBtnModalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    //* Handle User Dropdown
     const button = userButtonRef?.current;
     button!.onclick = () => {
       dropdownRef.current?.classList.toggle('active');
     };
 
-    const modal = dropdownModalRef?.current;
-
-    modal!.onclick = () => {
+    //* Handle User Modal of Dropdown
+    const userModal = dropdownModalRef?.current;
+    userModal!.onclick = () => {
       dropdownRef.current?.classList.remove('active');
+    };
+
+    //*************************************************** */
+
+    //* Handle Manage Button Dropdown
+
+    const manageBtn = manageBtnRef?.current;
+    const manageBtnModal = dropdownModalRef?.current;
+
+    manageBtn!.onclick = () => {
+      manageBtnDropdownRef.current?.classList.toggle('active');
+      manageBtnModal!.classList.toggle('active');
+    };
+
+    //* Handle Manage Button Modal of Dropdown
+    manageBtnModal!.onclick = () => {
+      manageBtnDropdownRef.current?.classList.remove('active');
+      manageBtnModal!.classList.remove('active');
     };
   }, []);
 
@@ -143,10 +166,29 @@ const UploadArticle = () => {
           </Col>
           <Col md={3}>
             <section className='buttons'>
-              <div className='manage_btn'>
+              <div className='manage_btn' ref={manageBtnRef}>
                 <div className='text'>Manage</div>
                 <div className='svg'>
                   <FontAwesomeIcon icon={faCaretDown} />
+                </div>
+                <div className='manage_btn_dropdown' ref={manageBtnDropdownRef}>
+                  <div className='dropdown_links'>
+                    <Link to='/seo/settings'>SEO settings</Link>
+                    <hr />
+                    <Link to='/drafts'>Drafts</Link>
+                    <Link to='/scheduled'>Scheduled</Link>
+                    <Link to='/published'>Published</Link>
+                    <Link to='/published'>Published</Link>
+                    <hr />
+                    <Link to='/upload/article'>Create article</Link>
+                    <Link to='/upload/newsletters'>Create newsletters</Link>
+                    <Link to='/help'>Help</Link>
+                    <Link to='/feedback'>Give feedback</Link>
+                  </div>
+                  <div
+                    className='manage_btn_modal'
+                    ref={manageBtnModalRef}
+                  ></div>
                 </div>
               </div>
               <div className='next_btn'>

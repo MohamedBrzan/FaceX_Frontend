@@ -194,12 +194,11 @@ header {
         display: none;
         @include Responsive('xs') {
           width: 80px;
-          height: 80px;
         }
         @include Responsive('md') {
           width: 200px;
-          height: 200px;
         }
+        height: auto;
         ul {
           li {
             text-align: center;

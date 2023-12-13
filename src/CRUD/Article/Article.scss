@@ -64,7 +64,7 @@
         @include Responsive('md') {
           width: 320px;
         }
-        height: 250px;
+        height: auto;
         background-color: $general;
         padding: 1rem;
         @include borderRadius('right', 5px);
@@ -238,6 +238,49 @@
       .manage_btn {
         @extend %displayFlexContentSpaceBetween;
         @extend %primaryCircledOutlinedBtn;
+        position: relative;
+        .manage_btn_dropdown {
+          display: none;
+          &.active {
+            display: block;
+          }
+          .dropdown_links {
+            position: absolute;
+            width: 240px;
+            height: auto;
+            background-color: $general;
+            top: 50px;
+            left: 0;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+              0 3px 6px rgba(0, 0, 0, 0.23);
+            text-align: start;
+            @include borderRadius('right', 5px);
+            @include borderRadius('bottom-left', 5px);
+            z-index: 2;
+
+            hr {
+              margin: 0;
+            }
+            a {
+              padding: 0.3rem 1rem;
+              text-decoration: none;
+              display: block;
+              color: $third;
+              &:hover {
+                background-color: $hover_secondary;
+                color: $secondary;
+              }
+            }
+          }
+          .manage_btn_modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+          }
+        }
       }
       .next_btn {
         @extend %displayFlexContentSpaceBetween;
