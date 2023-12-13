@@ -13,7 +13,7 @@ import UploadPayment from '../CRUD/Payment/UploadPayment';
 import UploadReel from '../CRUD/Reel/UploadReel';
 import SignIn from '../pages/Authentication/SignIn';
 import SignUp from '../pages/Authentication/SignUp';
-import UploadArticle from '../CRUD/Article/UploadArticle';
+import UploadArticle from '../CRUD/Article/Upload/UploadArticle';
 
 const AppRoutes = () => {
   return (

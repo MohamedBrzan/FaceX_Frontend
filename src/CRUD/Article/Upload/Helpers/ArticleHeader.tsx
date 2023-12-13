@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { RefObject } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './Article.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowRight,
@@ -17,42 +16,29 @@ import {
   faListUl,
   faQuoteRight,
 } from '@fortawesome/free-solid-svg-icons';
-
-import me from '../../assets/me_opentowork.jpeg';
 import { Link } from 'react-router-dom';
+import me from '../../../../assets/me_opentowork.jpeg';
 
-const UploadArticle = () => {
-  const userButtonRef = useRef<HTMLDivElement>(null);
-  const userDropDownRef = useRef<HTMLDivElement>(null);
-  const manageBtnRef = useRef<HTMLDivElement>(null);
-  const manageBtnDropdownRef = useRef<HTMLDivElement>(null);
+type Props = {
+  userButtonRef: RefObject<HTMLDivElement>;
+  userDropDownRef: RefObject<HTMLDivElement>;
+  manageBtnRef: RefObject<HTMLDivElement>;
+  manageBtnDropdownRef: RefObject<HTMLDivElement>;
+  handleUserDropDownModalOnClick: () => void;
+  handleManageModalOnClick: () => void;
+};
 
-  useEffect(() => {
-    //* Handle User Dropdown
-    const userDropDownbutton = userButtonRef?.current;
-    userDropDownbutton!.onclick = () => {
-      userDropDownRef.current?.classList.toggle('active');
-    };
-
-    //*************************************************** */
-
-    // //* Handle Manage Button Dropdown
-
-    //* Handle User Dropdown
-    const manageBtn = manageBtnRef?.current;
-    manageBtn!.onclick = () => {
-      manageBtnDropdownRef.current?.classList.toggle('active');
-    };
-  }, []);
-
-  const handleUserDropDownModalOnClick = () =>
-    userDropDownRef.current?.classList.remove('active');
-
-  const handleManageModalOnClick = () =>
-    manageBtnDropdownRef.current?.classList.remove('active');
-
+const ArticleHeader = (props: Props) => {
+  const {
+    userButtonRef,
+    userDropDownRef,
+    manageBtnRef,
+    manageBtnDropdownRef,
+    handleUserDropDownModalOnClick,
+    handleManageModalOnClick,
+  } = props;
   return (
-    <section className='upload_article'>
+    <div>
       <Container>
         <Row>
           <Col md={3}>
@@ -196,8 +182,8 @@ const UploadArticle = () => {
           </Col>
         </Row>
       </Container>
-    </section>
+    </div>
   );
 };
 
-export default UploadArticle;
+export default ArticleHeader;
