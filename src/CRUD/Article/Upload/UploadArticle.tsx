@@ -25,6 +25,8 @@ const UploadArticle = () => {
     manageBtn!.onclick = () => {
       manageBtnDropdownRef.current?.classList.toggle('active');
     };
+
+ 
   }, []);
 
   const handleUserDropDownModalOnClick = () =>
@@ -43,7 +45,7 @@ const UploadArticle = () => {
         handleUserDropDownModalOnClick={handleUserDropDownModalOnClick}
         handleManageModalOnClick={handleManageModalOnClick}
       />
-      <ArticleBody />
+      <ArticleBody  />
     </section>
   );
 };
