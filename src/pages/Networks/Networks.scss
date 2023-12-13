@@ -61,7 +61,6 @@
   }
   .discover_networks {
     @extend %miniSectionStyle;
-
     article {
       margin: 0 0 2rem;
       .head {
@@ -76,10 +75,10 @@
       }
       .data_row {
         margin: 0;
+        padding: 0;
         gap: 10px;
+        @extend %displayFlexCenter;
         flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
 
         .person {
           @extend %miniSectionStyle;

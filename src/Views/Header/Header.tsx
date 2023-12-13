@@ -55,6 +55,7 @@ const Header = () => {
                   </div>
                 </li>
               </NavLink>
+
               <NavLink className='icon' to='/networks'>
                 <li title='Network' className='notify'>
                   <div className='icon'>
