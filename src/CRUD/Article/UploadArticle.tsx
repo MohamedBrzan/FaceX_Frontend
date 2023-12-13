@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,20 +25,18 @@ const UploadArticle = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownModalRef = useRef<HTMLDivElement>(null);
 
-  const showDropdown = () => {
+  useEffect(() => {
     const button = userButtonRef?.current;
     button!.onclick = () => {
       dropdownRef.current?.classList.toggle('active');
     };
-  };
 
-  const hideDropdown = () => {
     const modal = dropdownModalRef?.current;
 
     modal!.onclick = () => {
       dropdownRef.current?.classList.remove('active');
     };
-  };
+  }, []);
 
   return (
     <section className='upload_article'>
@@ -46,11 +44,7 @@ const UploadArticle = () => {
         <Row>
           <Col md={3}>
             <section className='user_entity'>
-              <div
-                className='information'
-                ref={userButtonRef}
-                onClick={showDropdown}
-              >
+              <div className='information' ref={userButtonRef}>
                 <figure>
                   <img src={me} alt='User Image' />
                 </figure>
@@ -108,7 +102,7 @@ const UploadArticle = () => {
                     </div>
                   </div>
                 </article>
-                <div className='dropdown_modal' ref={dropdownModalRef} onClick={hideDropdown} ></div>
+                <div className='dropdown_modal' ref={dropdownModalRef}></div>
               </section>
             </section>
           </Col>
