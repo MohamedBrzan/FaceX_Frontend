@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import ArticleHeader from './Helpers/ArticleHeader';
 import '../Article.scss';
+import ArticleBody from './Helpers/ArticleBody';
 
 const UploadArticle = () => {
   const userButtonRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,7 @@ const UploadArticle = () => {
         handleUserDropDownModalOnClick={handleUserDropDownModalOnClick}
         handleManageModalOnClick={handleManageModalOnClick}
       />
+      <ArticleBody />
     </section>
   );
 };

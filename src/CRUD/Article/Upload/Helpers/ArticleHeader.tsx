@@ -38,7 +38,7 @@ const ArticleHeader = (props: Props) => {
     handleManageModalOnClick,
   } = props;
   return (
-    <div>
+    <section className='article_header'>
       <Container>
         <Row>
           <Col md={3}>
@@ -182,7 +182,7 @@ const ArticleHeader = (props: Props) => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </section>
   );
 };
 
