@@ -29,7 +29,28 @@ const UploadText = () => {
           >
             Title
           </div>
-          <div className='textarea description' role='textbox' contentEditable>
+          <div
+            className='textarea description'
+            role='textbox'
+            contentEditable
+            onClick={(e) => {
+              const target = e.target as HTMLDivElement;
+              if (target.textContent == 'write here. You can also use @mentions.') {
+                target.textContent = '';
+              }
+            }}
+            onBlur={(e) => {
+              const target = e.target as HTMLDivElement;
+              if (target.textContent == '') {
+                target.textContent = 'write here. You can also use @mentions.';
+                target.classList.remove('active');
+              }
+            }}
+            onInput={(e) => {
+              const target = e.target as HTMLDivElement;
+              target.classList.add('active');
+            }}
+          >
             write here. You can also use @mentions.
           </div>
         </section>

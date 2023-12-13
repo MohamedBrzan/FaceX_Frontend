@@ -351,6 +351,15 @@
               opacity: 1;
             }
           }
+          &:last-of-type {
+            font: {
+              size: 1.5rem;
+            }
+            opacity: 0.5;
+            &.active {
+              opacity: 1;
+            }
+          }
         }
       }
     }
