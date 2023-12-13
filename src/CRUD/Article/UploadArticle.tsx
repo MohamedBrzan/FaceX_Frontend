@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -20,13 +21,36 @@ import {
 import me from '../../assets/me_opentowork.jpeg';
 
 const UploadArticle = () => {
+  const userButtonRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownModalRef = useRef<HTMLDivElement>(null);
+
+  const showDropdown = () => {
+    const button = userButtonRef?.current;
+    button!.onclick = () => {
+      dropdownRef.current?.classList.toggle('active');
+    };
+  };
+
+  const hideDropdown = () => {
+    const modal = dropdownModalRef?.current;
+
+    modal!.onclick = () => {
+      dropdownRef.current?.classList.remove('active');
+    };
+  };
+
   return (
     <section className='upload_article'>
       <Container>
         <Row>
           <Col md={3}>
             <section className='user_entity'>
-              <div className='information'>
+              <div
+                className='information'
+                ref={userButtonRef}
+                onClick={showDropdown}
+              >
                 <figure>
                   <img src={me} alt='User Image' />
                 </figure>
@@ -46,11 +70,11 @@ const UploadArticle = () => {
                   </div>
                 </div>
               </div>
-              <section className='user_dropdown'>
+              <section className='user_dropdown' ref={dropdownRef}>
                 <article className='publish_as'>
                   <h6 className='title'>Publish as</h6>
                   <div className='availability'>
-                    <div className='user_info'>
+                    <div className='info'>
                       <figure>
                         <img src={me} alt='User Image' />
                       </figure>
@@ -60,22 +84,31 @@ const UploadArticle = () => {
                         </h6>
                       </div>
                     </div>
+                    <div className='radio_1'>
+                      <div className='radio_2'></div>
+                    </div>
                   </div>
                 </article>
                 <hr />
                 <article className='publish_to'>
                   <h6 className='title'>Publish as</h6>
                   <div className='availability'>
-                    <div className='svg'>
-                      <FontAwesomeIcon icon={faIdCard} />
-                    </div>
-                    <div className='name'>
-                      <h6>
-                        <small>Individual article</small>
-                      </h6>
+                    <div className='info'>
+                      <div className='svg'>
+                        <FontAwesomeIcon icon={faIdCard} />
+                      </div>
+                      <div className='name'>
+                        <h6>
+                          <small>Individual article</small>
+                        </h6>
+                      </div>
+                    </div>{' '}
+                    <div className='radio_1'>
+                      <div className='radio_2'></div>
                     </div>
                   </div>
                 </article>
+                <div className='dropdown_modal' ref={dropdownModalRef} onClick={hideDropdown} ></div>
               </section>
             </section>
           </Col>
