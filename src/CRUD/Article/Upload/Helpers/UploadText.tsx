@@ -19,7 +19,6 @@ const UploadText = () => {
             name='description'
             id='article_content'
             placeholder='write here. You can also use @mentions.'
-            maxLength={160}
             onKeyDown={(e) => {
               const target = e.target as HTMLTextAreaElement;
               target.style.height = `${target.scrollHeight}px`;
