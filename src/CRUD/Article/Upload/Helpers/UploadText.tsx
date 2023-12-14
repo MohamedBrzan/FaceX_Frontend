@@ -5,54 +5,26 @@ const UploadText = () => {
     <section className='upload_text'>
       <Container className='p-0'>
         <section className='input_section'>
-          <div
-            className='textarea title'
-            role='textbox'
-            contentEditable
-            onClick={(e) => {
-              const target = e.target as HTMLDivElement;
-              if (target.textContent == 'Title') {
-                target.textContent = '';
-              }
+          <textarea
+            name='title'
+            id='article_title'
+            placeholder='Title'
+            maxLength={160}
+            onKeyDown={(e) => {
+              const target = e.target as HTMLTextAreaElement;
+              target.style.height = `${target.scrollHeight}px`;
             }}
-            onBlur={(e) => {
-              const target = e.target as HTMLDivElement;
-              if (target.textContent == '') {
-                target.textContent = 'Title';
-                target.classList.remove('active');
-              }
+          ></textarea>
+          <textarea
+            name='description'
+            id='article_content'
+            placeholder='write here. You can also use @mentions.'
+            maxLength={160}
+            onKeyDown={(e) => {
+              const target = e.target as HTMLTextAreaElement;
+              target.style.height = `${target.scrollHeight}px`;
             }}
-            onInput={(e) => {
-              const target = e.target as HTMLDivElement;
-              target.classList.add('active');
-            }}
-          >
-            Title
-          </div>
-          <div
-            className='textarea description'
-            role='textbox'
-            contentEditable
-            onClick={(e) => {
-              const target = e.target as HTMLDivElement;
-              if (target.textContent == 'write here. You can also use @mentions.') {
-                target.textContent = '';
-              }
-            }}
-            onBlur={(e) => {
-              const target = e.target as HTMLDivElement;
-              if (target.textContent == '') {
-                target.textContent = 'write here. You can also use @mentions.';
-                target.classList.remove('active');
-              }
-            }}
-            onInput={(e) => {
-              const target = e.target as HTMLDivElement;
-              target.classList.add('active');
-            }}
-          >
-            write here. You can also use @mentions.
-          </div>
+          ></textarea>
         </section>
       </Container>
     </section>

@@ -4,7 +4,6 @@
 
 .upload_article {
   background-color: $general;
-  height: auto;
   .article_header {
     border-bottom: 1px solid $hover_secondary;
     margin: 0 0 1.5rem;
@@ -337,28 +336,24 @@
       height: auto;
       .input_section {
         width: 100%;
-        .textarea {
-          padding: 1rem;
+        textarea {
+          width: 100%;
+          resize: none;
           border: 0;
           outline: 0;
-          &:first-of-type {
+          &[name='title'] {
             font: {
               size: 3rem;
               weight: 600;
             }
-            opacity: 0.5;
-            &.active {
-              opacity: 1;
-            }
           }
-          &:last-of-type {
+          &[name='description'] {
             font: {
               size: 1.5rem;
             }
-            opacity: 0.5;
-            &.active {
-              opacity: 1;
-            }
+          }
+          &::-webkit-scrollbar {
+            display: none;
           }
         }
       }

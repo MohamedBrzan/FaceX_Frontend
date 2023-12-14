@@ -10,6 +10,7 @@ const UploadArticle = () => {
   const manageBtnDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    document.body.style.backgroundColor = '#FFFFFF';
     //* Handle User Dropdown
     const userDropDownbutton = userButtonRef?.current;
     userDropDownbutton!.onclick = () => {
@@ -25,8 +26,6 @@ const UploadArticle = () => {
     manageBtn!.onclick = () => {
       manageBtnDropdownRef.current?.classList.toggle('active');
     };
-
- 
   }, []);
 
   const handleUserDropDownModalOnClick = () =>
@@ -45,7 +44,7 @@ const UploadArticle = () => {
         handleUserDropDownModalOnClick={handleUserDropDownModalOnClick}
         handleManageModalOnClick={handleManageModalOnClick}
       />
-      <ArticleBody  />
+      <ArticleBody />
     </section>
   );
 };

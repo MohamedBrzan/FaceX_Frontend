@@ -5,8 +5,12 @@ import Posts from '../Posts/Posts';
 import SideBar from '../../Views/SideBar/SideBar';
 import Aside from '../../Views/Aside/Aside';
 import './Home.scss';
+import { useEffect } from 'react';
 
 const Home = () => {
+  useEffect(() => {
+    document.body.style.setProperty('background-color', '#F4F2EE');
+  }, []);
   return (
     <section className='home'>
       <Container>

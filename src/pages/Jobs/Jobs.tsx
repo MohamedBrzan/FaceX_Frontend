@@ -6,6 +6,7 @@ import RightAside from './Helpers/RightAside';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import './Jobs.scss';
+import { useEffect } from 'react';
 
 const Jobs = () => {
   // const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
@@ -19,6 +20,10 @@ const Jobs = () => {
   //   if (isError) console.log('error 🤔');
   //   console.log(data);
   // }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
+
+  useEffect(() => {
+    document.body.style.setProperty('background-color', '#F4F2EE');
+  }, []);
   return (
     <section className='jobs'>
       <Container>

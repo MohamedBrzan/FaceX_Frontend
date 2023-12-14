@@ -12,6 +12,8 @@ const Notifications = () => {
     if (isUninitialized) console.log('uninitialized 🤔');
     if (isError) console.log('error 🤔');
     console.log(data);
+
+    document.body.style.setProperty('background-color', '#F4F2EE');
   }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
   return <div>Notifications</div>;
 };

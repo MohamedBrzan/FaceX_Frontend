@@ -4,8 +4,12 @@ import Col from 'react-bootstrap/esm/Col';
 import NetworksAside from './Helpers/NetworksAside';
 import DiscoverNetworks from './Helpers/DiscoverNetworks';
 import './Networks.scss';
+import { useEffect } from 'react';
 
 const Networks = () => {
+  useEffect(() => {
+    document.body.style.setProperty('background-color', '#F4F2EE');
+  }, []);
   return (
     <section className='networks'>
       <Container>
