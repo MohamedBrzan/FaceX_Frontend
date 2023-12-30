@@ -4,9 +4,9 @@ import event from '../../assets/event.svg';
 import writeArticle from '../../assets/article.svg';
 import './Post.scss';
 
-const UploadPost = () => {
+const CreatePost = () => {
   return (
-    <section className='upload_post'>
+    <section className='create_post'>
       <div className='text'>
         <figure className='avatar'>
           <img src={me} alt='User' />
@@ -39,4 +39,4 @@ const UploadPost = () => {
   );
 };
 
-export default UploadPost;
+export default CreatePost;

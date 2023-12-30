@@ -9,9 +9,9 @@ import FormCheck from 'react-bootstrap/FormCheck';
 import Button from 'react-bootstrap/Button';
 import './Ad.scss';
 
-const UploadAd = () => {
+const CreateAd = () => {
   return (
-    <section className='upload_ad'>
+    <section className='create_ad'>
       <Container>
         <h3>
           <small>Upload An Ad : </small>
@@ -89,4 +89,4 @@ const UploadAd = () => {
   );
 };
 
-export default UploadAd;
+export default CreateAd;

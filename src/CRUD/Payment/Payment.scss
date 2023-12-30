@@ -2,7 +2,7 @@
 @use '../../sass/Mixins' as *;
 @use '../../sass/Styles' as *;
 
-.add_payment {
+.create_payment {
   form {
     @extend %miniSectionStyle;
     .submit_btn {

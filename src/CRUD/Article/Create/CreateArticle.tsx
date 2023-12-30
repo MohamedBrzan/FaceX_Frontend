@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import ArticleHeader from './Helpers/ArticleHeader';
-import '../Article.scss';
 import ArticleBody from './Helpers/ArticleBody';
+import '../Article.scss';
 
-const UploadArticle = () => {
+const CreateArticle = () => {
   const userButtonRef = useRef<HTMLDivElement>(null);
   const userDropDownRef = useRef<HTMLDivElement>(null);
   const manageBtnRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ const UploadArticle = () => {
     manageBtnDropdownRef.current?.classList.remove('active');
 
   return (
-    <section className='upload_article'>
+    <section className='create_article'>
       <ArticleHeader
         userButtonRef={userButtonRef}
         userDropDownRef={userDropDownRef}
@@ -49,4 +49,4 @@ const UploadArticle = () => {
   );
 };
 
-export default UploadArticle;
+export default CreateArticle;

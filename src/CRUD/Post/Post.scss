@@ -2,7 +2,7 @@
 @use '../../sass/Mixins' as *;
 @use '../../sass/Colors' as *;
 
-.upload_post {
+.create_post {
   @extend %sectionStyle;
   overflow: hidden;
   display: flex;

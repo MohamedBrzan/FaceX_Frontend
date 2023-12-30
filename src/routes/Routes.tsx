@@ -7,13 +7,14 @@ import Notifications from '../pages/Notifications/Notifications';
 import User from '../pages/Users/Users';
 import Admin from '../pages/Admin/Admin';
 import Profile from '../pages/Profile/Profile';
-import UploadAd from '../CRUD/Ad/UploadAd';
-import UploadBlog from '../CRUD/Blog/UploadBlog';
-import UploadPayment from '../CRUD/Payment/UploadPayment';
-import UploadReel from '../CRUD/Reel/UploadReel';
+import CreateAd from '../crud/Ad/CreateAd';
+import CreateBlog from '../crud/Blog/CreateBlog';
+import CreatePayment from '../crud/Payment/CreatePayment';
+import CreateReel from '../crud/Reel/CreateReel';
 import SignIn from '../pages/Authentication/SignIn';
 import SignUp from '../pages/Authentication/SignUp';
-import UploadArticle from '../CRUD/Article/Upload/UploadArticle';
+import CreateArticle from '../crud/Article/Create/CreateArticle';
+import CreatePost from '../creation/CreatePost/CreatePost';
 
 const AppRoutes = () => {
   return (
@@ -27,15 +28,20 @@ const AppRoutes = () => {
         <Route path='/me/profile' element={<Profile />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/user/:id' element={<User />} />
-        //** Upload Section **/
-        <Route path='/upload/ad' element={<UploadAd />} />
-        <Route path='/upload/article' element={<UploadArticle />} />
-        <Route path='/upload/blog' element={<UploadBlog />} />
-        <Route path='/upload/payment' element={<UploadPayment />} />
-        <Route path='/upload/reel' element={<UploadReel />} />
+        //** Create Section **/
+        <Route path='/create/'>
+          <Route path='ad' element={<CreateAd />} />
+          <Route path='article' element={<CreateArticle />} />
+          <Route path='blog' element={<CreateBlog />} />
+          <Route path='payment' element={<CreatePayment />} />
+          <Route path='reel' element={<CreateReel />} />
+          <Route path='post' element={<CreatePost />} />
+        </Route>
         //** Authentication Section **/
-        <Route path='/authentication/sign_up' element={<SignUp />} />
-        <Route path='/authentication/sign_in' element={<SignIn />} />
+        <Route path='/authentication/'>
+          <Route path='sign_up' element={<SignUp />} />
+          <Route path='sign_in' element={<SignIn />} />
+        </Route>
       </Route>
       <Route
         path='*'

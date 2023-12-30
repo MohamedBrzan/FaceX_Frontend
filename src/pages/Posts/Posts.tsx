@@ -18,7 +18,7 @@ import { faRepeat, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
-import UploadPost from '../../CRUD/Post/UploadPost';
+import UploadPost from '../../crud/Post/CreatePost';
 import { useGetPostsQuery } from '../../store/apis/Posts';
 
 const Posts = () => {

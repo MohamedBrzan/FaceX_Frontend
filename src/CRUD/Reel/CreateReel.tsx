@@ -7,12 +7,12 @@ import FormSelect from 'react-bootstrap/FormSelect';
 import Button from 'react-bootstrap/Button';
 import './Reel.scss';
 
-const UploadReel = () => {
+const CreateReel = () => {
   return (
-    <section className='upload_reel'>
+    <section className='create_reel'>
       <Container>
         <h3>
-          <small>Upload Reel</small>
+          <small>Create Reel</small>
         </h3>
         <Form>
           <FormGroup className='mb-3'>
@@ -54,7 +54,7 @@ const UploadReel = () => {
             </FormSelect>
           </FormGroup>
           <Button type='submit' className='submit_btn'>
-            Upload
+          Create
           </Button>
         </Form>
       </Container>
@@ -62,4 +62,4 @@ const UploadReel = () => {
   );
 };
 
-export default UploadReel;
+export default CreateReel;

@@ -8,12 +8,12 @@ import Button from 'react-bootstrap/Button';
 
 import './Blog.scss';
 
-const UploadBlog = () => {
+const CreateBlog = () => {
   return (
-    <section className='upload_blog'>
+    <section className='create_blog'>
       <Container>
         <h3>
-          <small>Upload Blog : </small>
+          <small>Create Blog : </small>
         </h3>
         <Form>
           <FormGroup className='mb-3'>
@@ -71,7 +71,7 @@ const UploadBlog = () => {
             </FormSelect>
           </FormGroup>
           <Button type='submit' className='submit_btn'>
-            Upload
+          Create
           </Button>
         </Form>
       </Container>
@@ -79,4 +79,4 @@ const UploadBlog = () => {
   );
 };
 
-export default UploadBlog;
+export default CreateBlog;
