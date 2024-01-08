@@ -14,7 +14,7 @@ import CreateReel from '../crud/Reel/CreateReel';
 import SignIn from '../pages/Authentication/SignIn';
 import SignUp from '../pages/Authentication/SignUp';
 import CreateArticle from '../crud/Article/Create/CreateArticle';
-import CreatePost from '../creation/CreatePost/CreatePost';
+import UploadPost from '../forms/UploadPost/UploadPost';
 
 const AppRoutes = () => {
   return (
@@ -35,7 +35,10 @@ const AppRoutes = () => {
           <Route path='blog' element={<CreateBlog />} />
           <Route path='payment' element={<CreatePayment />} />
           <Route path='reel' element={<CreateReel />} />
-          <Route path='post' element={<CreatePost />} />
+        </Route>
+        //** Upload Section ( for pages that have form for upload a topic ) **/
+        <Route path='/upload/'>
+          <Route path='post' element={<UploadPost />} />
         </Route>
         //** Authentication Section **/
         <Route path='/authentication/'>
