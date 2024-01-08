@@ -25,6 +25,8 @@ const Posts = () => {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
     useGetPostsQuery('');
 
+  console.log(data);
+
   useEffect(() => {
     if (isFetching) console.log('fetching...');
     if (isLoading) console.log('loading...');
