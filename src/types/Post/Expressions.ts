@@ -1,4 +1,4 @@
-type GeneralExpressions = {
+type Expressions = {
   like?: number;
   love?: number;
   support?: number;
@@ -10,4 +10,4 @@ type GeneralExpressions = {
   fear?: number;
 };
 
-export default GeneralExpressions;
+export default Expressions;
