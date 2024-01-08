@@ -41,23 +41,26 @@ const Header = () => {
             </Row>
           </Col>
           <Col xs={10} md={4} className='head_icons_col'>
-            <ul className='head_icons list-unstyled'>
-              <NavLink className='icon' to='/'>
-                <li title='Home' className='active'>
+            <div className='links'>
+              <NavLink className='icon' to='/' role='button'>
+                <div title='Home' className='nav_link_container notify active'>
                   <div className='icon'>
                     <div className='svg'>
                       <FontAwesomeIcon icon={faHome} />
                     </div>
-                    {/* <div className='badge'>23</div> */}
+                    <div className='badge'>23</div>
                   </div>
                   <div className='title'>
                     <small>Home</small>
                   </div>
-                </li>
+                </div>
               </NavLink>
 
               <NavLink className='icon' to='/networks'>
-                <li title='Network' className='notify'>
+                <div
+                  title='nav_link_container Network'
+                  className='nav_link_container notify'
+                >
                   <div className='icon'>
                     <div className='svg'>
                       <FontAwesomeIcon icon={faPeopleGroup} />
@@ -67,10 +70,10 @@ const Header = () => {
                   <div className='title'>
                     <small>Networks</small>
                   </div>
-                </li>
+                </div>
               </NavLink>
               <NavLink className='icon' to='/jobs'>
-                <li title='Jobs' className='notify'>
+                <div title='Jobs' className='nav_link_container notify'>
                   <div className='icon'>
                     <div className='svg'>
                       <FontAwesomeIcon icon={faBriefcase} />
@@ -80,10 +83,10 @@ const Header = () => {
                   <div className='title'>
                     <small>Jobs</small>
                   </div>
-                </li>
+                </div>
               </NavLink>
               <NavLink className='icon' to='/messages'>
-                <li title='Messages' className='notify'>
+                <div title='Messages' className='nav_link_container notify'>
                   <div className='icon'>
                     <div className='badge'>12</div>
                     <div className='svg'>
@@ -93,11 +96,14 @@ const Header = () => {
                   <div className='title'>
                     <small>Messages</small>
                   </div>
-                </li>
+                </div>
               </NavLink>
 
               <NavLink className='icon' to='/notifications'>
-                <li title='Notifications' className='notify'>
+                <div
+                  title='Notifications'
+                  className='nav_link_container notify'
+                >
                   <div className='icon'>
                     <div className='svg'>
                       <FontAwesomeIcon icon={faBell} />
@@ -107,9 +113,9 @@ const Header = () => {
                   <div className='title'>
                     <small>Notifications</small>
                   </div>
-                </li>
+                </div>
               </NavLink>
-            </ul>
+            </div>
           </Col>
           <Col xs={2} className='user_col'>
             <div className='user' onClick={ShowDropdownMenu}>

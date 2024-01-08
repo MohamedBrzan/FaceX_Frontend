@@ -20,7 +20,7 @@ header {
   .head_icons_col {
     @extend %displayFlexCenter;
 
-    ul.head_icons {
+    .links {
       @extend %displayFlexContentSpaceBetween;
       flex: 1;
       margin: 0;
@@ -52,7 +52,11 @@ header {
             width: 100%;
           }
         }
-        li {
+        .nav_link_container {
+          text-align: center;
+          .bell {
+            margin: auto;
+          }
           @include Responsive('xs') {
             margin: 10px 0 0;
           }
@@ -75,12 +79,6 @@ header {
             opacity: 1;
           }
 
-          & {
-            text-align: center;
-            .bell {
-              margin: auto;
-            }
-          }
           svg {
             color: black;
             position: relative;

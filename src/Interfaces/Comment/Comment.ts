@@ -1,4 +1,4 @@
-import Expressions from '../../Types/Post/Expressions';
+import Expressions from '../../types/Post/GeneralExpressions';
 import VisiblePrivacy from '../../enums/VisiblePrivacy';
 import Blog from '../Blog/Blog';
 import Post from '../Post/Post';

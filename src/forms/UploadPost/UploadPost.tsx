@@ -4,7 +4,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import smileFace from '../../assets/smile_face.svg';
 import './UploadPost.scss';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const UploadPost = () => {
   const showEmojisRef = useRef<HTMLElement>(null);
@@ -28,27 +28,27 @@ const UploadPost = () => {
       emojisSelector!.classList.toggle('active');
     };
 
-    if (emoji.length > 0) {
-      const caretPosition = cursor_position();
-      const firstPart = value.slice(0, caretPosition);
-      const secondPart = value.slice(caretPosition);
-      const newText = value.slice(0, caretPosition) + emoji.join('');
-      const emojis = emoji.join('');
-      // setValue( newText);
-      console.log(firstPart);
-      console.log(emojis);
-      console.log(secondPart);
-      console.log(cursor_position());
-    }
+    // if (emoji.length > 0) {
+    //   const caretPosition = cursor_position();
+    //   const firstPart = value.slice(0, caretPosition);
+    //   const secondPart = value.slice(caretPosition);
+    //   const newText = value.slice(0, caretPosition) + emoji.join('');
+    //   const emojis = emoji.join('');
+    //   // setValue( newText);
+    //   console.log(firstPart);
+    //   console.log(emojis);
+    //   console.log(secondPart);
+    //   console.log(cursor_position());
+    // }
   }, [emoji, value]);
 
-  function cursor_position() {
-    const sel: Selection | null = document.getSelection();
-    sel.modify('extend', 'backward', 'paragraphboundary');
-    const pos: number = sel.toString().length;
-    if (sel.anchorNode != undefined) sel.collapseToEnd();
-    return pos;
-  }
+  // function cursor_position() {
+  //   const sel: Selection | null = document.getSelection();
+  //   sel.modify('extend', 'backward', 'paragraphboundary');
+  //   const pos: number = sel.toString().length;
+  //   if (sel.anchorNode != undefined) sel.collapseToEnd();
+  //   return pos;
+  // }
 
   // Demo:
 
