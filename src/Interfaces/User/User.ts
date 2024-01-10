@@ -5,7 +5,7 @@ import Album from '../Album/Album';
 import Blog from '../Blog/Blog';
 import Comment from '../Comment/Comment';
 import Reply from '../Comment/Reply';
-import Hashtag from '../Hashtag/HashTag';
+import Hashtag from '../Hashtag/Hashtag';
 import Job from '../Job/Job';
 import Notification from '../Notification/Notification';
 import Payment from '../Payment/Payment';
