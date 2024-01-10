@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import APIS_ROOT from '../../constants/APIS_ROOT';
-import HashTag from '../../Interfaces/HashTag/HashTag';
+import Hashtag from '../../Interfaces/Hashtag/Hashtag';
 
-export const HashTagApi = createApi({
-  reducerPath: 'HashTagApi',
+export const HashtagApi = createApi({
+  reducerPath: 'HashtagApi',
   baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
   endpoints: (builder) => ({
-    getHashTags: builder.query<HashTag, string>({
-      query: () => '/hashTag',
+    getHashtags: builder.query<Hashtag, string>({
+      query: () => '/Hashtag',
     }),
   }),
 });
 
-export const { useGetHashTagsQuery } = HashTagApi;
+export const { useGetHashtagsQuery } = HashtagApi;

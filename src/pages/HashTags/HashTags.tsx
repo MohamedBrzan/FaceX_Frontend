@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useGetHashTagsQuery } from '../../store/apis/HashTags';
+import { useGetHashtagsQuery } from '../../store/apis/Hashtags';
 
-const HashTags = () => {
+const Hashtags = () => {
   const { isFetching, isLoading, isSuccess, isUninitialized, isError, data } =
-    useGetHashTagsQuery('');
+    useGetHashtagsQuery('');
 
   useEffect(() => {
     if (isFetching) console.log('fetching...');
@@ -13,7 +13,7 @@ const HashTags = () => {
     if (isError) console.log('error 🤔');
     console.log(data);
   }, [data, isError, isFetching, isLoading, isSuccess, isUninitialized]);
-  return <div>HashTags</div>;
+  return <div>Hashtags</div>;
 };
 
-export default HashTags;
+export default Hashtags;

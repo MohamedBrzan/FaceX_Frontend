@@ -1,9 +1,9 @@
 import User from '../User/User';
 
-interface HashTag {
+interface Hashtag {
   user: User;
   text: string;
   followers: User[];
 }
 
-export default HashTag;
+export default Hashtag;

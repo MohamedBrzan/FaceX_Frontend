@@ -9,7 +9,7 @@ import Loading from './components/Loading/Loading.tsx';
 
 const element = document.getElementById('root');
 createRoot(element!).render(
-  <Suspense fallback={<Loading />}>
+  <Suspense fallback={<Loading text='Loading' />}>
     <Provider store={store}>
       <StrictMode>
         <BrowserRouter>

@@ -6,7 +6,7 @@ import { AdApi } from './apis/Ads';
 import { AlbumApi } from './apis/Albums';
 import { BlogApi } from './apis/Blogs';
 import { CommentApi } from './apis/Comments';
-import { HashTagApi } from './apis/HashTags';
+import { HashtagApi } from './apis/Hashtags';
 import { ImageApi } from './apis/Images';
 import { NotificationApi } from './apis/Notifications';
 import { PaymentApi } from './apis/Payments';
@@ -22,7 +22,7 @@ export const store = configureStore({
     [AlbumApi.reducerPath]: AlbumApi.reducer,
     [BlogApi.reducerPath]: BlogApi.reducer,
     [CommentApi.reducerPath]: CommentApi.reducer,
-    [HashTagApi.reducerPath]: HashTagApi.reducer,
+    [HashtagApi.reducerPath]: HashtagApi.reducer,
     [ImageApi.reducerPath]: ImageApi.reducer,
     [NotificationApi.reducerPath]: NotificationApi.reducer,
     [PaymentApi.reducerPath]: PaymentApi.reducer,
@@ -38,7 +38,7 @@ export const store = configureStore({
       .concat(AlbumApi.middleware)
       .concat(BlogApi.middleware)
       .concat(CommentApi.middleware)
-      .concat(HashTagApi.middleware)
+      .concat(HashtagApi.middleware)
       .concat(ImageApi.middleware)
       .concat(NotificationApi.middleware)
       .concat(PaymentApi.middleware)
