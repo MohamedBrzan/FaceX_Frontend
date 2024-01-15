@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import APIS_ROOT from '../../constants/APIS_ROOT';
 import Post from '../../Interfaces/Post/Post';
+// import Expressions from '../../Types/Post/Expressions';
 
 export const PostApi = createApi({
   reducerPath: 'PostApi',
@@ -9,14 +10,19 @@ export const PostApi = createApi({
     getPosts: builder.query<Post, string>({
       query: () => '/post',
     }),
-    AddOrRemoveExpression: builder.mutation({
-      query: ({ prevExpressionName, currentExpressionName, postId }) => ({
-        method: 'PATCH',
-        url: '/expressions/toggle',
-        body: { prevExpressionName, currentExpressionName, postId },
-      }),
-    }),
+    // togglePostExpression: builder.mutation<Expressions | string>({
+    //   query: ({ ...data }) => ({
+    //     method: 'PATCH',
+    //     url: '/post/expressions/toggle',
+    //     mode: 'no-cors',
+    //     credentials: true,
+    //     body: { ...data },
+    //   }),
+    // }),
   }),
 });
 
-export const { useGetPostsQuery, useAddOrRemoveExpressionMutation } = PostApi;
+export const {
+  useGetPostsQuery,
+  // useTogglePostExpressionMutation
+} = PostApi;

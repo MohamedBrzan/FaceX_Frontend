@@ -10,12 +10,12 @@ import Loading from './components/Loading/Loading.tsx';
 const element = document.getElementById('root');
 createRoot(element!).render(
   <Suspense fallback={<Loading text='Loading' />}>
-    <Provider store={store}>
-      <StrictMode>
+    <StrictMode>
+      <Provider store={store}>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </StrictMode>
-    </Provider>
+      </Provider>
+    </StrictMode>
   </Suspense>
 );

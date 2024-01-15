@@ -6,13 +6,14 @@ import { AdApi } from './apis/Ads';
 import { AlbumApi } from './apis/Albums';
 import { BlogApi } from './apis/Blogs';
 import { CommentApi } from './apis/Comments';
-import { HashtagApi } from './apis/Hashtags';
 import { ImageApi } from './apis/Images';
 import { NotificationApi } from './apis/Notifications';
 import { PaymentApi } from './apis/Payments';
 import { ReelApi } from './apis/Reels';
 import { VideoApi } from './apis/Videos';
 import { JobApi } from './apis/Jobs';
+import { HashtagApi } from './apis/Hashtags';
+import { AuthenticationApi } from './apis/Authentication';
 
 export const store = configureStore({
   reducer: {
@@ -29,6 +30,7 @@ export const store = configureStore({
     [ReelApi.reducerPath]: ReelApi.reducer,
     [VideoApi.reducerPath]: VideoApi.reducer,
     [JobApi.reducerPath]: JobApi.reducer,
+    [AuthenticationApi.reducerPath]: AuthenticationApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -44,7 +46,8 @@ export const store = configureStore({
       .concat(PaymentApi.middleware)
       .concat(ReelApi.middleware)
       .concat(VideoApi.middleware)
-      .concat(JobApi.middleware),
+      .concat(JobApi.middleware)
+      .concat(AuthenticationApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

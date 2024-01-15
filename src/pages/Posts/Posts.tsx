@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import thumbsUp from '../../assets/expressions/thumbsUp.png';
 import happy from '../../assets/expressions/happy.png';
@@ -17,18 +17,26 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
 import UploadPost from '../../crud/Post/CreatePost';
-import { useGetPostsQuery } from '../../store/apis/Posts';
+import {
+  useGetPostsQuery,
+  // useTogglePostExpressionMutation,
+} from '../../store/apis/Posts';
 import { Each } from '../../components/Each/Each';
 import Post from '../../Interfaces/Post/Post';
 import GetExpressionsLength from '../../functions/GetExpressionsLength';
 
 const Posts = () => {
+  const [prevExpressionName, setPrevExpressionName] = useState<string>('');
+  // const [updateExpression, { reset }] = useTogglePostExpressionMutation({
+  //   fixedCacheKey: 'post_update_expression',
+  // });
   const {
     isFetching,
     isLoading,
     isSuccess,
     isUninitialized,
     isError,
+    error,
     data: posts,
   } = useGetPostsQuery('');
 
@@ -37,25 +45,49 @@ const Posts = () => {
     if (isLoading) console.log('loading...');
     if (isSuccess) console.log('success ✌️');
     if (isUninitialized) console.log('uninitialized 🤔');
-    if (isError) console.log('error 🤔');
+    if (isError) console.log('error 🤔', error);
     if (!isFetching && !isLoading && !isError) {
       console.log(posts);
     }
-    Array.from(
-      document.querySelectorAll('.expressions_container .expression')
-    ).forEach((expression) => {
-      expression.addEventListener('click', () => {
-        const firstParent = expression.parentElement as HTMLDivElement;
-        const secondParent = firstParent.parentElement as HTMLDivElement;
-        secondParent.children[1].textContent = expression.getAttribute('title');
-        const selectedImg = expression.children[0] as HTMLImageElement;
-        const showInteract = secondParent.children[0]
-          .children[0] as HTMLImageElement;
-        showInteract.src = selectedImg.src;
-      });
-    });
+    // Array.from(
+    //   document.querySelectorAll('.expressions_container .expression')
+    // ).forEach((expression) => {
+    //   expression.addEventListener('click', (e) => {
+    //     const target = e.target as HTMLImageElement;
+    //     const firstParent = expression.parentElement as HTMLDivElement;
+    //     const secondParent = firstParent.parentElement as HTMLDivElement;
+    //     secondParent.children[1].textContent = expression.getAttribute('title');
+    //     const selectedImg = expression.children[0] as HTMLImageElement;
+    //     const showInteract = secondParent.children[0]
+    //       .children[0] as HTMLImageElement;
+    //     showInteract.src = selectedImg.src;
+
+    //     setPrevExpressionName(target.alt);
+    //   });
+    // });
     ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
-  }, [posts, isError, isFetching, isLoading, isSuccess, isUninitialized]);
+  }, [
+    posts,
+    isError,
+    isFetching,
+    isLoading,
+    isSuccess,
+    isUninitialized,
+    error,
+  ]);
+
+  // const handleExpressionOnClick = (e) => {
+  //   const target = e.target as HTMLImageElement;
+  //   const firstParent = expression.parentElement as HTMLDivElement;
+  //   const secondParent = firstParent.parentElement as HTMLDivElement;
+  //   secondParent.children[1].textContent = expression.getAttribute('title');
+  //   const selectedImg = expression.children[0] as HTMLImageElement;
+  //   const showInteract = secondParent.children[0]
+  //     .children[0] as HTMLImageElement;
+  //   showInteract.src = selectedImg.src;
+
+  //   setPrevExpressionName(target.alt);
+  // };
 
   const UIExpressions = [
     { id: 5, name: 'like', image: thumbsUp },
@@ -80,7 +112,7 @@ const Posts = () => {
         isError={isError}
         isSuccess={isSuccess}
         of={posts}
-        render={({ user, content, expressions }: Post, index: number) => (
+        render={({ _id, user, content, expressions }: Post, index: number) => (
           <article className='post' key={index}>
             <div className='post_head'>
               <div className='user_info'>
@@ -140,9 +172,62 @@ const Posts = () => {
                     <img src={thumbsUp} alt='Interaction Emoji' />
                   </figure>
                   <div className='identifier'>Like</div>
-                  <div className='expressions_container'>
+                  <div
+                    className='expressions_container'
+                    // onClick={(e) => {
+                    //   const target = e.target as HTMLImageElement;
+                    //   const firstParent =
+                    //     expression.parentElement as HTMLDivElement;
+                    //   const secondParent =
+                    //     firstParent.parentElement as HTMLDivElement;
+                    //   secondParent.children[1].textContent =
+                    //     expression.getAttribute('title');
+                    //   const selectedImg = expression
+                    //     .children[0] as HTMLImageElement;
+                    //   const showInteract = secondParent.children[0]
+                    //     .children[0] as HTMLImageElement;
+                    //   showInteract.src = selectedImg.src;
+
+                    //   setPrevExpressionName(target.alt);
+                    // }}
+                  >
                     {UIExpressions.map(({ name, image }, i) => (
-                      <figure className='expression' key={i} title={name}>
+                      <figure
+                        className='expression'
+                        key={i}
+                        title={name}
+                        // onClick={async (e: React.MouseEvent<HTMLElement>) => {
+                        //   const target = e.target as HTMLImageElement;
+
+                        //   //* changing the icon
+                        //   target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
+                        //     'src',
+                        //     target.src
+                        //   );
+
+                        //   //* changing the name
+                        //   const theIdentifier = target.parentElement
+                        //     ?.parentElement?.parentElement
+                        //     ?.children[1] as HTMLDivElement;
+                        //   const name =
+                        //     target.alt[0].toUpperCase() +
+                        //     target.alt.substring(1);
+
+                        //   theIdentifier.textContent = name;
+
+                        //   if (prevExpressionName.length <= 0) {
+                        //     const data = {
+                        //       prevExpressionName: target.alt,
+                        //       currentExpressionName: target.alt,
+                        //       postId: _id,
+                        //     };
+                        //     await updateExpression({ ...data });
+                        //     reset();
+                        //   }
+
+                        //   setPrevExpressionName(target.alt);
+                        // }}
+                      >
                         <img src={image} alt={name} />
                       </figure>
                     ))}

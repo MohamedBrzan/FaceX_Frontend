@@ -9,10 +9,17 @@ import appleImg from '../../assets/apple.png';
 import googleImg from '../../assets/google_logo.jpeg';
 import facebookImg from '../../assets/facebook.png';
 import './Authentication.scss';
+import { useSignInMutation } from '../../store/apis/Authentication';
+import Loading from '../../components/Loading/Loading';
 
 const SignIn = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [signIn, { isLoading, isError, error, data }] = useSignInMutation({
+    fixedCacheKey: 'signIn',
+  });
+
+  console.log('data', data);
 
   return (
     <section className='authentication sign_in'>
@@ -21,7 +28,22 @@ const SignIn = () => {
         <p>
           <small>Stay updated on your professional world</small>
         </p>
-        <Form>
+        <Form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const data = {
+              username: email,
+              password,
+            };
+            await signIn(data);
+            if (!isLoading) {
+              console.log(data);
+            }
+            if (isError) {
+              console.log(error);
+            }
+          }}
+        >
           <FormGroup className='mb-3'>
             <Input
               value={email}
@@ -52,7 +74,13 @@ const SignIn = () => {
             <Link to='/forget_password'>Forget Password?</Link>
           </div>
           <Button type='submit' className='submit_btn'>
-            Sign In
+            {isError ? (
+              'error'
+            ) : isLoading ? (
+              <Loading text='signing in .....' />
+            ) : (
+              'Sign In'
+            )}
           </Button>
         </Form>
         <div className='hr'>
