@@ -5,12 +5,13 @@ export const AuthenticationApi = createApi({
   reducerPath: 'AuthenticationApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${APIS_ROOT}user`,
+    credentials: 'include',
   }),
   endpoints: (builder) => ({
     signIn: builder.mutation({
       query: ({ ...data }) => ({
-        url: '/login',
         method: 'POST',
+        url: '/login',
         body: data,
       }),
     }),

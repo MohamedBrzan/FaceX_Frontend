@@ -18,9 +18,9 @@ const SignIn = () => {
   const [signIn, { isLoading, isError, error, data }] = useSignInMutation({
     fixedCacheKey: 'signIn',
   });
-
-  console.log('data', data);
-
+  if (!isLoading) {
+    console.log('userData =>', data);
+  }
   return (
     <section className='authentication sign_in'>
       <section className='form'>
@@ -31,16 +31,14 @@ const SignIn = () => {
         <Form
           onSubmit={async (e) => {
             e.preventDefault();
-            const data = {
+            const loginData = {
               username: email,
               password,
             };
-            await signIn(data);
-            if (!isLoading) {
-              console.log(data);
-            }
+            await signIn(loginData);
+
             if (isError) {
-              console.log(error);
+              console.log('error', error);
             }
           }}
         >
