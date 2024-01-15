@@ -9,7 +9,14 @@ export const PostApi = createApi({
     getPosts: builder.query<Post, string>({
       query: () => '/post',
     }),
+    AddOrRemoveExpression: builder.mutation({
+      query: ({ prevExpressionName, currentExpressionName, postId }) => ({
+        method: 'PATCH',
+        url: '/expressions/toggle',
+        body: { prevExpressionName, currentExpressionName, postId },
+      }),
+    }),
   }),
 });
 
-export const { useGetPostsQuery } = PostApi;
+export const { useGetPostsQuery, useAddOrRemoveExpressionMutation } = PostApi;
