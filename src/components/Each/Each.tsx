@@ -1,8 +1,8 @@
 // import { Children } from 'react';
-import { Children, ReactElement } from 'react';
+import { Children, ReactElement, ReactNode } from 'react';
 import Post from '../../Interfaces/Post/Post';
 import Blog from '../../Interfaces/Blog/Blog';
-import Hashtag from '../../Interfaces/Hashtag/HashTag';
+import Hashtag from '../../Interfaces/Hashtag/Hashtag';
 import Job from '../../Interfaces/Job/Job';
 import Loading from '../Loading/Loading';
 
@@ -13,7 +13,7 @@ type Props = {
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
-  render: (item: Post, index: number) => ReactElement;
+  render: (item: Post, index: number) => ReactElement | ReactNode;
   of: Post | Blog | Hashtag | Job | undefined;
 };
 
