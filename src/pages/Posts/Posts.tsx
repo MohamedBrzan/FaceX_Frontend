@@ -19,7 +19,7 @@ import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
 import UploadPost from '../../crud/Post/CreatePost';
 import {
   useGetPostsQuery,
-  // useTogglePostExpressionMutation,
+  useTogglePostExpressionMutation,
 } from '../../store/apis/Posts';
 import { Each } from '../../components/Each/Each';
 import Post from '../../Interfaces/Post/Post';
@@ -27,9 +27,9 @@ import GetExpressionsLength from '../../functions/GetExpressionsLength';
 
 const Posts = () => {
   const [prevExpressionName, setPrevExpressionName] = useState<string>('');
-  // const [updateExpression, { reset }] = useTogglePostExpressionMutation({
-  //   fixedCacheKey: 'post_update_expression',
-  // });
+  const [updateExpression, { reset,data:toggleData }] = useTogglePostExpressionMutation({
+    fixedCacheKey: 'post_update_expression',
+  });
   const {
     isFetching,
     isLoading,
@@ -196,37 +196,38 @@ const Posts = () => {
                         className='expression'
                         key={i}
                         title={name}
-                        // onClick={async (e: React.MouseEvent<HTMLElement>) => {
-                        //   const target = e.target as HTMLImageElement;
+                        onClick={async (e: React.MouseEvent<HTMLElement>) => {
+                          const target = e.target as HTMLImageElement;
 
-                        //   //* changing the icon
-                        //   target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
-                        //     'src',
-                        //     target.src
-                        //   );
+                          //* changing the icon
+                          target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
+                            'src',
+                            target.src
+                          );
 
-                        //   //* changing the name
-                        //   const theIdentifier = target.parentElement
-                        //     ?.parentElement?.parentElement
-                        //     ?.children[1] as HTMLDivElement;
-                        //   const name =
-                        //     target.alt[0].toUpperCase() +
-                        //     target.alt.substring(1);
+                          //* changing the name
+                          const theIdentifier = target.parentElement
+                            ?.parentElement?.parentElement
+                            ?.children[1] as HTMLDivElement;
+                          const name =
+                            target.alt[0].toUpperCase() +
+                            target.alt.substring(1);
 
-                        //   theIdentifier.textContent = name;
+                          theIdentifier.textContent = name;
 
-                        //   if (prevExpressionName.length <= 0) {
-                        //     const data = {
-                        //       prevExpressionName: target.alt,
-                        //       currentExpressionName: target.alt,
-                        //       postId: _id,
-                        //     };
-                        //     await updateExpression({ ...data });
-                        //     reset();
-                        //   }
+                          if (prevExpressionName.length <= 0) {
+                            const data = {
+                              prevExpressionName: target.alt,
+                              currentExpressionName: target.alt,
+                              postId: _id,
+                            };
+                            await updateExpression({ ...data });
+                            reset();
+                            console.log('toggleData',toggleData)
+                          }
 
-                        //   setPrevExpressionName(target.alt);
-                        // }}
+                          setPrevExpressionName(target.alt);
+                        }}
                       >
                         <img src={image} alt={name} />
                       </figure>

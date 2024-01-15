@@ -5,24 +5,22 @@ import Post from '../../Interfaces/Post/Post';
 
 export const PostApi = createApi({
   reducerPath: 'PostApi',
-  baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${APIS_ROOT}post`,
+    credentials: 'include',
+  }),
   endpoints: (builder) => ({
     getPosts: builder.query<Post, string>({
-      query: () => '/post',
+      query: () => '/',
     }),
-    // togglePostExpression: builder.mutation<Expressions | string>({
-    //   query: ({ ...data }) => ({
-    //     method: 'PATCH',
-    //     url: '/post/expressions/toggle',
-    //     mode: 'no-cors',
-    //     credentials: true,
-    //     body: { ...data },
-    //   }),
-    // }),
+    togglePostExpression: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/expressions/toggle',
+        body: data ,
+      }),
+    }),
   }),
 });
 
-export const {
-  useGetPostsQuery,
-  // useTogglePostExpressionMutation
-} = PostApi;
+export const { useGetPostsQuery, useTogglePostExpressionMutation } = PostApi;
