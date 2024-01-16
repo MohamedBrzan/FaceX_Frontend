@@ -26,10 +26,7 @@ import Post from '../../Interfaces/Post/Post';
 import GetExpressionsLength from '../../functions/GetExpressionsLength';
 
 const Posts = () => {
-  const [prevExpressionName, setPrevExpressionName] = useState<string>('');
-  const [updateExpression, { reset,data:toggleData }] = useTogglePostExpressionMutation({
-    fixedCacheKey: 'post_update_expression',
-  });
+  const [updateExpression] = useTogglePostExpressionMutation();
   const {
     isFetching,
     isLoading,
@@ -38,6 +35,7 @@ const Posts = () => {
     isError,
     error,
     data: posts,
+    refetch,
   } = useGetPostsQuery('');
 
   useEffect(() => {
@@ -215,18 +213,12 @@ const Posts = () => {
 
                           theIdentifier.textContent = name;
 
-                          if (prevExpressionName.length <= 0) {
-                            const data = {
-                              prevExpressionName: target.alt,
-                              currentExpressionName: target.alt,
-                              postId: _id,
-                            };
-                            await updateExpression({ ...data });
-                            reset();
-                            console.log('toggleData',toggleData)
-                          }
-
-                          setPrevExpressionName(target.alt);
+                          const data = {
+                            expressionKey: target.alt,
+                            postId: _id,
+                          };
+                          await updateExpression(data);
+                          refetch();
                         }}
                       >
                         <img src={image} alt={name} />
