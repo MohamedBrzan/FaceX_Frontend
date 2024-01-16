@@ -13,14 +13,21 @@ export const PostApi = createApi({
     getPosts: builder.query<Post, string>({
       query: () => '/',
     }),
+    getPost: builder.query<Post, string>({
+      query: (id) => `/${id}`,
+    }),
     togglePostExpression: builder.mutation({
       query: ({ ...data }) => ({
         method: 'PATCH',
         url: '/expressions/toggle',
-        body: data ,
+        body: data,
       }),
     }),
   }),
 });
 
-export const { useGetPostsQuery, useTogglePostExpressionMutation } = PostApi;
+export const {
+  useGetPostsQuery,
+  useGetPostQuery,
+  useTogglePostExpressionMutation,
+} = PostApi;

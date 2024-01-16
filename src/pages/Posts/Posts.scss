@@ -103,33 +103,33 @@
         &:not(:first-child) {
           margin-left: -10px;
         }
-        &[title='angry'] {
-          background: rgb(129, 48, 48);
-        }
-        &[title='disgust'] {
-          background: rgb(227, 117, 117);
-        }
-        &[title='fear'] {
-          background: rgb(227, 117, 117);
-        }
-        &[title='happy'] {
-          background: rgb(255, 255, 0);
-        }
-        &[title='like'] {
-          background: blue;
-        }
-        &[title='love'] {
-          background: rgb(227, 117, 117);
-        }
-        &[title='sad'] {
-          background: black;
-        }
-        &[title='support'] {
-          background: rgb(8, 179, 179);
-        }
-        &[title='surprise'] {
-          background: purple;
-        }
+        // &[title='angry'] {
+        //   background: rgb(129, 48, 48);
+        // }
+        // &[title='disgust'] {
+        //   background: rgb(227, 117, 117);
+        // }
+        // &[title='fear'] {
+        //   background: rgb(227, 117, 117);
+        // }
+        // &[title='happy'] {
+        //   background: rgb(255, 255, 0);
+        // }
+        // &[title='like'] {
+        //   background: blue;
+        // }
+        // &[title='love'] {
+        //   background: rgb(227, 117, 117);
+        // }
+        // &[title='sad'] {
+        //   background: black;
+        // }
+        // &[title='support'] {
+        //   background: rgb(8, 179, 179);
+        // }
+        // &[title='surprise'] {
+        //   background: purple;
+        // }
         img {
           width: 100%;
           height: 100%;

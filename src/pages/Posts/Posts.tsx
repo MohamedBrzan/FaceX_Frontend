@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import thumbsUp from '../../assets/expressions/thumbsUp.png';
+import like from '../../assets/expressions/thumbsUp.png';
 import happy from '../../assets/expressions/happy.png';
 import angry from '../../assets/expressions/angry.png';
-import exciting from '../../assets/expressions/exciting.png';
-import laugh from '../../assets/expressions/laugh.png';
+import surprise from '../../assets/expressions/exciting.png';
+import support from '../../assets/expressions/laugh.png';
 import love from '../../assets/expressions/love.png';
 import sad from '../../assets/expressions/sad.png';
-import shock from '../../assets/expressions/shock.png';
+import disgust from '../../assets/expressions/disgust.png';
+import fear from '../../assets/expressions/shock.png';
 
 import './Posts.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,9 +25,11 @@ import {
 import { Each } from '../../components/Each/Each';
 import Post from '../../Interfaces/Post/Post';
 import GetExpressionsLength from '../../functions/GetExpressionsLength';
+import Expressions from '../../Types/Post/Expressions';
 
 const Posts = () => {
   const [updateExpression] = useTogglePostExpressionMutation();
+
   const {
     isFetching,
     isLoading,
@@ -47,22 +50,6 @@ const Posts = () => {
     if (!isFetching && !isLoading && !isError) {
       console.log(posts);
     }
-    // Array.from(
-    //   document.querySelectorAll('.expressions_container .expression')
-    // ).forEach((expression) => {
-    //   expression.addEventListener('click', (e) => {
-    //     const target = e.target as HTMLImageElement;
-    //     const firstParent = expression.parentElement as HTMLDivElement;
-    //     const secondParent = firstParent.parentElement as HTMLDivElement;
-    //     secondParent.children[1].textContent = expression.getAttribute('title');
-    //     const selectedImg = expression.children[0] as HTMLImageElement;
-    //     const showInteract = secondParent.children[0]
-    //       .children[0] as HTMLImageElement;
-    //     showInteract.src = selectedImg.src;
-
-    //     setPrevExpressionName(target.alt);
-    //   });
-    // });
     ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
   }, [
     posts,
@@ -74,30 +61,111 @@ const Posts = () => {
     error,
   ]);
 
-  // const handleExpressionOnClick = (e) => {
-  //   const target = e.target as HTMLImageElement;
-  //   const firstParent = expression.parentElement as HTMLDivElement;
-  //   const secondParent = firstParent.parentElement as HTMLDivElement;
-  //   secondParent.children[1].textContent = expression.getAttribute('title');
-  //   const selectedImg = expression.children[0] as HTMLImageElement;
-  //   const showInteract = secondParent.children[0]
-  //     .children[0] as HTMLImageElement;
-  //   showInteract.src = selectedImg.src;
-
-  //   setPrevExpressionName(target.alt);
-  // };
-
   const UIExpressions = [
-    { id: 5, name: 'like', image: thumbsUp },
+    { id: 5, name: 'like', image: like },
     { id: 4, name: 'happy', image: happy },
     { id: 6, name: 'love', image: love },
-    { id: 8, name: 'support', image: laugh },
-    { id: 9, name: 'surprise', image: exciting },
+    { id: 8, name: 'support', image: support },
+    { id: 9, name: 'surprise', image: surprise },
     { id: 1, name: 'angry', image: angry },
-    { id: 2, name: 'disgust', image: happy },
-    { id: 3, name: 'fear', image: shock },
+    { id: 2, name: 'disgust', image: disgust },
+    { id: 3, name: 'fear', image: fear },
     { id: 7, name: 'sad', image: sad },
   ];
+
+  const showUpExpressionsIcons = (_id: string) => {
+    return UIExpressions.map(({ name, image }, i) => (
+      <figure
+        className='expression'
+        key={i}
+        title={name}
+        onClick={(e) => handleExpressionButton(e, _id)}
+      >
+        <img src={image} alt={name} />
+      </figure>
+    ));
+  };
+
+  //* show up the icons when hover on like button
+  const handleExpressionButton = async (
+    e: React.MouseEvent<HTMLElement>,
+    _id: string
+  ) => {
+    const target = e.target as HTMLImageElement;
+
+    //* changing the icon
+    target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
+      'src',
+      target.src
+    );
+
+    //* changing the name
+    const theIdentifier = target.parentElement?.parentElement?.parentElement
+      ?.children[1] as HTMLDivElement;
+    const name = target.alt[0].toUpperCase() + target.alt.substring(1);
+
+    theIdentifier.textContent = name;
+
+    const data = {
+      expressionKey: target.alt,
+      postId: _id,
+    };
+    await updateExpression(data);
+
+    refetch();
+  };
+
+  //* show the expression name and image when the user subscribe
+  const findExpression = (expressions: Expressions) => {
+    const user = JSON.parse(localStorage.getItem('user') ?? '{}');
+    let founded: boolean = false;
+    let name: string = '';
+    Object.keys(expressions).forEach((k) => {
+      for (const subscriber of expressions[k]) {
+        if (subscriber._id === user.id) {
+          founded = true;
+          name = k;
+        }
+      }
+    });
+
+    const condition =
+      name === 'like'
+        ? like
+        : name === 'love'
+        ? love
+        : name === 'happy'
+        ? happy
+        : name === 'support'
+        ? support
+        : name === 'angry'
+        ? angry
+        : name === 'disgust'
+        ? disgust
+        : name === 'sad'
+        ? sad
+        : name === 'surprise'
+        ? surprise
+        : fear;
+
+    return founded ? (
+      <>
+        <figure className='show_interact'>
+          <img src={condition} alt='Interaction Emoji' />
+        </figure>
+
+        <div className='identifier'>{name}</div>
+      </>
+    ) : (
+      <>
+        <figure className='show_interact'>
+          <img src={like} alt='Interaction Emoji' />
+        </figure>
+
+        <div className='identifier'>Like</div>
+      </>
+    );
+  };
 
   return (
     <section className='posts'>
@@ -166,64 +234,9 @@ const Posts = () => {
             <div className='post_footer'>
               <div className='interactions_icons'>
                 <div className='interact expressions'>
-                  <figure className='show_interact'>
-                    <img src={thumbsUp} alt='Interaction Emoji' />
-                  </figure>
-                  <div className='identifier'>Like</div>
-                  <div
-                    className='expressions_container'
-                    // onClick={(e) => {
-                    //   const target = e.target as HTMLImageElement;
-                    //   const firstParent =
-                    //     expression.parentElement as HTMLDivElement;
-                    //   const secondParent =
-                    //     firstParent.parentElement as HTMLDivElement;
-                    //   secondParent.children[1].textContent =
-                    //     expression.getAttribute('title');
-                    //   const selectedImg = expression
-                    //     .children[0] as HTMLImageElement;
-                    //   const showInteract = secondParent.children[0]
-                    //     .children[0] as HTMLImageElement;
-                    //   showInteract.src = selectedImg.src;
-
-                    //   setPrevExpressionName(target.alt);
-                    // }}
-                  >
-                    {UIExpressions.map(({ name, image }, i) => (
-                      <figure
-                        className='expression'
-                        key={i}
-                        title={name}
-                        onClick={async (e: React.MouseEvent<HTMLElement>) => {
-                          const target = e.target as HTMLImageElement;
-
-                          //* changing the icon
-                          target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
-                            'src',
-                            target.src
-                          );
-
-                          //* changing the name
-                          const theIdentifier = target.parentElement
-                            ?.parentElement?.parentElement
-                            ?.children[1] as HTMLDivElement;
-                          const name =
-                            target.alt[0].toUpperCase() +
-                            target.alt.substring(1);
-
-                          theIdentifier.textContent = name;
-
-                          const data = {
-                            expressionKey: target.alt,
-                            postId: _id,
-                          };
-                          await updateExpression(data);
-                          refetch();
-                        }}
-                      >
-                        <img src={image} alt={name} />
-                      </figure>
-                    ))}
+                  {findExpression(expressions)}
+                  <div className='expressions_container'>
+                    {showUpExpressionsIcons(_id)}
                   </div>
                 </div>
                 <div className='interact comment'>

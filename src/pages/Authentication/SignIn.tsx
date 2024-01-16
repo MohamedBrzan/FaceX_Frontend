@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
@@ -15,12 +15,17 @@ import Loading from '../../components/Loading/Loading';
 const SignIn = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [signIn, { isLoading, isError, error, data }] = useSignInMutation({
-    fixedCacheKey: 'signIn',
-  });
-  if (!isLoading) {
-    console.log('userData =>', data);
-  }
+  const [signIn, { isLoading, isSuccess, isError, error, data }] =
+    useSignInMutation({
+      fixedCacheKey: 'signIn',
+    });
+
+  useMemo(() => {
+    if (isSuccess) {
+      localStorage.setItem('user', JSON.stringify(data));
+    }
+  }, [data, isSuccess]);
+
   return (
     <section className='authentication sign_in'>
       <section className='form'>
