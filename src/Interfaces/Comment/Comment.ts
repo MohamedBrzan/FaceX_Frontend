@@ -1,7 +1,8 @@
-import Expressions from '../../types/Post/Expressions';
+import Expressions from '../../Types/Post/Expressions';
 import VisiblePrivacy from '../../enums/VisiblePrivacy';
 import Blog from '../Blog/Blog';
 import Post from '../Post/Post';
+import Reel from '../Reel/Reel';
 import User from '../User/User';
 import Reply from './Reply';
 
@@ -10,10 +11,11 @@ interface Comment {
   ref: {
     post?: Post;
     blog?: Blog;
+    reel?: Reel;
   };
   message: string;
-  replies: Reply[];
-  expressions: Expressions;
+  replies?: Reply[];
+  expressions?: Expressions;
   visiblePrivacy: VisiblePrivacy;
 }
 

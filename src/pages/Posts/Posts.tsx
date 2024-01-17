@@ -26,6 +26,8 @@ import { Each } from '../../components/Each/Each';
 import Post from '../../Interfaces/Post/Post';
 import GetExpressionsLength from '../../functions/GetExpressionsLength';
 import Expressions from '../../Types/Post/Expressions';
+import ShowUpExpressionsIcons from '../../components/ShowUpExpressionsIcons/ShowUpExpressionsIcons';
+import Comments from '../../components/Comments/Comments';
 
 const Posts = () => {
   const [updateExpression] = useTogglePostExpressionMutation();
@@ -42,13 +44,13 @@ const Posts = () => {
   } = useGetPostsQuery('');
 
   useEffect(() => {
-    if (isFetching) console.log('fetching...');
-    if (isLoading) console.log('loading...');
-    if (isSuccess) console.log('success ✌️');
-    if (isUninitialized) console.log('uninitialized 🤔');
-    if (isError) console.log('error 🤔', error);
+    // if (isFetching) console.log('fetching...');
+    // if (isLoading) console.log('loading...');
+    // if (isSuccess) console.log('success ✌️');
+    // if (isUninitialized) console.log('uninitialized 🤔');
+    // if (isError) console.log('error 🤔', error);
     if (!isFetching && !isLoading && !isError) {
-      console.log(posts);
+      // console.log(posts);
     }
     ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
   }, [
@@ -73,55 +75,13 @@ const Posts = () => {
     { id: 7, name: 'sad', image: sad },
   ];
 
-  const showUpExpressionsIcons = (_id: string) => {
-    return UIExpressions.map(({ name, image }, i) => (
-      <figure
-        className='expression'
-        key={i}
-        title={name}
-        onClick={(e) => handleExpressionButton(e, _id)}
-      >
-        <img src={image} alt={name} />
-      </figure>
-    ));
-  };
-
-  //* show up the icons when hover on like button
-  const handleExpressionButton = async (
-    e: React.MouseEvent<HTMLElement>,
-    _id: string
-  ) => {
-    const target = e.target as HTMLImageElement;
-
-    //* changing the icon
-    target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
-      'src',
-      target.src
-    );
-
-    //* changing the name
-    const theIdentifier = target.parentElement?.parentElement?.parentElement
-      ?.children[1] as HTMLDivElement;
-    const name = target.alt[0].toUpperCase() + target.alt.substring(1);
-
-    theIdentifier.textContent = name;
-
-    const data = {
-      expressionKey: target.alt,
-      postId: _id,
-    };
-    await updateExpression(data);
-
-    refetch();
-  };
-
-  //* show the expression name and image when the user subscribe
+  //* show the expression name and imageB when the user subscribe
   const findExpression = (expressions: Expressions) => {
     const user = JSON.parse(localStorage.getItem('user') ?? '{}');
     let founded: boolean = false;
     let name: string = '';
     Object.keys(expressions).forEach((k) => {
-      for (const subscriber of expressions[k]) {
+      for (const subscriber of expressions[k as keyof typeof Expressions]) {
         if (subscriber._id === user.id) {
           founded = true;
           name = k;
@@ -151,7 +111,7 @@ const Posts = () => {
     return founded ? (
       <>
         <figure className='show_interact'>
-          <img src={condition} alt='Interaction Emoji' />
+          <img src={condition} alt={name} />
         </figure>
 
         <div className='identifier'>{name}</div>
@@ -159,7 +119,7 @@ const Posts = () => {
     ) : (
       <>
         <figure className='show_interact'>
-          <img src={like} alt='Interaction Emoji' />
+          <img src={like} alt={name} />
         </figure>
 
         <div className='identifier'>Like</div>
@@ -178,7 +138,10 @@ const Posts = () => {
         isError={isError}
         isSuccess={isSuccess}
         of={posts}
-        render={({ _id, user, content, expressions }: Post, index: number) => (
+        render={(
+          { _id, user, content, expressions, comments }: Post,
+          index: number
+        ) => (
           <article className='post' key={index}>
             <div className='post_head'>
               <div className='user_info'>
@@ -236,7 +199,7 @@ const Posts = () => {
                 <div className='interact expressions'>
                   {findExpression(expressions)}
                   <div className='expressions_container'>
-                    {showUpExpressionsIcons(_id)}
+                    {ShowUpExpressionsIcons(_id, updateExpression, refetch)}
                   </div>
                 </div>
                 <div className='interact comment'>
@@ -253,6 +216,7 @@ const Posts = () => {
                   <div className='identifier'>Send</div>
                 </div>
               </div>
+              <div className='post_comments'>{Comments(comments)}</div>
             </div>
           </article>
         )}

@@ -162,6 +162,7 @@
         padding: 5px;
         .identifier {
           padding: 0 5px;
+          text-transform: capitalize;
           @include Responsive('xs') {
             display: none;
           }
@@ -194,6 +195,9 @@
             object-fit: cover;
             img {
               width: 100%;
+              &[alt='like'] {
+                transform: scaleX(-1);
+              }
             }
           }
           .expressions_container {
@@ -225,6 +229,9 @@
               }
               img {
                 width: 100%;
+              }
+              &:is(:first-child) {
+                transform: scaleX(-1);
               }
             }
           }
