@@ -20,7 +20,7 @@ const FindExpressionForComments = (props: Props) => {
     }
   });
 
-  return <div className='identifier'>{name || 'Like'}</div>;
+  return { html: <div className='identifier'>{name || 'Like'}</div>, name };
 };
 
 export default FindExpressionForComments;

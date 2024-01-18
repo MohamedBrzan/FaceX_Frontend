@@ -92,7 +92,6 @@ const Comments = (
               expressions: expressions ?? {},
               message,
               replies,
-              className: 'comment',
               key: i,
               toggleExpression,
               refetch,

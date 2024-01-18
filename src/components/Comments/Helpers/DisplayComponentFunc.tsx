@@ -24,10 +24,10 @@ import love from '../../../assets/expressions/love.png';
 import sad from '../../../assets/expressions/sad.png';
 import disgust from '../../../assets/expressions/disgust.png';
 import fear from '../../../assets/expressions/shock.png';
-import Expressions from '../../../Types/Post/Expressions';
 import Reply from '../../../Interfaces/Comment/Reply';
 import User from '../../../Interfaces/User/User';
 import Post from '../../../Interfaces/Post/Post';
+import Expressions from '../../../types/Post/Expressions';
 
 type DisplayComponent = {
   _id: string;
@@ -75,7 +75,6 @@ const DisplayComponentFunc = ({
   message,
   expressions,
   replies,
-  className,
   key,
   toggleExpression,
   refetch,
@@ -107,36 +106,60 @@ const DisplayComponentFunc = ({
     { id: 3, name: 'fear', image: fear },
     { id: 7, name: 'sad', image: sad },
   ];
+
+  const checkIdentifierName = (name: string) => {
+    const condition =
+      name === 'like'
+        ? like
+        : name === 'love'
+        ? love
+        : name === 'happy'
+        ? happy
+        : name === 'support'
+        ? support
+        : name === 'angry'
+        ? angry
+        : name === 'disgust'
+        ? disgust
+        : name === 'sad'
+        ? sad
+        : name === 'surprise'
+        ? surprise
+        : like;
+
+    return condition;
+  };
+
   return (
-    <section className={`${className}_info`}>
-      <div className={`${className}_left`}>
-        <figure className={`avatar`}>
+    <section className='comment_info'>
+      <div className='comment_left'>
+        <figure className='avatar'>
           <img
             src={user.avatar}
             alt={`${user.name?.first} ${user.name?.last} avatar`}
           />
         </figure>
       </div>
-      <div className={`${className}_right`}>
-        <div className={`${className}_body`}>
-          <div className={`user_info`}>
-            <div className={`username`}>
+      <div className='comment_right'>
+        <div className='comment_body'>
+          <div className='user_info'>
+            <div className='username'>
               <small> {`${user.name?.first} ${user.name?.last}`}</small>
             </div>
-            <p className={`user_profession`}>{user.profession}</p>
-            <p className={`message`} dir='auto'>
-              {message}
-            </p>
+            <p className='user_profession'>{user.profession}</p>
+            <p className="message`} dir='auto'">{message}</p>
           </div>
-          <div className={`dots_icon`}>
+          <div className='dots_icon'>
             <FontAwesomeIcon icon={faEllipsis} />
           </div>
         </div>
-        <div className={`${className}_footer`}>
+        <div className='comment_footer'>
           <div className='interact expressions'>
-            {FindExpressionForComments({
-              expressions,
-            })}
+            {
+              FindExpressionForComments({
+                expressions,
+              }).html
+            }
 
             <div
               className='expressions_container'
@@ -152,9 +175,16 @@ const DisplayComponentFunc = ({
             </div>
           </div>
           .
-          <span className={`expression_icon`}>
-            <img src={like} alt={`expression icon`} />
-            <span className={`expressions_length`}>
+          <span className='expression_icon'>
+            <img
+              src={checkIdentifierName(
+                FindExpressionForComments({
+                  expressions,
+                }).name
+              )}
+              alt='expression icon'
+            />
+            <span className='expressions_length'>
               {GetExpressionsLength(expressions) || null}
             </span>
           </span>
