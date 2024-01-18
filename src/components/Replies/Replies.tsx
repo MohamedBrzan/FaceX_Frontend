@@ -27,6 +27,14 @@ const Replies = ({ replies, key }: ReplyData) => {
           </section>
         )
       )}
+      <section className='create_reply hidden'>
+        <figure className='avatar'>
+          <img src={user.avatar} alt='User' />
+        </figure>
+        <div className='input'>
+          <input type='text' placeholder='what is in your mind' />
+        </div>
+      </section>
     </section>
   );
 };

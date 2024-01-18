@@ -27,6 +27,27 @@ export const DisplayComponentFunc = ({
   className,
   key,
 }: DisplayComponent) => {
+  const showReplyInput = () => {
+    const comment = Array.from(document.querySelectorAll('.comments .comment'))[
+      key
+    ];
+
+    console.log(
+      'this is the reply',
+      comment.children[0].children[1].lastElementChild?.children[0]
+        .lastElementChild?.lastElementChild
+    );
+
+    const replyInputSection =
+      comment.children[0].children[1].lastElementChild?.children[0]
+        .lastElementChild;
+
+    replyInputSection?.classList.remove('hidden');
+
+    const replyInput = replyInputSection?.lastElementChild
+      ?.lastElementChild as HTMLInputElement;
+    replyInput.focus();
+  };
   return (
     <section className={`${className}_info`}>
       <div className={`${className}_left`}>
@@ -58,16 +79,7 @@ export const DisplayComponentFunc = ({
               {GetExpressionsLength(expressions) || null}
             </span>
           </span>
-          <span
-            className='reply'
-            onClick={function () {
-              const comment = Array.from(
-                document.querySelectorAll('.comments .comment')
-              )[key];
-              comment.lastElementChild?.classList.remove('hidden');
-              comment.lastElementChild?.lastElementChild?.lastElementChild?.focus();
-            }}
-          >
+          <span className='reply' onClick={showReplyInput}>
             Reply
           </span>
           {replies?.length && (
@@ -115,14 +127,6 @@ const Comments = (comments: Comment[]) => {
               className: 'comment',
               key: i,
             })}
-            <section className='create_reply hidden'>
-              <figure className='avatar'>
-                <img src={user.avatar} alt='User' />
-              </figure>
-              <div className='input'>
-                <input type='text' placeholder='what is in your mind' />
-              </div>
-            </section>
           </section>
         )
       )}
