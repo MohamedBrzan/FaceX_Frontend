@@ -21,8 +21,20 @@
       }
     }
     .input {
+      position: relative;
       @extend %displayFlexContentCenter !optional;
       width: 100%;
+      .comment_input {
+        position: relative;
+        box-shadow: none;
+      }
+      .submit_btn {
+        position: absolute;
+        top: calc(50% - 18px);
+        right: 10px;
+        @extend %primaryCircledBtn;
+        display: inline-block !important;
+      }
       input {
         width: 100%;
         padding: 10px;
@@ -116,6 +128,75 @@
           }
           .replies_count {
             opacity: 0.7;
+          }
+          .interact {
+            position: relative;
+            color: $third;
+            .show_interact {
+              margin: 0;
+              width: 20px;
+              @include Responsive('xs') {
+                width: 18px;
+                height: auto;
+              }
+              @include Responsive('md') {
+                width: 20px;
+                height: 30px;
+              }
+              overflow: hidden;
+              object-fit: cover;
+              img {
+                width: 100%;
+                &[alt='like'] {
+                  transform: scaleX(-1);
+                }
+              }
+            }
+            .expressions_container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              position: absolute;
+              top: -40px;
+              left: 0;
+              background-color: $general;
+              border: 1px solid $hover_secondary;
+              border-radius: 3px;
+              display: none;
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23);
+              padding: 5px 10px;
+              figure {
+                margin: 0;
+                transition: transform 0.1s ease-in-out;
+                &:hover {
+                  transform: scale(1.1);
+                }
+                height: 30px;
+                @include Responsive('xs') {
+                  width: 18px;
+                }
+                @include Responsive('md') {
+                  width: 30px;
+                }
+                img {
+                  width: 100%;
+                }
+                &:is(:first-child) {
+                  transform: scaleX(-1);
+                }
+              }
+            }
+            &:hover {
+              background-color: $hover_secondary;
+              border-radius: 3px;
+              > .expressions_container {
+                display: flex;
+              }
+            }
+            @include Responsive('md') {
+              justify-content: center;
+            }
           }
         }
       }

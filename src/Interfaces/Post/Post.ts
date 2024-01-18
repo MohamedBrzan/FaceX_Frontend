@@ -1,6 +1,6 @@
-import Expressions from '../../Types/Post/Expressions';
 import PostStatus from '../../enums/PostStatus';
 import VisiblePrivacy from '../../enums/VisiblePrivacy';
+import Expressions from '../../types/Post/Expressions';
 import User from '../User/User';
 
 interface Post {

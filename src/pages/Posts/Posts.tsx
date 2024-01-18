@@ -25,9 +25,9 @@ import {
 import { Each } from '../../components/Each/Each';
 import Post from '../../Interfaces/Post/Post';
 import GetExpressionsLength from '../../functions/GetExpressionsLength';
-import Expressions from '../../Types/Post/Expressions';
-import ShowUpExpressionsIcons from '../../components/ShowUpExpressionsIcons/ShowUpExpressionsIcons';
 import Comments from '../../components/Comments/Comments';
+import FindExpression from '../../components/FindExpression/FindExpression';
+import handleChangingExpression from '../../functions/handleChangingExpression';
 
 const Posts = () => {
   const [updateExpression] = useTogglePostExpressionMutation();
@@ -44,14 +44,6 @@ const Posts = () => {
   } = useGetPostsQuery('');
 
   useEffect(() => {
-    // if (isFetching) console.log('fetching...');
-    // if (isLoading) console.log('loading...');
-    // if (isSuccess) console.log('success ✌️');
-    // if (isUninitialized) console.log('uninitialized 🤔');
-    // if (isError) console.log('error 🤔', error);
-    if (!isFetching && !isLoading && !isError) {
-      // console.log(posts);
-    }
     ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
   }, [
     posts,
@@ -75,58 +67,6 @@ const Posts = () => {
     { id: 7, name: 'sad', image: sad },
   ];
 
-  //* show the expression name and imageB when the user subscribe
-  const findExpression = (expressions: Expressions) => {
-    const user = JSON.parse(localStorage.getItem('user') ?? '{}');
-    let founded: boolean = false;
-    let name: string = '';
-    Object.keys(expressions).forEach((k) => {
-      for (const subscriber of expressions[k as keyof typeof Expressions]) {
-        if (subscriber._id === user.id) {
-          founded = true;
-          name = k;
-        }
-      }
-    });
-
-    const condition =
-      name === 'like'
-        ? like
-        : name === 'love'
-        ? love
-        : name === 'happy'
-        ? happy
-        : name === 'support'
-        ? support
-        : name === 'angry'
-        ? angry
-        : name === 'disgust'
-        ? disgust
-        : name === 'sad'
-        ? sad
-        : name === 'surprise'
-        ? surprise
-        : fear;
-
-    return founded ? (
-      <>
-        <figure className='show_interact'>
-          <img src={condition} alt={name} />
-        </figure>
-
-        <div className='identifier'>{name}</div>
-      </>
-    ) : (
-      <>
-        <figure className='show_interact'>
-          <img src={like} alt={name} />
-        </figure>
-
-        <div className='identifier'>Like</div>
-      </>
-    );
-  };
-
   return (
     <section className='posts'>
       <UploadPost />
@@ -139,7 +79,7 @@ const Posts = () => {
         isSuccess={isSuccess}
         of={posts}
         render={(
-          { _id, user, content, expressions, comments }: Post,
+          { _id, user, content, expressions, comments, shares }: Post,
           index: number
         ) => (
           <article className='post' key={index}>
@@ -175,31 +115,58 @@ const Posts = () => {
                 {content}
               </Markdown>
             </div>
-            <span className='mini_expressions'>
-              {Object.keys(expressions).map((key) =>
-                UIExpressions.map(
-                  ({ name, image }, i) =>
-                    expressions[key as keyof typeof expressions]
-                      ?.values()
-                      .next().value !== undefined &&
-                    name == key && (
-                      <figure className='expression' key={i} title={key}>
-                        <img src={image} alt={key} />
-                      </figure>
-                    )
-                )
-              )}
-              <span className='expressions_length'>
-                {GetExpressionsLength(expressions) || null}
-              </span>
-            </span>
+            <div className='post_general'>
+              <div className='mini_expressions'>
+                {Object.keys(expressions).map((key) =>
+                  UIExpressions.map(
+                    ({ name, image }, i) =>
+                      expressions[key as keyof typeof expressions]
+                        ?.values()
+                        .next().value !== undefined &&
+                      name == key && (
+                        <figure className='expression' key={i} title={key}>
+                          <img src={image} alt={key} />
+                        </figure>
+                      )
+                  )
+                )}
+                <span className='expressions_length'>
+                  {GetExpressionsLength(expressions) || null}
+                </span>
+              </div>
+              <div className='interactive'>
+                {comments.length > 0 && (
+                  <div className='comment_length'>
+                    {comments.length} comment
+                  </div>
+                )}
+                {shares.length > 0 && (
+                  <div className='comment_length'>{shares.length} shares</div>
+                )}
+              </div>
+            </div>
             <hr />
             <div className='post_footer'>
               <div className='interactions_icons'>
                 <div className='interact expressions'>
-                  {findExpression(expressions)}
-                  <div className='expressions_container'>
-                    {ShowUpExpressionsIcons(_id, updateExpression, refetch)}
+                  {FindExpression({ expressions })}
+
+                  <div
+                    className='expressions_container'
+                    onClick={async (e) =>
+                      await handleChangingExpression(
+                        e,
+                        _id,
+                        updateExpression,
+                        refetch
+                      )
+                    }
+                  >
+                    {UIExpressions.map(({ name, image }, i) => (
+                      <figure className='expression' key={i} title={name}>
+                        <img src={image} alt={name} />
+                      </figure>
+                    ))}
                   </div>
                 </div>
                 <div className='interact comment'>
@@ -216,7 +183,9 @@ const Posts = () => {
                   <div className='identifier'>Send</div>
                 </div>
               </div>
-              <div className='post_comments'>{Comments(comments)}</div>
+              <div className='post_comments'>
+                {Comments(comments, _id, refetch)}
+              </div>
             </div>
           </article>
         )}
