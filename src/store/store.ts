@@ -14,6 +14,7 @@ import { VideoApi } from './apis/Videos';
 import { JobApi } from './apis/Jobs';
 import { HashtagApi } from './apis/Hashtags';
 import { AuthenticationApi } from './apis/Authentication';
+import { ReplyApi } from './apis/Replies';
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     [AlbumApi.reducerPath]: AlbumApi.reducer,
     [BlogApi.reducerPath]: BlogApi.reducer,
     [CommentApi.reducerPath]: CommentApi.reducer,
+    [ReplyApi.reducerPath]: ReplyApi.reducer,
     [HashtagApi.reducerPath]: HashtagApi.reducer,
     [ImageApi.reducerPath]: ImageApi.reducer,
     [NotificationApi.reducerPath]: NotificationApi.reducer,
@@ -40,6 +42,7 @@ export const store = configureStore({
       .concat(AlbumApi.middleware)
       .concat(BlogApi.middleware)
       .concat(CommentApi.middleware)
+      .concat(ReplyApi.middleware)
       .concat(HashtagApi.middleware)
       .concat(ImageApi.middleware)
       .concat(NotificationApi.middleware)

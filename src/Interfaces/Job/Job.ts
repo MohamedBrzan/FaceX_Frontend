@@ -8,6 +8,7 @@ enum apply {
 }
 
 interface Job {
+  _id?: string;
   user: User;
   title: string;
   apply: apply;

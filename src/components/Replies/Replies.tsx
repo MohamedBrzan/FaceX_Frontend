@@ -1,7 +1,6 @@
 import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import Reply from '../../Interfaces/Comment/Reply';
 import GetUser from '../../constants/GetUser';
-import { DisplayComponentFunc } from '../Comments/Comments';
 import './Replies.scss';
 import {
   BaseQueryFn,
@@ -13,25 +12,11 @@ import {
 } from '@reduxjs/toolkit/query';
 import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
 import Post from '../../Interfaces/Post/Post';
+import DisplayReplyComponentFunc from './Helpers/DisplayReplyComponentFunc';
 
 type ReplyData = {
   replies: Reply[];
   key: number;
-  toggleExpression: MutationTrigger<
-    MutationDefinition<
-      unknown,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
-      never,
-      unknown,
-      'CommentApi'
-    >
-  >;
   refetch: () => QueryActionCreatorResult<
     QueryDefinition<
       string,
@@ -58,16 +43,13 @@ const Replies = ({ replies, key, toggleExpression, refetch }: ReplyData) => {
       {replies?.map(
         ({ _id, user, reply, expressions, ref, visiblePrivacy }, i: number) => (
           <section className='reply' key={i}>
-            {/* {DisplayComponentFunc({
+            {DisplayReplyComponentFunc({
               _id,
               user,
               expressions: expressions ?? {},
               message: reply,
-              className: 'reply',
               key,
-              toggleExpression,
-              refetch,
-            })} */}
+            })}
           </section>
         )
       )}

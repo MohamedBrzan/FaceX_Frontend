@@ -4,10 +4,16 @@ import Comment from '../../Interfaces/Comment/Comment';
 
 export const CommentApi = createApi({
   reducerPath: 'CommentApi',
-  baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT, credentials: 'include' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: APIS_ROOT,
+    credentials: 'include',
+  }),
   endpoints: (builder) => ({
     getComments: builder.query<Comment, string>({
       query: () => '/comment',
+    }),
+    getComment: builder.query<Comment, string>({
+      query: (id) => `/comment/${id}`,
     }),
     uploadComment: builder.mutation({
       query: ({ ...data }) => ({
@@ -26,4 +32,9 @@ export const CommentApi = createApi({
   }),
 });
 
-export const { useGetCommentsQuery, useUploadCommentMutation,useToggleCommentExpressionMutation } = CommentApi;
+export const {
+  useGetCommentsQuery,
+  useGetCommentQuery,
+  useUploadCommentMutation,
+  useToggleCommentExpressionMutation,
+} = CommentApi;

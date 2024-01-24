@@ -5,6 +5,7 @@ import User from '../User/User';
 import VisiblePrivacy from '../../enums/VisiblePrivacy';
 
 interface Blog {
+  _id?: string;
   images?: string[];
   videos?: string[];
   title: string;

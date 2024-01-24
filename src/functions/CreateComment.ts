@@ -1,68 +1,49 @@
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
-import CommentData from '../types/CommentData';
-import {
-  BaseQueryFn,
-  FetchArgs,
-  FetchBaseQueryError,
-  FetchBaseQueryMeta,
-  MutationDefinition,
-  QueryActionCreatorResult,
-  QueryDefinition,
-} from '@reduxjs/toolkit/query';
-import Post from '../Interfaces/Post/Post';
+import { useGetPostQuery } from '../store/apis/Posts';
 
-export default async (
-  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  _id: string,
-  uploadComment: MutationTrigger<
-    MutationDefinition<
-      unknown,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
-      never,
-      unknown,
-      'CommentApi'
-    >
-  >,
-  refetch: () => QueryActionCreatorResult<
-    QueryDefinition<
-      string,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
-      never,
-      Post,
-      'PostApi'
-    >
-  >
-) => {
-  const target = e.target as HTMLImageElement;
-
-  //* changing the icon
-  target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
-    'src',
-    target.src
-  );
-
-  //* changing the name
-  const theIdentifier = target.parentElement?.parentElement?.parentElement
-    ?.children[1] as HTMLDivElement;
-  const name = target.alt[0].toUpperCase() + target.alt.substring(1);
-
-  theIdentifier.textContent = name;
-
-  const data: CommentData = { expressionKey: target.alt, commentId: _id };
-
-  await uploadComment(data);
-
-  refetch();
+type Ref = {
+  post?: string;
+  blog?: string;
+  reel?: string;
 };
+
+async function CreateComment(
+  e: React.FormEvent<HTMLFormElement>,
+  message: string,
+  postId: string,
+  ref: Ref
+) {
+  // console.log('hi');
+  // const { data: post } = useGetPostQuery(postId);
+  // console.log(post);
+
+  // if (!isLoading) {
+  //   console.log(post);
+  // }
+  // const [uploadComment] = useUploadCommentMutation();
+  // const target = e.target as HTMLImageElement;
+
+  // //* changing the icon
+  // target.parentElement?.parentElement?.parentElement?.firstElementChild?.firstElementChild?.setAttribute(
+  //   'src',
+  //   target.src
+  // );
+
+  // //* changing the name
+  // const theIdentifier = target.parentElement?.parentElement?.parentElement
+  //   ?.children[1] as HTMLDivElement;
+  // const name = target.alt[0].toUpperCase() + target.alt.substring(1);
+
+  // theIdentifier.textContent = name;
+
+  // const data = {
+  //   message,
+  //   visiblePrivacy: 'custom',
+  //   ref,
+  // };
+
+  // await uploadComment(data);
+
+  // refetch();
+}
+
+export default CreateComment;

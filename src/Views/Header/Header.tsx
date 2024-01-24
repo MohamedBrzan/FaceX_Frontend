@@ -15,9 +15,11 @@ import Logo from '../../constants/Logo/Logo';
 import './Header.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { NavLink } from 'react-router-dom';
-import Me from '../../assets/me.jpg';
+import unknown from '../../assets/unknown.png';
+import GetUser from '../../constants/GetUser';
 
 const Header = () => {
+  const user = GetUser;
   const dropMenuRef = useRef<HTMLDivElement>(null);
   const dropMenuModalRef = useRef<HTMLDivElement>(null);
 
@@ -114,7 +116,7 @@ const Header = () => {
           <Col xs={2} className='user_col'>
             <div className='user' onClick={ShowDropdownMenu}>
               <div className='user_img'>
-                <img src={Me} alt='User Photo' />
+                <img src={user.avatar || unknown} alt='User Photo' />
               </div>
               <div className='user_svg'>
                 <FontAwesomeIcon icon={faEllipsis} />

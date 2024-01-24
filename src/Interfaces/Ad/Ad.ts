@@ -2,6 +2,7 @@ import Payment from '../Payment/Payment';
 import User from '../User/User';
 
 interface Ad {
+  _id?: string;
   user: User;
   images?: string[];
   videos?: string[];

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../Views/Footer/Footer';
 import Input from '../../components/Input/Input';
 import appleImg from '../../assets/apple.png';
@@ -13,6 +13,7 @@ import { useSignInMutation } from '../../store/apis/Authentication';
 import Loading from '../../components/Loading/Loading';
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [signIn, { isLoading, isSuccess, isError, error, data }] =
@@ -45,6 +46,7 @@ const SignIn = () => {
             if (isError) {
               console.log('error', error);
             }
+            navigate('/');
           }}
         >
           <FormGroup className='mb-3'>

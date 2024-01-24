@@ -6,41 +6,29 @@ import {
   useToggleCommentExpressionMutation,
   useUploadCommentMutation,
 } from '../../store/apis/Comments';
-import {
-  BaseQueryFn,
-  FetchArgs,
-  QueryActionCreatorResult,
-  QueryDefinition,
-} from '@reduxjs/toolkit/query';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
-import Post from '../../Interfaces/Post/Post';
-import DisplayComponentFunc from './Helpers/DisplayComponentFunc';
-import './Comments.scss';
 
-const Comments = (
-  comments: Comment[],
-  _id: string,
-  refetch: () => QueryActionCreatorResult<
-    QueryDefinition<
-      string,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
-      never,
-      Post,
-      'PostApi'
-    >
-  >
-) => {
-  const [message, setMessage] = useState<string>('');
+import DisplayCommentComponentFunc from './Helpers/DisplayCommentComponentFunc';
+import './Comments.scss';
+import { useGetPostQuery } from '../../store/apis/Posts';
+
+const Comments = (comments: Comment[], postId: string) => {
+  const { refetch } = useGetPostQuery(postId);
   const [uploadComment] = useUploadCommentMutation();
+  const [message, setMessage] = useState<string>('');
   const [toggleExpression] = useToggleCommentExpressionMutation();
   const user = GetUser;
+  const CreateComment = async () => {
+    const data = {
+      message,
+      visiblePrivacy: 'custom',
+      ref: {
+        post: postId,
+      },
+    };
+
+    await uploadComment(data);
+    setMessage('');
+  };
   return (
     <section className='comments'>
       <section className='create_comment'>
@@ -52,15 +40,7 @@ const Comments = (
           <Form
             onSubmit={async (e) => {
               e.preventDefault();
-              const data = {
-                message,
-                visiblePrivacy: 'custom',
-                ref: {
-                  post: _id,
-                },
-              };
-
-              await uploadComment(data);
+              await CreateComment();
               refetch();
             }}
           >
@@ -69,6 +49,7 @@ const Comments = (
               type='text'
               placeholder='what is in your mind'
               required={true}
+              value={message}
               onChange={(e) => {
                 const target = e.target as HTMLInputElement;
                 setMessage(target.value);
@@ -82,19 +63,19 @@ const Comments = (
       </section>
       {comments.map(
         (
-          { _id, user, message, replies, expressions, ref, visiblePrivacy },
+          { _id: commentId, user, message, replies, expressions },
           i: number
         ) => (
           <section className='comment' key={i}>
-            {DisplayComponentFunc({
-              _id,
+            {DisplayCommentComponentFunc({
+              postId,
+              commentId,
               user,
               expressions: expressions ?? {},
               message,
               replies,
               key: i,
               toggleExpression,
-              refetch,
             })}
           </section>
         )

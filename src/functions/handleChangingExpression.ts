@@ -1,33 +1,19 @@
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
   FetchBaseQueryMeta,
-  MutationDefinition,
   QueryActionCreatorResult,
   QueryDefinition,
 } from '@reduxjs/toolkit/query';
 import Post from '../Interfaces/Post/Post';
 
-const handleChangingExpression = async (
-  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  _id: string,
-  updateExpression: MutationTrigger<
-    MutationDefinition<
-      unknown,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
-      never,
-      unknown,
-      'PostApi'
-    >
-  >,
+type Props = {
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>;
+  postId?: string;
+  commentId?: string;
+  replyId?: string;
+  updateExpression: any;
   refetch: () => QueryActionCreatorResult<
     QueryDefinition<
       string,
@@ -42,8 +28,17 @@ const handleChangingExpression = async (
       Post,
       'PostApi'
     >
-  >
-) => {
+  >;
+};
+
+const handleChangingExpression = async ({
+  e,
+  postId,
+  commentId,
+  replyId,
+  updateExpression,
+  refetch,
+}: Props) => {
   const target = e.target as HTMLImageElement;
 
   //* changing the icon
@@ -52,17 +47,44 @@ const handleChangingExpression = async (
     target.src
   );
 
+  let theIdentifier;
+
   //* changing the name
-  const theIdentifier = target.parentElement?.parentElement?.parentElement
-    ?.children[1] as HTMLDivElement;
-  const name = target.alt[0].toUpperCase() + target.alt.substring(1);
 
-  theIdentifier.textContent = name;
+  if (
+    target.parentElement?.parentElement?.parentElement?.children[1]
+      .getAttribute('class')
+      ?.includes('identifier')
+  ) {
+    theIdentifier = target.parentElement?.parentElement?.parentElement
+      ?.children[1] as HTMLDivElement;
+    const name = target.alt[0].toUpperCase() + target.alt.substring(1);
+    theIdentifier.textContent = name;
+  } else {
+    theIdentifier = target.parentElement?.parentElement?.parentElement
+      ?.firstElementChild as HTMLDivElement;
+    const name = target.alt[0].toUpperCase() + target.alt.substring(1);
+    theIdentifier.textContent = name;
+  }
 
-  const data = {
-    expressionKey: target.alt,
-    postId: _id,
-  };
+  let data;
+
+  if (postId) {
+    data = {
+      expressionKey: target.alt,
+      postId,
+    };
+  } else if (commentId) {
+    data = {
+      expressionKey: target.alt,
+      commentId,
+    };
+  } else {
+    data = {
+      expressionKey: target.alt,
+      replyId,
+    };
+  }
 
   await updateExpression(data);
 

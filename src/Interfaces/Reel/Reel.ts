@@ -6,6 +6,7 @@ import Image from '../Image/Image';
 import Video from '../Video/Video';
 
 interface Reel {
+  _id?: string;
   user: User;
   title: string;
   image?: Image[];

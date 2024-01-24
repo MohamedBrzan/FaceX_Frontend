@@ -1,17 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CreateComment from '../../../functions/CreateComment';
 import GetExpressionsLength from '../../../functions/GetExpressionsLength';
 import FindExpressionForComments from '../../FindExpression/FindExpressionForComment';
-import Replies from '../../Replies/Replies';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { MutationDefinition } from '@reduxjs/toolkit/query';
 import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
-import {
-  BaseQueryFn,
-  FetchArgs,
-  QueryActionCreatorResult,
-  QueryDefinition,
-} from '@reduxjs/toolkit/query';
+import { BaseQueryFn, FetchArgs } from '@reduxjs/toolkit/query';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
 
@@ -26,16 +19,15 @@ import disgust from '../../../assets/expressions/disgust.png';
 import fear from '../../../assets/expressions/shock.png';
 import Reply from '../../../Interfaces/Comment/Reply';
 import User from '../../../Interfaces/User/User';
-import Post from '../../../Interfaces/Post/Post';
 import Expressions from '../../../types/Post/Expressions';
 
 type DisplayComponent = {
-  _id: string;
+  postId: string;
+  commentId: string;
   user: User;
   message: string;
   expressions: Expressions;
   replies?: Reply[];
-  className: string;
   key: number;
   toggleExpression: MutationTrigger<
     MutationDefinition<
@@ -52,33 +44,19 @@ type DisplayComponent = {
       any
     >
   >;
-  refetch: () => QueryActionCreatorResult<
-    QueryDefinition<
-      string,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        object,
-        FetchBaseQueryMeta
-      >,
-      never,
-      Post,
-      'PostApi'
-    >
-  >;
 };
 
-const DisplayComponentFunc = ({
-  _id,
+const DisplayCommentComponentFunc = ({
+  postId,
+  commentId,
   user,
   message,
   expressions,
   replies,
   key,
-  toggleExpression,
-  refetch,
 }: DisplayComponent) => {
+  // const newData = GetComment(commentId);
+
   const showReplyInput = () => {
     const comment = Array.from(document.querySelectorAll('.comments .comment'))[
       key
@@ -163,9 +141,10 @@ const DisplayComponentFunc = ({
 
             <div
               className='expressions_container'
-              onClick={async (e) => {
-                await CreateComment(e, _id, toggleExpression, refetch);
-              }}
+              // onClick={
+              //   async (e) =>
+              // await ToggleCommentExpressions(e, message, { post: postId }, commentId)
+              // }
             >
               {UIExpressions.map(({ name, image }, i) => (
                 <figure className='expression' key={i} title={name}>
@@ -184,7 +163,7 @@ const DisplayComponentFunc = ({
               )}
               alt='expression icon'
             />
-            <span className='expressions_length'>
+            <span className='expressions_length px-1'>
               {GetExpressionsLength(expressions) || null}
             </span>
           </span>
@@ -196,17 +175,16 @@ const DisplayComponentFunc = ({
           )}
         </div>
 
-        {/* <section className={`replies`}>
-          {Replies({
+        <section className={`replies`}>
+          {/* {Replies({
             replies: replies || [],
             key,
-            toggleExpression,
             refetch,
-          })}
-        </section> */}
+          })} */}
+        </section>
       </div>
     </section>
   );
 };
 
-export default DisplayComponentFunc;
+export default DisplayCommentComponentFunc;
