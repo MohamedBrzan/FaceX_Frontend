@@ -117,16 +117,13 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                 </span>
               </div>
               <div className='interactive'>
-                {post.comments.length > 0 && (
-                  <div className='comment_length'>
-                    {post.comments.length} comment
-                  </div>
-                )}
-                {post.shares.length > 0 && (
-                  <div className='comment_length'>
-                    {post.shares.length} shares
-                  </div>
-                )}
+                <div className='comment_length'>
+                  {post.comments.length || 0} comment
+                </div>
+
+                <div className='comment_length'>
+                  {post.shares.length || 0} shares
+                </div>
               </div>
             </div>
             <hr />
@@ -155,10 +152,7 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                     ))}
                   </div>
                 </div>
-                <div
-                  className='interact comment'
-                  onClick={showComments}
-                >
+                <div className='interact comment' onClick={showComments}>
                   <FontAwesomeIcon icon={faComment} />
                   <div className='identifier'>Comment</div>
                 </div>

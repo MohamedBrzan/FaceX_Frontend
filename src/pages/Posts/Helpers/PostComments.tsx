@@ -247,7 +247,6 @@ const PostComments = ({
                                 <div className='user_info'>
                                   <div className='username'>
                                     <small>
-                                      {' '}
                                       {`${reply.user.name?.first} ${reply.user.name?.last}`}
                                     </small>
                                   </div>
