@@ -118,7 +118,7 @@ const SinglePost = ({ postId, postIndex }: Props) => {
               </div>
               <div className='interactive'>
                 <div className='comment_length'>
-                  {post.comments.length || 0} comment
+                  {post.comments.length || 0} comments
                 </div>
 
                 <div className='comment_length'>
