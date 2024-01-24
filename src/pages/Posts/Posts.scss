@@ -311,6 +311,7 @@
             }
           }
           .comment {
+            position: relative;
             .comment_info {
               @extend %displayFlexContentStart;
               align-items: flex-start;
@@ -673,5 +674,40 @@
         }
       }
     }
+  }
+}
+
+.actions_dropdown {
+  display: none;
+  @extend %sectionStyle;
+  &.active {
+    display: block;
+  }
+  .actions {
+    @extend %sectionStyle;
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    right: -5px;
+    padding: 0.5rem;
+    font: {
+      weight: 700;
+    }
+    color: $third;
+    display: none;
+    &.active {
+      display: block;
+    }
+    z-index: 99999;
+    div {
+      transition: 0.1s ease-in-out;
+      &:hover {
+        color: $secondary;
+      }
+    }
+  }
+  .actions_modal {
+    @extend %modalStyle;
+    background-color: transparent;
   }
 }

@@ -7,7 +7,6 @@ import UploadPost from '../../crud/Post/CreatePost';
 import { useGetPostsQuery } from '../../store/apis/Posts';
 import { Each } from '../../components/Each/Each';
 import Post from '../../Interfaces/Post/Post';
-
 import SinglePost from './Helpers/SinglePost';
 
 const Posts = () => {

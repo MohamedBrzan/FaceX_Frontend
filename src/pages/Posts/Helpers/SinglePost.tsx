@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PostComments from './PostComments';
+import PostComment from './PostComment';
 import {
   faComment,
   faPaperPlane,
@@ -16,16 +16,11 @@ import {
 } from '../../../store/apis/Posts';
 import Loading from '../../../components/Loading/Loading';
 
-import like from '../../../assets/expressions/thumbsUp.png';
-import happy from '../../../assets/expressions/happy.png';
-import angry from '../../../assets/expressions/angry.png';
-import surprise from '../../../assets/expressions/exciting.png';
-import support from '../../../assets/expressions/laugh.png';
-import love from '../../../assets/expressions/love.png';
-import sad from '../../../assets/expressions/sad.png';
-import disgust from '../../../assets/expressions/disgust.png';
-import fear from '../../../assets/expressions/shock.png';
 import handleChangingExpression from '../../../functions/handleChangingExpression';
+import UIExpressions from '../../../functions/UIExpressions';
+import ShowComments from './ShowComments';
+import CreateCommentForm from './CreateCommentForm';
+import GetUser from '../../../constants/GetUser';
 
 type Props = {
   postId: string;
@@ -33,27 +28,9 @@ type Props = {
 };
 
 const SinglePost = ({ postId, postIndex }: Props) => {
+  const user = GetUser;
   const { isLoading, isSuccess, data: post, refetch } = useGetPostQuery(postId);
   const [togglePostExpression] = useTogglePostExpressionMutation();
-
-  const UIExpressions = [
-    { id: 5, name: 'like', image: like },
-    { id: 4, name: 'happy', image: happy },
-    { id: 6, name: 'love', image: love },
-    { id: 8, name: 'support', image: support },
-    { id: 9, name: 'surprise', image: surprise },
-    { id: 1, name: 'angry', image: angry },
-    { id: 2, name: 'disgust', image: disgust },
-    { id: 3, name: 'fear', image: fear },
-    { id: 7, name: 'sad', image: sad },
-  ];
-
-  const showComments = () => {
-    const post = Array.from(document.querySelectorAll('.posts .post'))[
-      postIndex
-    ];
-    post.lastElementChild?.lastElementChild?.classList.toggle('active');
-  };
 
   return (
     <article className='post'>
@@ -152,7 +129,10 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                     ))}
                   </div>
                 </div>
-                <div className='interact comment' onClick={showComments}>
+                <div
+                  className='interact comment'
+                  onClick={() => ShowComments(postIndex)}
+                >
                   <FontAwesomeIcon icon={faComment} />
                   <div className='identifier'>Comment</div>
                 </div>
@@ -166,13 +146,37 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                   <div className='identifier'>Send</div>
                 </div>
               </div>
-              <PostComments
-                isLoading={isLoading}
-                isSuccess={isSuccess}
-                comments={post.comments}
-                refetch={refetch}
-                postId={post._id}
-              />
+
+              <section className='post_comments'>
+                <section className='comments'>
+                  <section className='create_comment'>
+                    <figure className='avatar'>
+                      <img src={user.avatar} alt='User' />
+                    </figure>
+
+                    <div className='input'>
+                      {postId && (
+                        <CreateCommentForm postId={postId} refetch={refetch} />
+                      )}
+                    </div>
+                  </section>
+                  {post.comments.map((comment, commentIndex) => (
+                    <PostComment
+                      isLoading={isLoading}
+                      isSuccess={isSuccess}
+                      comment={comment}
+                      commentIndex={commentIndex}
+                      commentId={comment._id}
+                      refetch={refetch}
+                      postId={post._id}
+                      key={commentIndex}
+                    />
+                  ))}
+                  {post.comments?.length > 2 && (
+                    <div className='show_more_comments'>Load more comments</div>
+                  )}
+                </section>
+              </section>
             </div>
           </>
         )

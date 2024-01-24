@@ -5,27 +5,34 @@ import Comment from '../../Interfaces/Comment/Comment';
 export const CommentApi = createApi({
   reducerPath: 'CommentApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: APIS_ROOT,
+    baseUrl: `${APIS_ROOT}comment`,
     credentials: 'include',
   }),
   endpoints: (builder) => ({
     getComments: builder.query<Comment, string>({
-      query: () => '/comment',
+      query: () => '',
     }),
     getComment: builder.query<Comment, string>({
-      query: (id) => `/comment/${id}`,
+      query: (id) => `/${id}`,
     }),
     uploadComment: builder.mutation({
       query: ({ ...data }) => ({
         method: 'POST',
-        url: '/comment/create',
+        url: '/create',
         body: data,
       }),
     }),
     toggleCommentExpression: builder.mutation({
       query: ({ ...data }) => ({
         method: 'PATCH',
-        url: '/comment/expressions/toggle',
+        url: '/expressions/toggle',
+        body: data,
+      }),
+    }),
+    deleteComment: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'DELETE',
+        url: '/del',
         body: data,
       }),
     }),
@@ -37,4 +44,5 @@ export const {
   useGetCommentQuery,
   useUploadCommentMutation,
   useToggleCommentExpressionMutation,
+  useDeleteCommentMutation,
 } = CommentApi;
