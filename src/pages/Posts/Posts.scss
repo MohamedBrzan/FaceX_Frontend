@@ -98,7 +98,7 @@
             height: 100%;
             overflow: hidden;
           }
-          &:is(:first-child) {
+          &:is([title='like']) {
             transform: scaleX(-1);
           }
           &:not(:first-child) {

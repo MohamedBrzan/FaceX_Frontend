@@ -21,6 +21,7 @@ import UIExpressions from '../../../functions/UIExpressions';
 import ShowComments from './ShowComments';
 import CreateCommentForm from './CreateCommentForm';
 import GetUser from '../../../constants/GetUser';
+import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcons';
 
 type Props = {
   postId: string;
@@ -77,19 +78,7 @@ const SinglePost = ({ postId, postIndex }: Props) => {
             </div>
             <div className='post_general'>
               <div className='mini_expressions'>
-                {Object.keys(post.expressions).map((key) =>
-                  UIExpressions.map(
-                    ({ name, image }, i) =>
-                      post.expressions[key as keyof typeof post.expressions]
-                        ?.values()
-                        .next().value !== undefined &&
-                      name == key && (
-                        <figure className='expression' key={i} title={key}>
-                          <img src={image} alt={key} />
-                        </figure>
-                      )
-                  )
-                )}
+                {ShowMiniExpressionsIcons(post.expressions)}
                 <span className='expressions_length'>
                   {GetExpressionsLength(post.expressions) || null}
                 </span>
