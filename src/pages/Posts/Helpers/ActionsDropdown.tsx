@@ -11,8 +11,9 @@ import Post from '../../../Interfaces/Post/Post';
 import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 
 type Props = {
-  postId: string;
-  commentId: string;
+  postId?: string;
+  commentId?: string;
+  replyId?: string;
   APIDelete: MutationTrigger<
     MutationDefinition<
       unknown,
@@ -25,7 +26,7 @@ type Props = {
       >,
       never,
       unknown,
-      'CommentApi'
+      'CommentApi' | 'ReplyApi'
     >
   >;
   refetch: () => QueryActionCreatorResult<
@@ -43,48 +44,79 @@ type Props = {
       'PostApi'
     >
   >;
-  commentIndex: number;
+  commentIndex?: number;
+  replyIndex?: number;
+  textName: string;
 };
 
 const ActionsDropdown = ({
   postId,
   commentId,
+  replyId,
   APIDelete,
   refetch,
   commentIndex,
+  replyIndex,
+  textName,
 }: Props) => {
   const handleDelete = async () => {
-    const data = {
-      ref: {
-        post: postId,
-      },
-      commentId,
-    };
+    let data;
+    if (textName == 'comment') {
+      data = {
+        ref: {
+          post: postId,
+        },
+        commentId,
+      };
+    } else {
+      data = {
+        replyId,
+      };
+    }
     await APIDelete(data);
     refetch();
     return;
   };
 
   const handleActive = () => {
-    Array.from(document.querySelectorAll('.actions_dropdown'))[
-      commentIndex
-    ]?.classList.remove('active');
+    if (textName == 'comment') {
+      commentIndex &&
+        Array.from(document.querySelectorAll('.actions_dropdown'))[
+          commentIndex
+        ]?.classList.remove('active');
+    } else {
+      const commentCollection =
+        commentIndex &&
+        Array.from(document.querySelectorAll('.actions_dropdown'))[
+          commentIndex
+        ];
+      commentCollection &&
+        commentCollection[replyIndex].classList.remove('active');
+    }
   };
 
   return (
     <div className='actions_dropdown' onClick={handleActive}>
       <div className='actions'>
         <div className='del' onClick={handleDelete}>
-          <small>Delete comment</small>
+          <small>Delete {textName}</small>
         </div>
         <div className='edit'>
-          <small> Edit comment</small>
+          <small> Edit {textName}</small>
         </div>
         <div className='link'>
-          <small> Copy comment link</small>
+          <small> Copy {textName} link</small>
         </div>
       </div>
-      <div className='actions_modal'></div>
+      <div
+        className='actions_modal'
+        onClick={(e) => {
+          const target = e.target as HTMLDivElement;
+          target.parentElement?.classList.remove('active');
+          target.parentElement?.firstElementChild?.classList.remove('active');
+          target.parentElement?.lastElementChild?.classList.remove('active');
+        }}
+      ></div>
     </div>
   );
 };

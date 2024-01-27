@@ -52,6 +52,19 @@ type Props = {
   postId?: string;
 };
 
+export const showUpDropdown = (
+  e: React.MouseEvent<SVGSVGElement, MouseEvent>
+) => {
+  const target = e.target as HTMLOrSVGScriptElement;
+  target.nextElementSibling?.classList.toggle('active');
+  target.nextElementSibling?.firstElementChild?.classList.toggle('active');
+  setTimeout(
+    () =>
+      target.nextElementSibling?.lastElementChild?.classList.toggle('active'),
+    1
+  );
+};
+
 const PostComment = ({
   isLoading,
   isSuccess,
@@ -66,17 +79,6 @@ const PostComment = ({
   const user = GetUser;
   const [toggleCommentExpression] = useToggleCommentExpressionMutation();
   const [deleteComment] = useDeleteCommentMutation();
-
-  const showUpDropdown = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    const target = e.target as HTMLOrSVGScriptElement;
-    target.nextElementSibling?.classList.add('active');
-    target.nextElementSibling?.firstElementChild?.classList.add('active');
-    setTimeout(
-      () =>
-        target.nextElementSibling?.lastElementChild?.classList.add('active'),
-      1
-    );
-  };
 
   return (
     <>
@@ -104,7 +106,9 @@ const PostComment = ({
                       </small>
                     </div>
                     <p className='user_profession'>{comment.user.profession}</p>
-                    <p className="message`} dir='auto'">{comment.message}</p>
+                    <p className='message' dir='auto'>
+                      {comment.message}
+                    </p>
                   </div>
                   <div className='dots_icon'>
                     <FontAwesomeIcon
@@ -118,8 +122,9 @@ const PostComment = ({
                         refetch={refetch}
                         APIDelete={deleteComment}
                         commentIndex={commentIndex}
+                        textName='comment'
                       />
-                    )}{' '}
+                    )}
                   </div>
                 </div>
                 <div className='comment_footer'>

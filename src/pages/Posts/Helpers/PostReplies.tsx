@@ -3,7 +3,10 @@ import Reply from '../../../Interfaces/Comment/Reply';
 import GetUser from '../../../constants/GetUser';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import FindExpressionForComments from '../../../components/FindExpression/FindExpressionForComment';
-import { useToggleReplyExpressionMutation } from '../../../store/apis/Replies';
+import {
+  useDeleteReplyMutation,
+  useToggleReplyExpressionMutation,
+} from '../../../store/apis/Replies';
 import Post from '../../../Interfaces/Post/Post';
 import {
   BaseQueryFn,
@@ -18,6 +21,8 @@ import CheckIdentifierName from '../../../functions/CheckIdentifierName';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowReplyInput from '../../../functions/ShowReplyInput';
 import handleChangingExpressionForReply from '../../../functions/handleChangingExpressionForReply';
+import ActionsDropdown from './ActionsDropdown';
+import { showUpDropdown } from './PostComment';
 
 type Props = {
   reply: Reply;
@@ -54,6 +59,7 @@ const PostReplies = ({
 }: Props) => {
   const user = GetUser;
   const [toggleReplyExpression] = useToggleReplyExpressionMutation();
+  const [deleteReply] = useDeleteReplyMutation();
 
   return (
     <section className='reply' data-reply={commentId}>
@@ -77,8 +83,23 @@ const PostReplies = ({
               <p className='user_profession'>{user.profession}</p>
               <p className="message`} dir='auto'">{reply.reply}</p>
             </div>
+
             <div className='dots_icon'>
-              <FontAwesomeIcon icon={faEllipsis} />
+              <FontAwesomeIcon
+                icon={faEllipsis}
+                onClick={(e) => showUpDropdown(e)}
+              />
+              {commentId && (
+                <ActionsDropdown
+                  commentId={commentId}
+                  refetch={refetch}
+                  APIDelete={deleteReply}
+                  commentIndex={commentIndex}
+                  replyIndex={replyIndex}
+                  replyId={reply._id}
+                  textName='reply'
+                />
+              )}
             </div>
           </div>
           <div className='reply_footer'>

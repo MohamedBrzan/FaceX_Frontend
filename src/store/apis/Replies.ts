@@ -26,6 +26,13 @@ export const ReplyApi = createApi({
         body: data,
       }),
     }),
+    deleteReply: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'DELETE',
+        url: '/reply/del',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -34,4 +41,5 @@ export const {
   useGetReplyQuery,
   useUploadReplyMutation,
   useToggleReplyExpressionMutation,
+  useDeleteReplyMutation
 } = ReplyApi;
