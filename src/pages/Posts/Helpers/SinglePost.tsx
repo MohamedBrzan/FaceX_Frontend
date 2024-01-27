@@ -16,7 +16,7 @@ import {
 } from '../../../store/apis/Posts';
 import Loading from '../../../components/Loading/Loading';
 
-import handleChangingExpression from '../../../functions/handleChangingExpression';
+import handleChangingExpressionForPost from '../../../functions/handleChangingExpressionForPost';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowComments from './ShowComments';
 import CreateCommentForm from './CreateCommentForm';
@@ -31,6 +31,7 @@ const SinglePost = ({ postId, postIndex }: Props) => {
   const user = GetUser;
   const { isLoading, isSuccess, data: post, refetch } = useGetPostQuery(postId);
   const [togglePostExpression] = useTogglePostExpressionMutation();
+  let emojiName: string;
 
   return (
     <article className='post'>
@@ -106,24 +107,30 @@ const SinglePost = ({ postId, postIndex }: Props) => {
             <hr />
             <div className='post_footer'>
               <div className='interactions_icons'>
-                <div className='interact expressions'>
+                <div
+                  className='interact expressions'
+                  onClick={async () =>
+                    await handleChangingExpressionForPost({
+                      postId,
+                      togglePostExpression,
+                      index: postIndex,
+                      emojiName,
+                      refetch,
+                    })
+                  }
+                >
                   {FindExpression({
                     expressions: post.expressions,
                   })}
 
-                  <div
-                    className='expressions_container'
-                    onClick={async (e) =>
-                      await handleChangingExpression({
-                        e,
-                        postId: post._id,
-                        updateExpression: togglePostExpression,
-                        refetch,
-                      })
-                    }
-                  >
+                  <div className='expressions_container'>
                     {UIExpressions.map(({ name, image }, i) => (
-                      <figure className='expression' key={i} title={name}>
+                      <figure
+                        className='expression'
+                        key={i}
+                        title={name}
+                        onClick={() => (emojiName = name)}
+                      >
                         <img src={image} alt={name} />
                       </figure>
                     ))}
@@ -164,9 +171,11 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                     <PostComment
                       isLoading={isLoading}
                       isSuccess={isSuccess}
+                      postIndex={postIndex}
                       comment={comment}
                       commentIndex={commentIndex}
                       commentId={comment._id}
+                      emojiName={emojiName}
                       refetch={refetch}
                       postId={post._id}
                       key={commentIndex}

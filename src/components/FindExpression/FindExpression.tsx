@@ -54,7 +54,6 @@ const FindExpression = (props: Props) => {
       <figure className='show_interact'>
         <img src={condition} alt={name} />
       </figure>
-
       <div className='identifier'>{name}</div>
     </>
   ) : (
@@ -62,8 +61,7 @@ const FindExpression = (props: Props) => {
       <figure className='show_interact'>
         <img src={like} alt={name} />
       </figure>
-
-      <div className='identifier'>Like</div>
+      <div className='identifier'>like</div>
     </>
   );
 };

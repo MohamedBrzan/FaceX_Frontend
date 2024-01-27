@@ -4,14 +4,13 @@ const ShowReplyInput = (id: string) => {
   ).find((c) => c.getAttribute('data-comment') === id);
 
   const replyInputSection =
-    comment?.firstElementChild?.lastElementChild?.lastElementChild
-      ?.lastElementChild;
+    comment?.firstElementChild?.lastElementChild?.lastElementChild;
 
   replyInputSection?.classList.remove('hidden');
 
-  const replyForm = replyInputSection?.lastElementChild
-    ?.lastElementChild as HTMLInputElement;
-  (replyForm.firstElementChild as HTMLInputElement).focus();
+  const replyInput = replyInputSection?.lastElementChild?.firstElementChild
+    ?.firstElementChild as HTMLInputElement;
+  replyInput.focus();
 };
 
 export default ShowReplyInput;

@@ -374,6 +374,7 @@
                   }
                   .identifier,
                   .reply {
+                    text-transform: capitalize;
                     @extend %secondaryBtn;
                     display: inline;
                     padding: 2px;
@@ -571,6 +572,7 @@
                   }
                   .identifier,
                   .reply {
+                    text-transform: capitalize;
                     @extend %secondaryBtn;
                     padding: 2px;
                     margin: 0;

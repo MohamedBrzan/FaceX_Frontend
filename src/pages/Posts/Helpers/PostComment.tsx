@@ -5,7 +5,6 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import FindExpressionForComments from '../../../components/FindExpression/FindExpressionForComment';
-import handleChangingExpression from '../../../functions/handleChangingExpression';
 import GetExpressionsLength from '../../../functions/GetExpressionsLength';
 import Loading from '../../../components/Loading/Loading';
 import Comment from '../../../Interfaces/Comment/Comment';
@@ -23,13 +22,18 @@ import PostReplies from './PostReplies';
 import CheckIdentifierName from '../../../functions/CheckIdentifierName';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowReplyInput from '../../../functions/ShowReplyInput';
+import CreateReplyForm from './CreateReplyForm';
+import GetUser from '../../../constants/GetUser';
+import handleChangingExpressionForComment from '../../../functions/handleChangingExpressionForComment';
 
 type Props = {
+  postIndex: number;
   comment: Comment;
   commentId?: string;
   isLoading: boolean;
   isSuccess: boolean;
   commentIndex: number;
+  emojiName: string;
   refetch: () => QueryActionCreatorResult<
     QueryDefinition<
       string,
@@ -54,9 +58,12 @@ const PostComment = ({
   comment,
   commentId,
   commentIndex,
+  emojiName,
   refetch,
   postId,
+  postIndex,
 }: Props) => {
+  const user = GetUser;
   const [toggleCommentExpression] = useToggleCommentExpressionMutation();
   const [deleteComment] = useDeleteCommentMutation();
 
@@ -116,25 +123,32 @@ const PostComment = ({
                   </div>
                 </div>
                 <div className='comment_footer'>
-                  <div className='interact expressions'>
+                  <div
+                    className='interact expressions'
+                    onClick={async () =>
+                      await handleChangingExpressionForComment({
+                        commentId: comment._id,
+                        commentIndex,
+                        toggleCommentExpression,
+                        postIndex,
+                        emojiName,
+                        refetch,
+                      })
+                    }
+                  >
                     {comment.expressions &&
                       FindExpressionForComments({
                         expressions: comment.expressions,
                       }).html}
 
-                    <div
-                      className='expressions_container'
-                      onClick={async (e) =>
-                        await handleChangingExpression({
-                          e,
-                          commentId: comment._id,
-                          updateExpression: toggleCommentExpression,
-                          refetch,
-                        })
-                      }
-                    >
+                    <div className='expressions_container'>
                       {UIExpressions.map(({ name, image }, i) => (
-                        <figure className='expression' key={i} title={name}>
+                        <figure
+                          className='expression'
+                          key={i}
+                          title={name}
+                          onClick={() => (emojiName = name)}
+                        >
                           <img src={image} alt={name} />
                         </figure>
                       ))}
@@ -151,7 +165,7 @@ const PostComment = ({
                           }).name
                         )
                       }
-                      alt='expression icon'
+                      alt=''
                     />
                     <span className='expressions_length px-1'>
                       {(comment.expressions &&
@@ -170,13 +184,35 @@ const PostComment = ({
                   )}
                 </div>
 
-                {comment._id && comment.replies && (
-                  <PostReplies
-                    replies={comment.replies}
-                    commentId={comment._id}
-                    refetch={refetch}
-                  />
-                )}
+                <section className='replies'>
+                  {commentId &&
+                    comment.replies?.map((reply, replyIndex) => (
+                      <PostReplies
+                        postIndex={postIndex}
+                        reply={reply}
+                        replyIndex={replyIndex}
+                        commentId={commentId}
+                        commentIndex={commentIndex}
+                        refetch={refetch}
+                        emojiName={emojiName}
+                        key={replyIndex}
+                      />
+                    ))}
+                </section>
+                <section className='create_reply hidden'>
+                  <figure className='avatar'>
+                    <img src={user.avatar} alt='User' />
+                  </figure>
+
+                  <div className='input'>
+                    {commentId && (
+                      <CreateReplyForm
+                        commentId={commentId}
+                        refetch={refetch}
+                      />
+                    )}
+                  </div>
+                </section>
               </div>
             </section>
           </section>
