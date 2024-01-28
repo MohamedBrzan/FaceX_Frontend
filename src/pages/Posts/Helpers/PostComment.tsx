@@ -110,22 +110,24 @@ const PostComment = ({
                       {comment.message}
                     </p>
                   </div>
-                  <div className='dots_icon'>
-                    <FontAwesomeIcon
-                      icon={faEllipsis}
-                      onClick={(e) => showUpDropdown(e)}
-                    />
-                    {postId && comment._id && (
-                      <ActionsDropdown
-                        postId={postId}
-                        commentId={comment._id}
-                        refetch={refetch}
-                        APIDelete={deleteComment}
-                        commentIndex={commentIndex}
-                        textName='comment'
+                  {user.id === comment.user._id && (
+                    <div className='dots_icon'>
+                      <FontAwesomeIcon
+                        icon={faEllipsis}
+                        onClick={(e) => showUpDropdown(e)}
                       />
-                    )}
-                  </div>
+                      {postId && comment._id && (
+                        <ActionsDropdown
+                          postId={postId}
+                          commentId={comment._id}
+                          refetch={refetch}
+                          APIDelete={deleteComment}
+                          commentIndex={commentIndex}
+                          textName='comment'
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
                 <div className='comment_footer'>
                   <div

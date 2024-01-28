@@ -84,23 +84,25 @@ const PostReplies = ({
               <p className="message`} dir='auto'">{reply.reply}</p>
             </div>
 
-            <div className='dots_icon'>
-              <FontAwesomeIcon
-                icon={faEllipsis}
-                onClick={(e) => showUpDropdown(e)}
-              />
-              {commentId && (
-                <ActionsDropdown
-                  commentId={commentId}
-                  refetch={refetch}
-                  APIDelete={deleteReply}
-                  commentIndex={commentIndex}
-                  replyIndex={replyIndex}
-                  replyId={reply._id}
-                  textName='reply'
+            {user.id === reply.user._id && (
+              <div className='dots_icon'>
+                <FontAwesomeIcon
+                  icon={faEllipsis}
+                  onClick={(e) => showUpDropdown(e)}
                 />
-              )}
-            </div>
+                {commentId && (
+                  <ActionsDropdown
+                    commentId={commentId}
+                    refetch={refetch}
+                    APIDelete={deleteReply}
+                    commentIndex={commentIndex}
+                    replyIndex={replyIndex}
+                    replyId={reply._id}
+                    textName='reply'
+                  />
+                )}
+              </div>
+            )}
           </div>
           <div className='reply_footer'>
             <div
