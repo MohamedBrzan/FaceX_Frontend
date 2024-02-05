@@ -23,8 +23,8 @@ import CheckIdentifierName from '../../../functions/CheckIdentifierName';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowReplyInput from '../../../functions/ShowReplyInput';
 import CreateReplyForm from './CreateReplyForm';
-import GetUser from '../../../constants/GetUser';
 import handleChangingExpressionForComment from '../../../functions/handleChangingExpressionForComment';
+import { useSelector } from 'react-redux';
 
 type Props = {
   postIndex: number;
@@ -76,7 +76,7 @@ const PostComment = ({
   postId,
   postIndex,
 }: Props) => {
-  const user = GetUser;
+  const { user } = useSelector((state) => state.Auth);
   const [toggleCommentExpression] = useToggleCommentExpressionMutation();
   const [deleteComment] = useDeleteCommentMutation();
 
@@ -110,7 +110,7 @@ const PostComment = ({
                       {comment.message}
                     </p>
                   </div>
-                  {user.id === comment.user._id && (
+                  {user?.id === comment.user._id && (
                     <div className='dots_icon'>
                       <FontAwesomeIcon
                         icon={faEllipsis}
@@ -130,37 +130,39 @@ const PostComment = ({
                   )}
                 </div>
                 <div className='comment_footer'>
-                  <div
-                    className='interact expressions'
-                    onClick={async () =>
-                      await handleChangingExpressionForComment({
-                        commentId: comment._id,
-                        commentIndex,
-                        toggleCommentExpression,
-                        postIndex,
-                        emojiName,
-                        refetch,
-                      })
-                    }
-                  >
-                    {comment.expressions &&
-                      FindExpressionForComments({
-                        expressions: comment.expressions,
-                      }).html}
+                  {user?.id && (
+                    <div
+                      className='interact expressions'
+                      onClick={async () =>
+                        await handleChangingExpressionForComment({
+                          commentId: comment._id,
+                          commentIndex,
+                          toggleCommentExpression,
+                          postIndex,
+                          emojiName,
+                          refetch,
+                        })
+                      }
+                    >
+                      {comment.expressions &&
+                        FindExpressionForComments({
+                          expressions: comment.expressions,
+                        }).html}
 
-                    <div className='expressions_container'>
-                      {UIExpressions.map(({ name, image }, i) => (
-                        <figure
-                          className='expression'
-                          key={i}
-                          title={name}
-                          onClick={() => (emojiName = name)}
-                        >
-                          <img src={image} alt={name} />
-                        </figure>
-                      ))}
+                      <div className='expressions_container'>
+                        {UIExpressions.map(({ name, image }, i) => (
+                          <figure
+                            className='expression'
+                            key={i}
+                            title={name}
+                            onClick={() => (emojiName = name)}
+                          >
+                            <img src={image} alt={name} />
+                          </figure>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                   .
                   <span className='expression_icon'>
                     <img
@@ -180,12 +182,14 @@ const PostComment = ({
                         null}
                     </span>
                   </span>
-                  <span
-                    className='reply'
-                    onClick={() => comment._id && ShowReplyInput(comment._id)}
-                  >
-                    Reply
-                  </span>
+                  {user?.id && (
+                    <span
+                      className='reply'
+                      onClick={() => comment._id && ShowReplyInput(comment._id)}
+                    >
+                      Reply
+                    </span>
+                  )}
                   {comment.replies?.length && (
                     <span className='replies_count'>{`${comment.replies.length} Replies`}</span>
                   )}
@@ -206,20 +210,22 @@ const PostComment = ({
                       />
                     ))}
                 </section>
-                <section className='create_reply hidden'>
-                  <figure className='avatar'>
-                    <img src={user.avatar} alt='User' />
-                  </figure>
+                {user?.id && (
+                  <section className='create_reply hidden'>
+                    <figure className='avatar'>
+                      <img src={user?.avatar} alt='User' />
+                    </figure>
 
-                  <div className='input'>
-                    {commentId && (
-                      <CreateReplyForm
-                        commentId={commentId}
-                        refetch={refetch}
-                      />
-                    )}
-                  </div>
-                </section>
+                    <div className='input'>
+                      {commentId && (
+                        <CreateReplyForm
+                          commentId={commentId}
+                          refetch={refetch}
+                        />
+                      )}
+                    </div>
+                  </section>
+                )}
               </div>
             </section>
           </section>

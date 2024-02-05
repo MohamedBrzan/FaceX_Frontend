@@ -15,9 +15,11 @@ import { JobApi } from './apis/Jobs';
 import { HashtagApi } from './apis/Hashtags';
 import { AuthenticationApi } from './apis/Authentication';
 import { ReplyApi } from './apis/Replies';
+import AuthSlice from './reducers/AuthSlice';
 
 export const store = configureStore({
   reducer: {
+    Auth: AuthSlice,
     [UsersApi.reducerPath]: UsersApi.reducer,
     [PostApi.reducerPath]: PostApi.reducer,
     [AdApi.reducerPath]: AdApi.reducer,

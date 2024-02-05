@@ -20,8 +20,11 @@ import handleChangingExpressionForPost from '../../../functions/handleChangingEx
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowComments from './ShowComments';
 import CreateCommentForm from './CreateCommentForm';
-import GetUser from '../../../constants/GetUser';
 import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcons';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSendFollowMutation } from '../../../store/apis/Users';
+import { signInUser } from '../../../store/reducers/AuthSlice';
+import { fetchUser } from '../../../store/reducers/FetchUser';
 
 type Props = {
   postId: string;
@@ -29,10 +32,18 @@ type Props = {
 };
 
 const SinglePost = ({ postId, postIndex }: Props) => {
-  const user = GetUser;
+  const { user } = useSelector((state) => state.Auth);
   const { isLoading, isSuccess, data: post, refetch } = useGetPostQuery(postId);
+  const [sendFollow] = useSendFollowMutation();
   const [togglePostExpression] = useTogglePostExpressionMutation();
   let emojiName: string;
+
+  const follow = async () => {
+    const data = {
+      following: post?.user?._id,
+    };
+    await sendFollow(data);
+  };
 
   return (
     <article className='post'>
@@ -63,12 +74,15 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                   </div>
                 </div>
               </div>
-              <div className='follow_btn'>
-                <div className='icon'>
-                  <FontAwesomeIcon icon={faUserPlus} />
+
+              {user?.id && (
+                <div className='follow_btn' onClick={follow}>
+                  <div className='icon'>
+                    <FontAwesomeIcon icon={faUserPlus} />
+                  </div>
+                  <span className='text'>follow</span>
                 </div>
-                <span className='text'>follow</span>
-              </div>
+              )}
             </div>
 
             <div className='post_body'>
@@ -145,17 +159,22 @@ const SinglePost = ({ postId, postIndex }: Props) => {
 
               <section className='post_comments'>
                 <section className='comments'>
-                  <section className='create_comment'>
-                    <figure className='avatar'>
-                      <img src={user.avatar} alt='User' />
-                    </figure>
+                  {user?.id && (
+                    <section className='create_comment'>
+                      <figure className='avatar'>
+                        <img src={user?.avatar} alt='User' />
+                      </figure>
 
-                    <div className='input'>
-                      {postId && (
-                        <CreateCommentForm postId={postId} refetch={refetch} />
-                      )}
-                    </div>
-                  </section>
+                      <div className='input'>
+                        {postId && (
+                          <CreateCommentForm
+                            postId={postId}
+                            refetch={refetch}
+                          />
+                        )}
+                      </div>
+                    </section>
+                  )}
                   {post.comments.map((comment, commentIndex) => (
                     <PostComment
                       isLoading={isLoading}

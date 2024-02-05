@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Reply from '../../../Interfaces/Comment/Reply';
-import GetUser from '../../../constants/GetUser';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import FindExpressionForComments from '../../../components/FindExpression/FindExpressionForComment';
 import {
@@ -23,6 +22,7 @@ import ShowReplyInput from '../../../functions/ShowReplyInput';
 import handleChangingExpressionForReply from '../../../functions/handleChangingExpressionForReply';
 import ActionsDropdown from './ActionsDropdown';
 import { showUpDropdown } from './PostComment';
+import { useSelector } from 'react-redux';
 
 type Props = {
   reply: Reply;
@@ -57,7 +57,7 @@ const PostReplies = ({
   postIndex,
   refetch,
 }: Props) => {
-  const user = GetUser;
+  const { user } = useSelector((state) => state.Auth);
   const [toggleReplyExpression] = useToggleReplyExpressionMutation();
   const [deleteReply] = useDeleteReplyMutation();
 
@@ -80,11 +80,13 @@ const PostReplies = ({
                   {`${reply.user.name?.first} ${reply.user.name?.last}`}
                 </small>
               </div>
-              <p className='user_profession'>{user.profession}</p>
-              <p className="message`} dir='auto'">{reply.reply}</p>
+              <p className='user_profession'>{user?.profession}</p>
+              <p className='message' dir='auto'>
+                {reply.reply}
+              </p>
             </div>
 
-            {user.id === reply.user._id && (
+            {user?.id === reply.user._id && (
               <div className='dots_icon'>
                 <FontAwesomeIcon
                   icon={faEllipsis}
@@ -105,39 +107,41 @@ const PostReplies = ({
             )}
           </div>
           <div className='reply_footer'>
-            <div
-              className='interact expressions'
-              onClick={async () =>
-                await handleChangingExpressionForReply({
-                  postIndex,
-                  commentIndex,
-                  replyIndex,
-                  replyId: reply._id,
-                  emojiName,
-                  toggleReplyExpression,
-                  refetch,
-                })
-              }
-            >
-              {
-                FindExpressionForComments({
-                  expressions: reply.expressions,
-                }).html
-              }
+            {user?.id && (
+              <div
+                className='interact expressions'
+                onClick={async () =>
+                  await handleChangingExpressionForReply({
+                    postIndex,
+                    commentIndex,
+                    replyIndex,
+                    replyId: reply._id,
+                    emojiName,
+                    toggleReplyExpression,
+                    refetch,
+                  })
+                }
+              >
+                {
+                  FindExpressionForComments({
+                    expressions: reply.expressions,
+                  }).html
+                }
 
-              <div className='expressions_container'>
-                {UIExpressions.map(({ name, image }, i) => (
-                  <figure
-                    className='expression'
-                    key={i}
-                    title={name}
-                    onClick={() => (emojiName = name)}
-                  >
-                    <img src={image} alt={name} />
-                  </figure>
-                ))}
+                <div className='expressions_container'>
+                  {UIExpressions.map(({ name, image }, i) => (
+                    <figure
+                      className='expression'
+                      key={i}
+                      title={name}
+                      onClick={() => (emojiName = name)}
+                    >
+                      <img src={image} alt={name} />
+                    </figure>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             .
             <span className='expression_icon'>
               <img
@@ -152,12 +156,14 @@ const PostReplies = ({
                 {GetExpressionsLength(reply.expressions) || null}
               </span>
             </span>
-            <span
-              className='reply'
-              onClick={() => commentId && ShowReplyInput(commentId)}
-            >
-              Reply
-            </span>
+            {user?.id && (
+              <span
+                className='reply'
+                onClick={() => commentId && ShowReplyInput(commentId)}
+              >
+                Reply
+              </span>
+            )}
           </div>
         </div>
       </section>

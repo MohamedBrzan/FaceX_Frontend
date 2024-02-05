@@ -4,12 +4,29 @@ import User from '../../Interfaces/User/User';
 
 export const UsersApi = createApi({
   reducerPath: 'UsersApi',
-  baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${APIS_ROOT}user`,
+    credentials: 'include',
+  }),
   endpoints: (builder) => ({
     getUsers: builder.query<User, string>({
-      query: () => '/user',
+      query: () => '/',
+    }),
+    sendFollow: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/follow',
+        body: data,
+      }),
+    }),
+    logout: builder.mutation({
+      query: () => ({
+        method: 'GET',
+        url: '/logout',
+      }),
     }),
   }),
 });
 
-export const { useGetUsersQuery } = UsersApi;
+export const { useGetUsersQuery, useSendFollowMutation, useLogoutMutation } =
+  UsersApi;

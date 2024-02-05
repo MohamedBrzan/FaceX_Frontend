@@ -44,6 +44,7 @@
           img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
           }
         }
         .user {
@@ -238,6 +239,8 @@
               }
               img {
                 width: 100%;
+                height: 100%;
+                object-fit: cover;
               }
               &:is(:first-child) {
                 transform: scaleX(-1);
@@ -277,6 +280,8 @@
               overflow: hidden;
               img {
                 width: 100%;
+                height: 100%;
+                object-fit: cover;
               }
             }
             .input {
@@ -328,6 +333,8 @@
                   overflow: hidden;
                   img {
                     width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                   }
                 }
               }
@@ -446,6 +453,8 @@
                         }
                         img {
                           width: 100%;
+                          height: 100%;
+                          object-fit: cover;
                         }
                         &:is(:first-child) {
                           transform: scaleX(-1);
@@ -493,6 +502,8 @@
               overflow: hidden;
               img {
                 width: 100%;
+                height: 100%;
+                object-fit: cover;
               }
             }
             .input {
@@ -526,6 +537,8 @@
                   overflow: hidden;
                   img {
                     width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                   }
                 }
               }
@@ -644,6 +657,8 @@
                         }
                         img {
                           width: 100%;
+                          height: 100%;
+                          object-fit: cover;
                         }
                         &:is(:first-child) {
                           transform: scaleX(-1);

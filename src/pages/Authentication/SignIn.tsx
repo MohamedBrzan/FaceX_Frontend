@@ -11,21 +11,16 @@ import facebookImg from '../../assets/facebook.png';
 import './Authentication.scss';
 import { useSignInMutation } from '../../store/apis/Authentication';
 import Loading from '../../components/Loading/Loading';
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../../store/reducers/AuthSlice';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [signIn, { isLoading, isSuccess, isError, error, data }] =
-    useSignInMutation({
-      fixedCacheKey: 'signIn',
-    });
-
-  useMemo(() => {
-    if (isSuccess) {
-      localStorage.setItem('user', JSON.stringify(data));
-    }
-  }, [data, isSuccess]);
+    useSignInMutation();
 
   return (
     <section className='authentication sign_in'>
@@ -41,12 +36,16 @@ const SignIn = () => {
               username: email,
               password,
             };
-            await signIn(loginData);
+
+            await signIn(loginData).then((res) => {
+              dispatch(signInUser(res?.data));
+            });
+            navigate('/');
 
             if (isError) {
-              console.log('error', error);
+              console.log(`there's an error here man!!`, error);
+              navigate('/authentication/sign_in');
             }
-            navigate('/');
           }}
         >
           <FormGroup className='mb-3'>
