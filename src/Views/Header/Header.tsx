@@ -126,38 +126,30 @@ const Header = () => {
                 <FontAwesomeIcon icon={faEllipsis} />
               </div>
               <div className='drop_menu' ref={dropMenuRef}>
-                <ul className='list-unstyled'>
-                  <li>
-                    <NavLink to='/me/profile'>
-                      <small>profile</small>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/authentication/sign_in'>
-                      <small>Sign in</small>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/authentication/sign_up'>
-                      <small>Sign Up</small>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to='/upload/article'>
-                      <small>Upload Article</small>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to='/'
-                      onClick={async () =>
-                        await logout('').then(() => dispatch(logoutUser()))
-                      }
-                    >
-                      <small>Logout</small>
-                    </NavLink>
-                  </li>
-                </ul>
+                <NavLink to='/me/profile'>
+                  <small>profile</small>
+                </NavLink>
+
+                {/* <NavLink to='/authentication/sign_in'>
+                  <small>Sign in</small>
+                </NavLink>
+
+                <NavLink to='/authentication/sign_up'>
+                  <small>Sign Up</small>
+                </NavLink> */}
+
+                <NavLink to='/create/article'>
+                  <small>Upload Article</small>
+                </NavLink>
+
+                <NavLink
+                  to='/'
+                  onClick={async () =>
+                    await logout('').then(() => dispatch(logoutUser()))
+                  }
+                >
+                  <small>Logout</small>
+                </NavLink>
               </div>
               <div className='drop_menu_modal' ref={dropMenuModalRef}></div>
             </div>
