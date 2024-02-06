@@ -8,6 +8,13 @@ export const AuthenticationApi = createApi({
     credentials: 'include',
   }),
   endpoints: (builder) => ({
+    signUp: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'POST',
+        url: '/register',
+        body: data,
+      }),
+    }),
     signIn: builder.mutation({
       query: ({ ...data }) => ({
         method: 'POST',
@@ -18,4 +25,4 @@ export const AuthenticationApi = createApi({
   }),
 });
 
-export const { useSignInMutation } = AuthenticationApi;
+export const { useSignUpMutation, useSignInMutation } = AuthenticationApi;

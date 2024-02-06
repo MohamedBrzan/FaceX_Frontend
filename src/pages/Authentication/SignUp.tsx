@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../../Views/Footer/Footer';
 import Input from '../../components/Input/Input';
 import appleImg from '../../assets/apple.png';
@@ -16,8 +16,14 @@ import {
   faCircleArrowLeft,
   faCircleArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { useSignUpMutation } from '../../store/apis/Authentication';
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../../store/reducers/AuthSlice';
 
 const SignUp = () => {
+  const [signUp] = useSignUpMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -60,6 +66,36 @@ const SignUp = () => {
     });
   }, [email, firstName, lastName, password]);
 
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = {
+      avatar: '',
+      cover: '',
+      name: {
+        first: firstName,
+        last: lastName,
+      },
+      email,
+      password,
+    };
+
+    await signUp(data).then((res) => {
+      const { avatar, cover, name, followers, followings, _id: id } = res.data;
+      dispatch(
+        signInUser({
+          avatar,
+          cover,
+          name,
+          followers,
+          followings,
+          id,
+        })
+      );
+    });
+
+    navigate('/');
+  };
+
   return (
     <section className='authentication sign_up'>
       <section className='form'>
@@ -67,7 +103,7 @@ const SignUp = () => {
         <p>
           <small>Make the most of your professional life</small>
         </p>
-        <Form>
+        <Form onSubmit={async (e) => await handleRegister(e)}>
           <Row ref={rowRef}>
             <Col xs={12}>
               <FormGroup className='mb-3'>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
@@ -19,8 +19,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [signIn, { isLoading, isSuccess, isError, error, data }] =
-    useSignInMutation();
+  const [signIn, { isLoading, isError, error }] = useSignInMutation();
 
   return (
     <section className='authentication sign_in'>
