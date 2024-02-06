@@ -1,36 +1,36 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import cover from '../../../../assets/cover.jpeg';
-import me from '../../../../assets/me.jpg';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const FeedSideBar = () => {
+  const { user } = useSelector((state) => state.Auth);
   return (
     <article className='feed_identity'>
       <figure className='cover'>
-        <img className='cover' src={cover} alt='User Cover' />
+        <img className='cover' src={user?.cover} alt='User Cover' />
       </figure>
       <figure className='me'>
-        <img className='me' src={me} alt='User Photo' />
+        <img className='me' src={user?.avatar} alt='User Photo' />
       </figure>
       <div className='user_info'>
-        <h6 className='name'>Mohamed Brzan</h6>
+        <h6 className='name'>{`${user?.name?.first} ${user?.name?.last}`}</h6>
         <p className='title'>
-          <small>Web Developer</small>
+          <small>{user?.profession || 'Unknown'}</small>
         </p>
       </div>
       <hr />
-      <div className='padding analysis'>
-        <h6>Analytics & Tools</h6>
-        <p>
-          <small>3 Post impressions</small>
-        </p>
-      </div>
+      <Link to='/analytics' className='padding analysis'>
+        <b>
+          <small>View all analytics</small>
+        </b>
+      </Link>
       <hr />
-      <div className='padding items'>
+      <Link to='/my-items' className='padding items'>
         <FontAwesomeIcon icon={faBookmark} />
 
         <small>My items</small>
-      </div>
+      </Link>
     </article>
   );
 };
