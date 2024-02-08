@@ -40,9 +40,10 @@ const RecentSideBar = () => {
         </div>
       </section>
       <hr />
-      <div className='discover_btn'>
-        <Link to='/'>Discover me</Link>
-      </div>
+
+      <Link className='discover_btn' to='/my-networks/discover-hub'>
+        Discover me
+      </Link>
     </article>
   );
 };

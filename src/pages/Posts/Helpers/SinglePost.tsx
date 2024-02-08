@@ -46,7 +46,7 @@ const SinglePost = ({ postId, postIndex }: Props) => {
   };
 
   return (
-    <article className='post'>
+    <article className='post'> 
       {isLoading ? (
         <Loading text='post loading...' />
       ) : (

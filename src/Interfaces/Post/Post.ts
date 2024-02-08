@@ -8,11 +8,9 @@ interface Post {
   _id?: string;
   images?: string[];
   videos?: string[];
-  title: string;
   content: string;
   status: PostStatus;
   user: User;
-  views: User[];
   comments: Comment[];
   expressions: Expressions;
   shares: User[];
