@@ -3,6 +3,35 @@
 @use '../../sass/Styles' as *;
 
 .posts {
+  .sorting {
+    position: relative;
+    .default_sort {
+      position: absolute;
+      top: -13px;
+      right: 0;
+      background-color: $body_color;
+      cursor: pointer;
+    }
+    .sorting_drop_down {
+      position: absolute;
+      top: 0;
+      right: 0;
+      @extend %sectionStyle;
+      padding: 5px;
+      display: none;
+      &.active {
+        display: block;
+      }
+      .sorting_type {
+        cursor: pointer;
+        color: $third;
+        font-weight: 600;
+        &:hover {
+          color: $secondary;
+        }
+      }
+    }
+  }
   .post {
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -13,6 +42,7 @@
     overflow: hidden;
 
     hr {
+      position: relative;
       margin: 0;
     }
 
