@@ -12,6 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const Posts = () => {
+  const sortingTypes = ['Recommend', 'Recently', 'New', 'Old'];
+  const [sort, setSort] = useState<string>(sortingTypes[0]);
   const {
     isFetching,
     isLoading,
@@ -20,7 +22,7 @@ const Posts = () => {
     isError,
     error,
     data: posts,
-  } = useGetPostsQuery('');
+  } = useGetPostsQuery(sort);
 
   useEffect(() => {
     ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
@@ -36,8 +38,6 @@ const Posts = () => {
   const sortingDropDownRef = useRef<HTMLDivElement>(null);
   const handleOpenSortingDropDown = () =>
     sortingDropDownRef.current?.classList.toggle('active');
-  const [sort, setSort] = useState<string>('recently');
-  const sortingTypes = ['recommend', 'recently', 'new', 'old'];
 
   return (
     <section className='posts'>
@@ -45,7 +45,7 @@ const Posts = () => {
       <div className='sorting'>
         <hr />
         <div className='default_sort' onClick={handleOpenSortingDropDown}>
-          {sort}
+          <small>{sort}</small>
           <span className='svg px-1'>
             <FontAwesomeIcon icon={faCaretDown} />
           </span>
@@ -55,7 +55,7 @@ const Posts = () => {
             <div
               key={index}
               className='sorting_type'
-              onClick={() => {
+              onClick={(e) => {
                 setSort(type);
                 handleOpenSortingDropDown();
               }}

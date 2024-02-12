@@ -11,7 +11,7 @@ export const PostApi = createApi({
   }),
   endpoints: (builder) => ({
     getPosts: builder.query<Post, string>({
-      query: () => '/',
+      query: (sort) => (sort ? `?sort=${sort.toLowerCase()}` : '/'),
     }),
     getPost: builder.query<Post, string>({
       query: (id) => `/${id}`,
