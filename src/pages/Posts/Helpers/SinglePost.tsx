@@ -21,11 +21,8 @@ import UIExpressions from '../../../functions/UIExpressions';
 import ShowComments from './ShowComments';
 import CreateCommentForm from './CreateCommentForm';
 import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useSendFollowMutation } from '../../../store/apis/Users';
-import { signInUser } from '../../../store/reducers/AuthSlice';
-import { fetchUser } from '../../../store/reducers/FetchUser';
-
 type Props = {
   postId: string;
   postIndex: number;
@@ -43,10 +40,11 @@ const SinglePost = ({ postId, postIndex }: Props) => {
       following: post?.user?._id,
     };
     await sendFollow(data);
+    refetch();
   };
 
   return (
-    <article className='post'> 
+    <article className='post'>
       {isLoading ? (
         <Loading text='post loading...' />
       ) : (
@@ -75,14 +73,16 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                 </div>
               </div>
 
-              {user?.id && (
-                <div className='follow_btn' onClick={follow}>
-                  <div className='icon'>
-                    <FontAwesomeIcon icon={faUserPlus} />
+              {user?.id &&
+                user?.id !== post.user._id &&
+                post.user.followers?.indexOf(user?.id) === -1 && (
+                  <div className='follow_btn' onClick={follow}>
+                    <div className='icon'>
+                      <FontAwesomeIcon icon={faUserPlus} />
+                    </div>
+                    <span className='text'>follow</span>
                   </div>
-                  <span className='text'>follow</span>
-                </div>
-              )}
+                )}
             </div>
 
             <div className='post_body'>
