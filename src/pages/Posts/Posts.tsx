@@ -1,8 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-import './Posts.scss';
-
-import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
 import UploadPost from '../../crud/Post/CreatePost';
 import { useGetPostsQuery } from '../../store/apis/Posts';
 import { Each } from '../../components/Each/Each';
@@ -10,6 +7,7 @@ import Post from '../../Interfaces/Post/Post';
 import SinglePost from './Helpers/SinglePost';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import './Posts.scss';
 
 const Posts = () => {
   const sortingTypes = ['Recommend', 'Recently', 'New', 'Old'];
@@ -18,23 +16,10 @@ const Posts = () => {
     isFetching,
     isLoading,
     isSuccess,
-    isUninitialized,
     isError,
-    error,
     data: posts,
   } = useGetPostsQuery(sort);
 
-  useEffect(() => {
-    ChangeButtonTextContent('.post .post_head .follow_btn', 'Connected', 1);
-  }, [
-    posts,
-    isError,
-    isFetching,
-    isLoading,
-    isSuccess,
-    isUninitialized,
-    error,
-  ]);
   const sortingDropDownRef = useRef<HTMLDivElement>(null);
   const handleOpenSortingDropDown = () =>
     sortingDropDownRef.current?.classList.toggle('active');

@@ -23,6 +23,7 @@ import CreateCommentForm from './CreateCommentForm';
 import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcons';
 import { useSelector } from 'react-redux';
 import { useSendFollowMutation } from '../../../store/apis/Users';
+import ChangeButtonTextContent from '../../../functions/ChangeButtonTextContent';
 type Props = {
   postId: string;
   postIndex: number;
@@ -35,12 +36,14 @@ const SinglePost = ({ postId, postIndex }: Props) => {
   const [togglePostExpression] = useTogglePostExpressionMutation();
   let emojiName: string;
 
-  const follow = async () => {
-    const data = {
-      following: post?.user?._id,
-    };
-    await sendFollow(data);
-    refetch();
+  const follow = () => {
+    setTimeout(async () => {
+      const data = {
+        following: post?.user?._id,
+      };
+      await sendFollow(data);
+      refetch();
+    }, 1000);
   };
 
   return (
@@ -76,10 +79,13 @@ const SinglePost = ({ postId, postIndex }: Props) => {
               {user?.id &&
                 user?.id !== post.user._id &&
                 post.user.followers?.indexOf(user?.id) === -1 && (
-                  <div className='follow_btn' onClick={follow}>
-                    <div className='icon'>
-                      <FontAwesomeIcon icon={faUserPlus} />
-                    </div>
+                  <div
+                    className='follow_btn unconnected'
+                    onClick={(e) => {
+                      ChangeButtonTextContent(e, 'Connected');
+                      follow();
+                    }}
+                  >
                     <span className='text'>follow</span>
                   </div>
                 )}
