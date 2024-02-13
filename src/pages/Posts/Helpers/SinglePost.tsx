@@ -1,17 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PostComment from './PostComment';
 import {
+  faArrowRotateLeft,
+  faBookmark as solidBookMark,
   faComment,
-  faPaperPlane,
   faRepeat,
-  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
+
 import FindExpression from '../../../components/FindExpression/FindExpression';
 import GetExpressionsLength from '../../../functions/GetExpressionsLength';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
   useGetPostQuery,
+  useSaveMutation,
+  useShareMutation,
   useTogglePostExpressionMutation,
 } from '../../../store/apis/Posts';
 import Loading from '../../../components/Loading/Loading';
@@ -24,6 +27,7 @@ import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcon
 import { useSelector } from 'react-redux';
 import { useSendFollowMutation } from '../../../store/apis/Users';
 import ChangeButtonTextContent from '../../../functions/ChangeButtonTextContent';
+import { faBookmark as regularBookMark } from '@fortawesome/free-regular-svg-icons';
 type Props = {
   postId: string;
   postIndex: number;
@@ -35,6 +39,9 @@ const SinglePost = ({ postId, postIndex }: Props) => {
   const [sendFollow] = useSendFollowMutation();
   const [togglePostExpression] = useTogglePostExpressionMutation();
   let emojiName: string;
+
+  const [sharePost] = useShareMutation();
+  const [savePost] = useSaveMutation();
 
   const follow = () => {
     setTimeout(async () => {
@@ -153,13 +160,41 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                   <div className='identifier'>Comment</div>
                 </div>
 
-                <div className='interact repost'>
-                  <FontAwesomeIcon icon={faRepeat} />
-                  <div className='identifier'>Repost</div>
+                <div
+                  className='interact repost'
+                  onClick={async () => {
+                    post._id && (await sharePost({ postId: post._id }));
+                    refetch();
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={
+                      post?.shares.indexOf(user?.id) < 0
+                        ? faRepeat
+                        : faArrowRotateLeft
+                    }
+                  />
+                  <div className='identifier'>
+                    {post?.shares.indexOf(user?.id) < 0 ? 'Repost' : 'Undo'}
+                  </div>
                 </div>
-                <div className='interact send'>
-                  <FontAwesomeIcon icon={faPaperPlane} />
-                  <div className='identifier'>Send</div>
+                <div
+                  className='interact send'
+                  onClick={async () => {
+                    post._id && (await savePost({ postId: post._id }));
+                    refetch();
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={
+                      post?.saves.indexOf(user?.id) < 0
+                        ? solidBookMark
+                        : regularBookMark
+                    }
+                  />
+                  <div className='identifier'>
+                    {post?.saves.indexOf(user?.id) < 0 ? 'Save' : 'UnSave'}
+                  </div>
                 </div>
               </div>
 

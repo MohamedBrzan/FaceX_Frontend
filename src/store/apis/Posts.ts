@@ -30,6 +30,20 @@ export const PostApi = createApi({
         body: data,
       }),
     }),
+    share: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/share',
+        body: data,
+      }),
+    }),
+    save: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/save',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -38,4 +52,6 @@ export const {
   useUploadPostMutation,
   useGetPostQuery,
   useTogglePostExpressionMutation,
+  useShareMutation,
+  useSaveMutation,
 } = PostApi;

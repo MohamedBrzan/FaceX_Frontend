@@ -15,8 +15,8 @@ const FeedSideBar = () => {
       </figure>
       <div className='user_info'>
         <h6 className='name'>{`${user?.name?.first} ${user?.name?.last}`}</h6>
-        <p className='title'>
-          <small>{user?.profession || 'Unknown'}</small>
+        <p className='title text-center'>
+          <small>{user?.profession || 'Software Engineer'}</small>
         </p>
       </div>
       <hr />

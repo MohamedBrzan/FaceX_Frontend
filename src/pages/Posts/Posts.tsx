@@ -40,7 +40,7 @@ const Posts = () => {
             <div
               key={index}
               className='sorting_type'
-              onClick={(e) => {
+              onClick={() => {
                 setSort(type);
                 handleOpenSortingDropDown();
               }}

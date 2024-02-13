@@ -82,11 +82,11 @@ const CreatePost = () => {
             <figure>
               <img
                 src={user?.avatar}
-                alt={`this is ${user?.name.first} ${user?.name.last} avatar`}
+                alt={`this is ${user?.name?.first} ${user?.name?.last} avatar`}
               />
             </figure>
             <div className='info'>
-              <h4 className='username'>{`${user?.name.first} ${user?.name.last}`}</h4>
+              <h4 className='username'>{`${user?.name?.first} ${user?.name?.last}`}</h4>
               <p className='privacy'>Post to {privacy}</p>
               <div className='privacy_drop_menu' ref={privacyDropDownRef}>
                 <h6>privacy</h6>
