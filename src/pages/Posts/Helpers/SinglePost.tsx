@@ -25,9 +25,8 @@ import ShowComments from './ShowComments';
 import CreateCommentForm from './CreateCommentForm';
 import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcons';
 import { useSelector } from 'react-redux';
-import { useSendFollowMutation } from '../../../store/apis/Users';
-import ChangeButtonTextContent from '../../../functions/ChangeButtonTextContent';
 import { faBookmark as regularBookMark } from '@fortawesome/free-regular-svg-icons';
+import FollowBtn from '../../../components/FollowBtn/FollowBtn';
 type Props = {
   postId: string;
   postIndex: number;
@@ -36,22 +35,11 @@ type Props = {
 const SinglePost = ({ postId, postIndex }: Props) => {
   const { user } = useSelector((state) => state.Auth);
   const { isLoading, isSuccess, data: post, refetch } = useGetPostQuery(postId);
-  const [sendFollow] = useSendFollowMutation();
   const [togglePostExpression] = useTogglePostExpressionMutation();
   let emojiName: string;
 
   const [sharePost] = useShareMutation();
   const [savePost] = useSaveMutation();
-
-  const follow = () => {
-    setTimeout(async () => {
-      const data = {
-        following: post?.user?._id,
-      };
-      await sendFollow(data);
-      refetch();
-    }, 1000);
-  };
 
   return (
     <article className='post'>
@@ -83,19 +71,15 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                 </div>
               </div>
 
-              {user?.id &&
-                user?.id !== post.user._id &&
-                post.user.followers?.indexOf(user?.id) === -1 && (
-                  <div
-                    className='follow_btn unconnected'
-                    onClick={(e) => {
-                      ChangeButtonTextContent(e, 'Connected');
-                      follow();
-                    }}
-                  >
-                    <span className='text'>follow</span>
-                  </div>
-                )}
+              <FollowBtn
+                condition={
+                  user?.id &&
+                  user?.id !== post.user._id &&
+                  post.user.followers?.indexOf(user?.id) === -1
+                }
+                following={post.user._id}
+                refetch={refetch}
+              />
             </div>
 
             <div className='post_body'>

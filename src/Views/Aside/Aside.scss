@@ -1,5 +1,6 @@
 @use '../../sass/Colors' as *;
 @use '../../sass/Styles' as *;
+@use '../../sass/Mixins' as *;
 
 aside {
   width: 100%;
@@ -66,6 +67,12 @@ aside {
       &:hover {
         background-color: $hover_secondary;
         color: $secondary;
+      }
+      @include Responsive('xs') {
+        font-size: 13px;
+      }
+      @include Responsive('xl') {
+        font-size: 1rem;
       }
     }
   }
