@@ -22,6 +22,13 @@ export const CommentApi = createApi({
         body: data,
       }),
     }),
+    editComment: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/update',
+        body: data,
+      }),
+    }),
     toggleCommentExpression: builder.mutation({
       query: ({ ...data }) => ({
         method: 'PATCH',
@@ -43,6 +50,7 @@ export const {
   useGetCommentsQuery,
   useGetCommentQuery,
   useUploadCommentMutation,
+  useEditCommentMutation,
   useToggleCommentExpressionMutation,
   useDeleteCommentMutation,
 } = CommentApi;

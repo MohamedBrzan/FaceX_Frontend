@@ -4,6 +4,7 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import FindExpressionForComments from '../../../components/FindExpression/FindExpressionForComment';
 import {
   useDeleteReplyMutation,
+  useEditReplyMutation,
   useToggleReplyExpressionMutation,
 } from '../../../store/apis/Replies';
 import Post from '../../../Interfaces/Post/Post';
@@ -20,10 +21,10 @@ import CheckIdentifierName from '../../../functions/CheckIdentifierName';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowReplyInput from '../../../functions/ShowReplyInput';
 import handleChangingExpressionForReply from '../../../functions/handleChangingExpressionForReply';
-import ActionsDropdown from './ActionsDropdown';
 import { showUpDropdown } from './PostComment';
 import { useSelector } from 'react-redux';
 import UserImage from '../../../constants/UserAvatar';
+import ActionsDropdown from './ActionsDropdown';
 
 type Props = {
   reply: Reply;
@@ -60,6 +61,7 @@ const PostReplies = ({
 }: Props) => {
   const { user } = useSelector((state) => state.Auth);
   const [toggleReplyExpression] = useToggleReplyExpressionMutation();
+  const [editReply, { isSuccess: editSuccess }] = useEditReplyMutation();
   const [deleteReply] = useDeleteReplyMutation();
 
   return (
@@ -95,6 +97,9 @@ const PostReplies = ({
                 />
                 {commentId && (
                   <ActionsDropdown
+                    editFunction={editReply}
+                    editSuccess={editSuccess}
+                    textToEdit={reply.reply}
                     commentId={commentId}
                     refetch={refetch}
                     APIDelete={deleteReply}

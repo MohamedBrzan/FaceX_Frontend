@@ -22,12 +22,13 @@ import Loading from '../../../components/Loading/Loading';
 import handleChangingExpressionForPost from '../../../functions/handleChangingExpressionForPost';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowComments from './ShowComments';
-import CreateCommentForm from './CreateCommentForm';
 import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcons';
 import { useSelector } from 'react-redux';
 import { faBookmark as regularBookMark } from '@fortawesome/free-regular-svg-icons';
 import FollowBtn from '../../../components/FollowBtn/FollowBtn';
 import UserImage from '../../../constants/UserAvatar';
+import CreateMessageForm from '../../../components/CreateMessageForm/CreateMessageForm';
+import { useUploadCommentMutation } from '../../../store/apis/Comments';
 type Props = {
   postId: string;
   postIndex: number;
@@ -35,6 +36,7 @@ type Props = {
 
 const SinglePost = ({ postId, postIndex }: Props) => {
   const { user } = useSelector((state) => state.Auth);
+  const [uploadCommentMessage] = useUploadCommentMutation()
   const { isLoading, isSuccess, data: post, refetch } = useGetPostQuery(postId);
   const [togglePostExpression] = useTogglePostExpressionMutation();
   let emojiName: string;
@@ -173,8 +175,8 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                   <FontAwesomeIcon
                     icon={
                       post?.saves.indexOf(user?._id) < 0
-                        ? solidBookMark
-                        : regularBookMark
+                        ? regularBookMark
+                        : solidBookMark
                     }
                   />
                   <div className='identifier'>
@@ -193,9 +195,12 @@ const SinglePost = ({ postId, postIndex }: Props) => {
 
                       <div className='input'>
                         {postId && (
-                          <CreateCommentForm
+                          <CreateMessageForm
                             postId={postId}
+                            uploadFunction={uploadCommentMessage}
+                            visiblePrivacy={'public'}
                             refetch={refetch}
+                            messageFor='comment'
                           />
                         )}
                       </div>

@@ -55,9 +55,10 @@ const CreateReplyForm = ({ commentId, refetch }: Props) => {
     >
       <FormControl
         className='comment_input'
-        type='text'
+        as={'textarea'}
         placeholder='what is in your mind'
         required={true}
+        maxLength={150}
         value={message}
         onChange={(e) => {
           const target = e.target as HTMLInputElement;

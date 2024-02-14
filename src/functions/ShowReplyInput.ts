@@ -8,8 +8,8 @@ const ShowReplyInput = (id: string) => {
 
   replyInputSection?.classList.remove('hidden');
 
-  const replyInput = replyInputSection?.lastElementChild?.firstElementChild
-    ?.firstElementChild as HTMLInputElement;
+  const replyInput = replyInputSection?.lastElementChild
+    ?.firstElementChild as HTMLTextAreaElement;
   replyInput.focus();
 };
 

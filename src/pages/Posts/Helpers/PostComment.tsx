@@ -1,5 +1,6 @@
 import {
   useDeleteCommentMutation,
+  useEditCommentMutation,
   useToggleCommentExpressionMutation,
 } from '../../../store/apis/Comments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +18,6 @@ import {
   QueryActionCreatorResult,
   QueryDefinition,
 } from '@reduxjs/toolkit/query';
-import ActionsDropdown from './ActionsDropdown';
 import PostReplies from './PostReplies';
 import CheckIdentifierName from '../../../functions/CheckIdentifierName';
 import UIExpressions from '../../../functions/UIExpressions';
@@ -26,6 +26,9 @@ import CreateReplyForm from './CreateReplyForm';
 import handleChangingExpressionForComment from '../../../functions/handleChangingExpressionForComment';
 import { useSelector } from 'react-redux';
 import UserImage from '../../../constants/UserAvatar';
+import ActionsDropdown from './ActionsDropdown';
+import CreateMessageForm from '../../../components/CreateMessageForm/CreateMessageForm';
+import { useUploadReplyMutation } from '../../../store/apis/Replies';
 
 type Props = {
   postIndex: number;
@@ -79,6 +82,8 @@ const PostComment = ({
 }: Props) => {
   const { user } = useSelector((state) => state.Auth);
   const [toggleCommentExpression] = useToggleCommentExpressionMutation();
+  const [uploadReplyMessage] = useUploadReplyMutation();
+  const [editComment, { isSuccess: editSuccess }] = useEditCommentMutation();
   const [deleteComment] = useDeleteCommentMutation();
 
   return (
@@ -117,10 +122,13 @@ const PostComment = ({
                         icon={faEllipsis}
                         onClick={(e) => showUpDropdown(e)}
                       />
-                      {postId && comment._id && (
+                      {postId && commentId && (
                         <ActionsDropdown
+                          editFunction={editComment}
+                          editSuccess={editSuccess}
+                          textToEdit={comment.message}
                           postId={postId}
-                          commentId={comment._id}
+                          commentId={commentId}
                           refetch={refetch}
                           APIDelete={deleteComment}
                           commentIndex={commentIndex}
@@ -136,7 +144,7 @@ const PostComment = ({
                       className='interact expressions'
                       onClick={async () =>
                         await handleChangingExpressionForComment({
-                          commentId: comment._id,
+                          commentId: commentId,
                           commentIndex,
                           toggleCommentExpression,
                           postIndex,
@@ -186,7 +194,7 @@ const PostComment = ({
                   {user?._id && (
                     <span
                       className='reply'
-                      onClick={() => comment._id && ShowReplyInput(comment._id)}
+                      onClick={() => commentId && ShowReplyInput(commentId)}
                     >
                       Reply
                     </span>
@@ -217,14 +225,16 @@ const PostComment = ({
                       <img src={UserImage(user.avatar)} alt='User' />
                     </figure>
 
-                    <div className='input'>
-                      {commentId && (
-                        <CreateReplyForm
-                          commentId={commentId}
-                          refetch={refetch}
-                        />
-                      )}
-                    </div>
+                    {commentId && (
+                      <CreateMessageForm
+                        postId={postId}
+                        commentId={commentId}
+                        uploadFunction={uploadReplyMessage}
+                        visiblePrivacy={'public'}
+                        refetch={refetch}
+                        messageFor='reply'
+                      />
+                    )}
                   </section>
                 )}
               </div>

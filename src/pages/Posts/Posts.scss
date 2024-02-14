@@ -88,7 +88,6 @@
           }
         }
       }
- 
     }
 
     .post_body {
@@ -313,19 +312,27 @@
               }
             }
             .input {
-              position: relative;
               @extend %displayFlexContentCenter !optional;
               width: 100%;
+              form {
+                @extend %displayFlexCenter;
+                flex-direction: column;
+                textarea {
+                  resize: none;
+                  border: 1px solid $third;
+                  &::-webkit-scrollbar {
+                    display: none;
+                  }
+                }
+              }
               .comment_input {
                 position: relative;
                 box-shadow: none;
               }
               .submit_btn {
-                position: absolute;
-                top: calc(50% - 18px);
-                right: 10px;
                 @extend %primaryCircledBtn;
-                display: inline-block !important;
+                margin-left: auto;
+                margin-top: 10px;
               }
               input {
                 width: 100%;
@@ -755,5 +762,120 @@
   .actions_modal {
     @extend %modalStyle;
     background-color: transparent;
+  }
+  .upload_form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    display: none;
+    &.active {
+      @extend %displayFlexCenter;
+    }
+    .content_form {
+      @extend %sectionStyle;
+      z-index: 2;
+      padding: 10px;
+      .user_info {
+        position: relative;
+        @extend %secondaryBtn;
+        @extend %displayFlexStart;
+        gap: 10px;
+        width: fit-content;
+        figure {
+          margin: 0;
+          min-width: 40px;
+          min-height: 40px;
+          width: 40px;
+          height: 40px;
+          @include borderRadius('all', 50%);
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .info {
+          .username,
+          .privacy {
+            @extend %displayFlexStart;
+            gap: 10px;
+            margin: 0;
+            @include overflowText(1);
+          }
+          .username {
+            font-weight: bold;
+          }
+          .privacy {
+            font-weight: 500;
+          }
+          .privacy_drop_menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            @extend %sectionStyle;
+            display: none;
+            &.active {
+              display: block;
+            }
+            .privacy_type {
+              @extend %displayFlexStart;
+              align-items: center;
+              gap: 10px;
+              position: relative;
+              padding: 0 0 10px 30px;
+              font-weight: 500;
+              &.active {
+                .radio_1 {
+                  width: 15px;
+                  height: 15px;
+                  @include borderRadius('all', 50%);
+                  background-color: $green_primary;
+                  @extend %displayFlexCenter;
+                  .radio_2 {
+                    width: 7px;
+                    height: 7px;
+                    @include borderRadius('all', 50%);
+                    background-color: $general;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      form {
+        textarea.form-control {
+          resize: none;
+          min-height: 250px;
+          box-shadow: none;
+          border: none;
+          outline: none;
+          &::placeholder {
+            font-size: 1.4rem;
+          }
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+        .submit_btn {
+          display: flex;
+          margin-left: auto;
+          margin-top: 15px;
+          @extend %primaryCircledBtn;
+        }
+      }
+    }
+    .form_modal {
+      @extend %modalStyle;
+      display: flex;
+      z-index: 1;
+    }
   }
 }

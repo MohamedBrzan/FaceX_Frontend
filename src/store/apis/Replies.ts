@@ -4,32 +4,42 @@ import Reply from '../../Interfaces/Comment/Reply';
 
 export const ReplyApi = createApi({
   reducerPath: 'ReplyApi',
-  baseQuery: fetchBaseQuery({ baseUrl: APIS_ROOT, credentials: 'include' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${APIS_ROOT}reply`,
+    credentials: 'include',
+  }),
   endpoints: (builder) => ({
     getReplies: builder.query<Reply, string>({
-      query: () => '/reply',
+      query: () => '',
     }),
     getReply: builder.query<Reply, string>({
-      query: (id) => `/reply/${id}`,
+      query: (id) => `/${id}`,
     }),
     uploadReply: builder.mutation({
       query: ({ ...data }) => ({
         method: 'POST',
-        url: '/reply/create',
+        url: '/create',
         body: data,
       }),
     }),
     toggleReplyExpression: builder.mutation({
       query: ({ ...data }) => ({
         method: 'PATCH',
-        url: '/reply/expressions/toggle',
+        url: '/expressions/toggle',
+        body: data,
+      }),
+    }),
+    editReply: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/update',
         body: data,
       }),
     }),
     deleteReply: builder.mutation({
       query: ({ ...data }) => ({
         method: 'DELETE',
-        url: '/reply/del',
+        url: '/del',
         body: data,
       }),
     }),
@@ -40,6 +50,7 @@ export const {
   useGetRepliesQuery,
   useGetReplyQuery,
   useUploadReplyMutation,
+  useEditReplyMutation,
   useToggleReplyExpressionMutation,
-  useDeleteReplyMutation
+  useDeleteReplyMutation,
 } = ReplyApi;
