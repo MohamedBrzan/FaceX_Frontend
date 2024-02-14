@@ -14,7 +14,7 @@ const FindExpressionForComments = (props: Props) => {
 
   Object.keys(expressions).forEach((k) => {
     for (const subscriber of expressions[k as keyof typeof Expressions]) {
-      if (subscriber === user.id) {
+      if (subscriber === user._id) {
         name = k;
       }
     }

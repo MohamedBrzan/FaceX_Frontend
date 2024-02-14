@@ -27,6 +27,7 @@ import ShowMiniExpressionsIcons from '../../../functions/ShowMiniExpressionsIcon
 import { useSelector } from 'react-redux';
 import { faBookmark as regularBookMark } from '@fortawesome/free-regular-svg-icons';
 import FollowBtn from '../../../components/FollowBtn/FollowBtn';
+import UserImage from '../../../constants/UserAvatar';
 type Props = {
   postId: string;
   postIndex: number;
@@ -52,7 +53,7 @@ const SinglePost = ({ postId, postIndex }: Props) => {
               <div className='user_info'>
                 <figure className='avatar'>
                   <img
-                    src={post.user.avatar}
+                    src={UserImage(post.user.avatar)}
                     alt={post.user.name?.additional}
                   />
                 </figure>
@@ -73,9 +74,9 @@ const SinglePost = ({ postId, postIndex }: Props) => {
 
               <FollowBtn
                 condition={
-                  user?.id &&
-                  user?.id !== post.user._id &&
-                  post.user.followers?.indexOf(user?.id) === -1
+                  user?._id &&
+                  user?._id !== post.user._id &&
+                  post.user.followers?.indexOf(user?._id) === -1
                 }
                 following={post.user._id}
                 refetch={refetch}
@@ -153,13 +154,13 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                 >
                   <FontAwesomeIcon
                     icon={
-                      post?.shares.indexOf(user?.id) < 0
+                      post?.shares.indexOf(user?._id) < 0
                         ? faRepeat
                         : faArrowRotateLeft
                     }
                   />
                   <div className='identifier'>
-                    {post?.shares.indexOf(user?.id) < 0 ? 'Repost' : 'Undo'}
+                    {post?.shares.indexOf(user?._id) < 0 ? 'Repost' : 'Undo'}
                   </div>
                 </div>
                 <div
@@ -171,23 +172,23 @@ const SinglePost = ({ postId, postIndex }: Props) => {
                 >
                   <FontAwesomeIcon
                     icon={
-                      post?.saves.indexOf(user?.id) < 0
+                      post?.saves.indexOf(user?._id) < 0
                         ? solidBookMark
                         : regularBookMark
                     }
                   />
                   <div className='identifier'>
-                    {post?.saves.indexOf(user?.id) < 0 ? 'Save' : 'UnSave'}
+                    {post?.saves.indexOf(user?._id) < 0 ? 'Save' : 'UnSave'}
                   </div>
                 </div>
               </div>
 
               <section className='post_comments'>
                 <section className='comments'>
-                  {user?.id && (
+                  {user?._id && (
                     <section className='create_comment'>
                       <figure className='avatar'>
-                        <img src={user?.avatar} alt='User' />
+                        <img src={UserImage(user.avatar)} alt='User' />
                       </figure>
 
                       <div className='input'>

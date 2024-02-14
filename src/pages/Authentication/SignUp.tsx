@@ -80,7 +80,7 @@ const SignUp = () => {
     };
 
     await signUp(data).then((res) => {
-      const { avatar, cover, name, followers, followings, _id: id } = res.data;
+      const { avatar, cover, name, followers, followings, _id } = res.data;
       dispatch(
         signInUser({
           avatar,
@@ -88,7 +88,7 @@ const SignUp = () => {
           name,
           followers,
           followings,
-          id,
+          _id,
         })
       );
     });

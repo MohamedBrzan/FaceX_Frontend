@@ -23,6 +23,7 @@ import handleChangingExpressionForReply from '../../../functions/handleChangingE
 import ActionsDropdown from './ActionsDropdown';
 import { showUpDropdown } from './PostComment';
 import { useSelector } from 'react-redux';
+import UserImage from '../../../constants/UserAvatar';
 
 type Props = {
   reply: Reply;
@@ -67,7 +68,7 @@ const PostReplies = ({
         <div className='reply_left'>
           <figure className='avatar'>
             <img
-              src={reply.user.avatar}
+              src={UserImage(reply.user.avatar)}
               alt={`${reply.user.name?.first} ${reply.user.name?.last} avatar`}
             />
           </figure>
@@ -86,7 +87,7 @@ const PostReplies = ({
               </p>
             </div>
 
-            {user?.id === reply.user._id && (
+            {user?._id === reply.user._id && (
               <div className='dots_icon'>
                 <FontAwesomeIcon
                   icon={faEllipsis}
@@ -107,7 +108,7 @@ const PostReplies = ({
             )}
           </div>
           <div className='reply_footer'>
-            {user?.id && (
+            {user?._id && (
               <div
                 className='interact expressions'
                 onClick={async () =>
@@ -156,7 +157,7 @@ const PostReplies = ({
                 {GetExpressionsLength(reply.expressions) || null}
               </span>
             </span>
-            {user?.id && (
+            {user?._id && (
               <span
                 className='reply'
                 onClick={() => commentId && ShowReplyInput(commentId)}

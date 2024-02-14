@@ -2,16 +2,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import UserCover from '../../../../constants/UserCover';
+import UserAvatar from '../../../../constants/UserAvatar';
 
 const FeedSideBar = () => {
   const { user } = useSelector((state) => state.Auth);
   return (
     <article className='feed_identity'>
       <figure className='cover'>
-        <img className='cover' src={user?.cover} alt='User Cover' />
+        <img className='cover' src={UserCover(user.cover)} alt='User Cover' />
       </figure>
       <figure className='me'>
-        <img className='me' src={user?.avatar} alt='User Photo' />
+        <img className='me' src={UserAvatar(user.avatar)} alt='User Photo' />
       </figure>
       <div className='user_info'>
         <h6 className='name'>{`${user?.name?.first} ${user?.name?.last}`}</h6>

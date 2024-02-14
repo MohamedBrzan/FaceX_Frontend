@@ -17,15 +17,13 @@ aside {
     }
     .feeds {
       .feed {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+        @extend %displayFlexContentStart;
         gap: 10px;
         margin-bottom: 10px;
         figure {
           margin: 0;
-          width: 50px;
-          height: 50px;
+          width: clamp(35px, 50px, 100%);
+          height: clamp(35px, 50px, 100%);
           border-radius: 50%;
           overflow: hidden;
           vertical-align: middle;

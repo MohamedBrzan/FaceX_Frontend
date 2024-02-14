@@ -23,7 +23,7 @@ const FindExpression = (props: Props) => {
   let name: string = '';
   Object.keys(expressions).forEach((k) => {
     for (const subscriber of expressions[k as keyof typeof Expressions]) {
-      if (subscriber._id === user.id) {
+      if (subscriber._id === user._id) {
         founded = true;
         name = k;
       }
@@ -48,7 +48,6 @@ const FindExpression = (props: Props) => {
       : name === 'surprise'
       ? surprise
       : fear;
-
   return founded ? (
     <>
       <figure className='show_interact'>

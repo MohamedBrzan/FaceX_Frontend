@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form, FormControl } from 'react-bootstrap';
-import unknown from '../../assets/unknown.png';
 import {
   useGetPostsQuery,
   useUploadPostMutation,
@@ -9,6 +8,7 @@ import {
 import './Post.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import UserAvatar from '../../constants/UserAvatar';
 
 const CreatePost = () => {
   const { user } = useSelector((state) => state.Auth);
@@ -72,7 +72,7 @@ const CreatePost = () => {
     <section className='create_post'>
       <div className='text'>
         <figure className='avatar'>
-          <img src={user?.avatar || unknown} alt='User' />
+          <img src={UserAvatar(user.avatar)} alt='User' />
         </figure>
         <div className='input' onClick={showUploadPost}></div>
       </div>
@@ -81,7 +81,7 @@ const CreatePost = () => {
           <div className='user_info' onClick={handleOpenPrivacyDropDown}>
             <figure>
               <img
-                src={user?.avatar}
+                src={UserAvatar(user.avatar)}
                 alt={`this is ${user?.name?.first} ${user?.name?.last} avatar`}
               />
             </figure>

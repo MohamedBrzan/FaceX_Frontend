@@ -25,6 +25,7 @@ import ShowReplyInput from '../../../functions/ShowReplyInput';
 import CreateReplyForm from './CreateReplyForm';
 import handleChangingExpressionForComment from '../../../functions/handleChangingExpressionForComment';
 import { useSelector } from 'react-redux';
+import UserImage from '../../../constants/UserAvatar';
 
 type Props = {
   postIndex: number;
@@ -91,7 +92,7 @@ const PostComment = ({
               <div className='comment_left'>
                 <figure className='avatar'>
                   <img
-                    src={comment?.user?.avatar}
+                    src={UserImage(comment.user.avatar)}
                     alt={`${comment.user.name?.first} ${comment.user.name?.last} avatar`}
                   />
                 </figure>
@@ -110,7 +111,7 @@ const PostComment = ({
                       {comment.message}
                     </p>
                   </div>
-                  {user?.id === comment.user._id && (
+                  {user?._id === comment.user._id && (
                     <div className='dots_icon'>
                       <FontAwesomeIcon
                         icon={faEllipsis}
@@ -130,7 +131,7 @@ const PostComment = ({
                   )}
                 </div>
                 <div className='comment_footer'>
-                  {user?.id && (
+                  {user?._id && (
                     <div
                       className='interact expressions'
                       onClick={async () =>
@@ -182,7 +183,7 @@ const PostComment = ({
                         null}
                     </span>
                   </span>
-                  {user?.id && (
+                  {user?._id && (
                     <span
                       className='reply'
                       onClick={() => comment._id && ShowReplyInput(comment._id)}
@@ -210,10 +211,10 @@ const PostComment = ({
                       />
                     ))}
                 </section>
-                {user?.id && (
+                {user?._id && (
                   <section className='create_reply hidden'>
                     <figure className='avatar'>
-                      <img src={user?.avatar} alt='User' />
+                      <img src={UserImage(user.avatar)} alt='User' />
                     </figure>
 
                     <div className='input'>
