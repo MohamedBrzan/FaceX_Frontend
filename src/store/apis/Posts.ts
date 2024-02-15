@@ -23,6 +23,13 @@ export const PostApi = createApi({
         body: data,
       }),
     }),
+    editPost: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'PATCH',
+        url: '/update',
+        body: data,
+      }),
+    }),
     togglePostExpression: builder.mutation({
       query: ({ ...data }) => ({
         method: 'PATCH',
@@ -44,6 +51,13 @@ export const PostApi = createApi({
         body: data,
       }),
     }),
+    deletePost: builder.mutation({
+      query: ({ ...data }) => ({
+        method: 'DELETE',
+        url: '/del',
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -51,7 +65,9 @@ export const {
   useGetPostsQuery,
   useUploadPostMutation,
   useGetPostQuery,
+  useEditPostMutation,
   useTogglePostExpressionMutation,
   useShareMutation,
   useSaveMutation,
+  useDeletePostMutation,
 } = PostApi;

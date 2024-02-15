@@ -1,18 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PostComment from './PostComment';
+import PostComment, { showUpDropdown } from './PostComment';
 import {
   faArrowRotateLeft,
   faBookmark as solidBookMark,
   faComment,
   faRepeat,
+  faEllipsis,
 } from '@fortawesome/free-solid-svg-icons';
 
 import FindExpression from '../../../components/FindExpression/FindExpression';
 import GetExpressionsLength from '../../../functions/GetExpressionsLength';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+
 import {
+  useDeletePostMutation,
+  useEditPostMutation,
   useGetPostQuery,
+  useGetPostsQuery,
   useSaveMutation,
   useShareMutation,
   useTogglePostExpressionMutation,
@@ -29,14 +32,43 @@ import FollowBtn from '../../../components/FollowBtn/FollowBtn';
 import UserImage from '../../../constants/UserAvatar';
 import CreateMessageForm from '../../../components/CreateMessageForm/CreateMessageForm';
 import { useUploadCommentMutation } from '../../../store/apis/Comments';
+import { Link } from 'react-router-dom';
+import ActionsDropdown from './ActionsDropdown';
+import {
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+  QueryActionCreatorResult,
+  QueryDefinition,
+} from '@reduxjs/toolkit/query';
+import { BaseQueryFn } from '@reduxjs/toolkit/query';
+import { FetchArgs } from '@reduxjs/toolkit/query';
+import Post from '../../../Interfaces/Post/Post';
+
 type Props = {
   postId: string;
   postIndex: number;
+  refetchPosts: () => QueryActionCreatorResult<
+    QueryDefinition<
+      string,
+      BaseQueryFn<
+        string | FetchArgs,
+        unknown,
+        FetchBaseQueryError,
+        object,
+        FetchBaseQueryMeta
+      >,
+      never,
+      Post,
+      'PostApi'
+    >
+  >;
 };
 
-const SinglePost = ({ postId, postIndex }: Props) => {
+const SinglePost = ({ postId, postIndex, refetchPosts }: Props) => {
   const { user } = useSelector((state) => state.Auth);
-  const [uploadCommentMessage] = useUploadCommentMutation()
+  const [updatePost, { isSuccess: editSuccess }] = useEditPostMutation();
+  const [deletePost] = useDeletePostMutation();
+  const [uploadCommentMessage] = useUploadCommentMutation();
   const { isLoading, isSuccess, data: post, refetch } = useGetPostQuery(postId);
   const [togglePostExpression] = useTogglePostExpressionMutation();
   let emojiName: string;
@@ -52,6 +84,24 @@ const SinglePost = ({ postId, postIndex }: Props) => {
         isSuccess && (
           <>
             <div className='post_head'>
+              {user._id === post.user._id && (
+                <div className='dots_icon'>
+                  <FontAwesomeIcon
+                    icon={faEllipsis}
+                    onClick={(e) => showUpDropdown(e)}
+                  />
+                  <ActionsDropdown
+                    APIDelete={deletePost}
+                    refetch={refetch}
+                    refetchAll={refetchPosts}
+                    editFunction={updatePost}
+                    editSuccess={editSuccess}
+                    textToEdit={post.content}
+                    postId={postId}
+                    textName='post'
+                  />
+                </div>
+              )}
               <div className='user_info'>
                 <figure className='avatar'>
                   <img
@@ -86,9 +136,24 @@ const SinglePost = ({ postId, postIndex }: Props) => {
             </div>
 
             <div className='post_body'>
-              <Markdown className='content' remarkPlugins={[remarkGfm]}>
-                {post.content}
-              </Markdown>
+              {/* <Markdown className='content' remarkPlugins={[remarkGfm]}> */}
+              {post.content.split(' ').map((arr, index) => {
+                if (arr.startsWith('@')) {
+                  return (
+                    <Link to='/' key={index}>
+                      {arr.slice(1) + ' '}{' '}
+                    </Link>
+                  );
+                } else if (arr.startsWith('#')) {
+                  return (
+                    <Link to='/' key={index}>
+                      {arr + ' '}{' '}
+                    </Link>
+                  );
+                }
+                return arr.toString() + ' ';
+              })}
+              {/* </Markdown> */}
             </div>
             <div className='post_general'>
               <div className='mini_expressions'>

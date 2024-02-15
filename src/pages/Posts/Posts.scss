@@ -50,6 +50,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      .dots_icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+      }
       .user_info {
         display: flex;
         flex-wrap: nowrap;
@@ -91,6 +98,15 @@
     }
 
     .post_body {
+      margin: 1rem 0 0;
+      a {
+        font-weight: 600;
+        color: $primary;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
       .content {
         line-height: 20px;
         @include Responsive('xs') {

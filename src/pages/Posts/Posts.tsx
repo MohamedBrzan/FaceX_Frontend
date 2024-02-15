@@ -18,6 +18,7 @@ const Posts = () => {
     isSuccess,
     isError,
     data: posts,
+    refetch,
   } = useGetPostsQuery(sort);
 
   const sortingDropDownRef = useRef<HTMLDivElement>(null);
@@ -58,7 +59,12 @@ const Posts = () => {
         of={posts}
         render={(post: Post, index: number) =>
           post._id && (
-            <SinglePost key={index} postIndex={index} postId={post._id} />
+            <SinglePost
+              key={index}
+              postIndex={index}
+              postId={post._id}
+              refetchPosts={refetch}
+            />
           )
         }
       />

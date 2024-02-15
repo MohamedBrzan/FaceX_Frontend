@@ -34,10 +34,25 @@ type Props = {
       >,
       never,
       unknown,
-      'CommentApi' | 'ReplyApi'
+      'PostApi' | 'CommentApi' | 'ReplyApi'
     >
   >;
   refetch: () => QueryActionCreatorResult<
+    QueryDefinition<
+      string,
+      BaseQueryFn<
+        string | FetchArgs,
+        unknown,
+        FetchBaseQueryError,
+        object,
+        FetchBaseQueryMeta
+      >,
+      never,
+      Post,
+      'PostApi'
+    >
+  >;
+  refetchAll: () => QueryActionCreatorResult<
     QueryDefinition<
       string,
       BaseQueryFn<
@@ -66,8 +81,8 @@ type Props = {
         FetchBaseQueryMeta
       >,
       never,
-      Comment | Reply,
-      'CommentApi' | 'ReplyApi'
+      Post | Comment | Reply,
+      'PostApi' | 'CommentApi' | 'ReplyApi'
     >
   >;
   editSuccess: boolean;
@@ -83,6 +98,7 @@ const ActionsDropdown = ({
   replyId,
   APIDelete,
   refetch,
+  refetchAll,
   commentIndex,
   replyIndex,
   textName,
@@ -97,13 +113,18 @@ const ActionsDropdown = ({
         },
         commentId,
       };
-    } else {
+    } else if (textName == 'reply') {
       data = {
         replyId,
+      };
+    } else {
+      data = {
+        postId,
       };
     }
     await APIDelete(data);
     refetch();
+    refetchAll && refetchAll();
     return;
   };
 
@@ -160,10 +181,16 @@ const ActionsDropdown = ({
         message: content.trim() || textToEdit.trim(),
         visiblePrivacy: privacy,
       };
-    } else {
+    } else if (replyId) {
       data = {
         replyId,
         reply: content.trim() || textToEdit.trim(),
+        visiblePrivacy: privacy,
+      };
+    } else {
+      data = {
+        postId,
+        content: content.trim() || textToEdit.trim(),
         visiblePrivacy: privacy,
       };
     }

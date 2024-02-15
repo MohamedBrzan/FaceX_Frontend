@@ -69,6 +69,8 @@
       @extend %sectionStyle;
       z-index: 2;
       padding: 10px;
+      width: clamp(600px, 1000px, 100%);
+
       .user_info {
         position: relative;
         @extend %secondaryBtn;
@@ -135,19 +137,73 @@
         }
       }
       form {
-        textarea.form-control {
-          resize: none;
-          min-height: 250px;
-          box-shadow: none;
+        // #input {
+        //   color: rgba(0, 0, 0, 0.5);
+        //   width: 300px;
+        //   height: 50px;
+        //   border: 3px solid #212;
+        //   font-family: arial;
+        //   padding: 3px;
+        //   position: absolute;
+        //   z-index: 1;
+        //   margin: 0;
+        //   font-size: 12px;
+        //   white-space: pre;
+        // }
+
+        // #output span {
+        //   color: blue;
+        // }
+
+        // #output {
+        //   width: 300px;
+        //   height: 50px;
+        //   position: absolute;
+        //   z-index: 1;
+        //   border: 3px solid #212;
+        //   font-family: arial;
+        //   padding: 3px;
+        //   margin: 0;
+        //   font-size: 12px;
+        //   background-color: transparent;
+        //   color: rgba(0, 21, 5, 0.9);
+        //   white-space: pre;
+        // }
+        .textarea_div {
+          padding: 1rem 0.5rem;
+          width: clamp(600px, 1000px, 100%);
+          text-overflow: wrap;
           border: none;
           outline: none;
-          &::placeholder {
-            font-size: 1.4rem;
+          &:empty::before {
+            content: attr(placeholder);
+            pointer-events: none;
+            display: block; /* For Firefox */
           }
-          &::-webkit-scrollbar {
-            display: none;
+          span {
+            color: blue;
           }
+          // &::before {
+          //   content: 'what is in your head?';
+          //   display: block;
+          // }
         }
+        // textarea.form-control {
+        //   resize: none;
+        //   min-height: 250px;
+        //   box-shadow: none;
+        //   border: none;
+        //   outline: none;
+        //   &::placeholder {
+        //     font-size: 1.4rem;
+        //   }
+        //   &::-webkit-scrollbar {
+        //     display: none;
+        //   }
+        //   &.testing {
+        //     color: red;
+        //   }
+        // }
         .submit_btn {
           display: flex;
           margin-left: auto;

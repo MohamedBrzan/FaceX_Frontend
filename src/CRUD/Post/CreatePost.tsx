@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Form, FormControl } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import {
   useGetPostsQuery,
   useUploadPostMutation,
@@ -9,31 +9,38 @@ import './Post.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import UserAvatar from '../../constants/UserAvatar';
+import { Link } from 'react-router-dom';
 
 const CreatePost = () => {
   const { user } = useSelector((state) => state.Auth);
   const { refetch } = useGetPostsQuery('');
   const uploadPostRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
+  const [content, setContent] = useState<string>('');
   const privacyDropDownRef = useRef<HTMLDivElement>(null);
 
   const [uploadPost, { isSuccess }] = useUploadPostMutation();
-  const [content, setContent] = useState<string>('');
   const [privacy, setPrivacy] = useState<string>('public');
   const showUploadPost = () => {
     uploadPostRef.current?.classList.add('active');
     inputRef.current?.focus();
   };
+
+  // const addStringBefore = (el: HTMLElement, value: string) => {
+  //   el.insertAdjacentHTML('beforebegin', value);
+  // };
+
+  // const addStringAfter = (el: HTMLElement, value: string) => {
+  //   el.insertAdjacentHTML('afterend', value);
+  // };
+
   const hideUploadPost = () =>
     uploadPostRef.current?.classList.remove('active');
-  const handleChange = (e: React.ChangeEvent) => {
-    const target = e.target as HTMLTextAreaElement;
-    setContent(target.value);
-  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = {
-      content,
+      content: inputRef.current?.textContent,
       visiblePrivacy: privacy,
     };
     await uploadPost(data).then(hideUploadPost);
@@ -68,6 +75,7 @@ const CreatePost = () => {
 
     handleOpenPrivacyDropDown;
   };
+
   return (
     <section className='create_post'>
       <div className='text'>
@@ -114,15 +122,16 @@ const CreatePost = () => {
           </div>
 
           <Form onSubmit={(e) => handleSubmit(e)}>
-            <FormControl
+            <div
+              className='textarea_div'
+              id='textarea_div_id'
+              contentEditable
+              role='textarea'
               ref={inputRef}
-              as={'textarea'}
-              value={content}
-              cols={100}
-              placeholder='what do you want to talk about?'
-              required
-              onChange={(e) => handleChange(e)}
-            />
+              autoFocus
+              placeholder='What is in your mind?'
+            ></div>
+
             <Button
               type='submit'
               className='submit_btn'
