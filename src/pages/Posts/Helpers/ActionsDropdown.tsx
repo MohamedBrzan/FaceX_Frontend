@@ -17,6 +17,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useState } from 'react';
 import UserAvatar from '../../../constants/UserAvatar';
 import { useSelector } from 'react-redux';
+import State from '../../../types/store/AuthSliceState';
 
 type Props = {
   postId?: string;
@@ -103,7 +104,7 @@ const ActionsDropdown = ({
   replyIndex,
   textName,
 }: Props) => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   const handleDelete = async () => {
     let data;
     if (textName == 'comment') {

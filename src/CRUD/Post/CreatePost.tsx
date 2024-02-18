@@ -9,9 +9,10 @@ import './Post.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import UserAvatar from '../../constants/UserAvatar';
+import State from '../../types/store/AuthSliceState';
 
 const CreatePost = () => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   const { refetch } = useGetPostsQuery('');
   const uploadPostRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLPreElement>(null);

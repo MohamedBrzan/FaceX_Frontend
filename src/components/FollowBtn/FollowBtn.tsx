@@ -13,7 +13,7 @@ import Post from '../../Interfaces/Post/Post';
 import User from '../../Interfaces/User/User';
 
 type Props = {
-  condition: boolean | number;
+  condition: boolean | number | string;
   following: string | undefined;
   refetch?: () => QueryActionCreatorResult<
     QueryDefinition<

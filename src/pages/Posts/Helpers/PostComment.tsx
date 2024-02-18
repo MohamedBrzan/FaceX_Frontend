@@ -22,13 +22,13 @@ import PostReplies from './PostReplies';
 import CheckIdentifierName from '../../../functions/CheckIdentifierName';
 import UIExpressions from '../../../functions/UIExpressions';
 import ShowReplyInput from '../../../functions/ShowReplyInput';
-import CreateReplyForm from './CreateReplyForm';
 import handleChangingExpressionForComment from '../../../functions/handleChangingExpressionForComment';
 import { useSelector } from 'react-redux';
 import UserImage from '../../../constants/UserAvatar';
 import ActionsDropdown from './ActionsDropdown';
 import CreateMessageForm from '../../../components/CreateMessageForm/CreateMessageForm';
 import { useUploadReplyMutation } from '../../../store/apis/Replies';
+import State from '../../../types/store/AuthSliceState';
 
 type Props = {
   postIndex: number;
@@ -80,7 +80,7 @@ const PostComment = ({
   postId,
   postIndex,
 }: Props) => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   const [toggleCommentExpression] = useToggleCommentExpressionMutation();
   const [uploadReplyMessage] = useUploadReplyMutation();
   const [editComment, { isSuccess: editSuccess }] = useEditCommentMutation();
@@ -133,6 +133,7 @@ const PostComment = ({
                           APIDelete={deleteComment}
                           commentIndex={commentIndex}
                           textName='comment'
+                          refetchAll={refetch}
                         />
                       )}
                     </div>

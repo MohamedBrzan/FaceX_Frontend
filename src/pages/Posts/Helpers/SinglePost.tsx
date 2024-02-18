@@ -42,6 +42,7 @@ import {
 import { BaseQueryFn } from '@reduxjs/toolkit/query';
 import { FetchArgs } from '@reduxjs/toolkit/query';
 import Post from '../../../Interfaces/Post/Post';
+import State from '../../../types/store/AuthSliceState';
 
 type Props = {
   postId: string;
@@ -64,7 +65,7 @@ type Props = {
 };
 
 const SinglePost = ({ postId, postIndex, refetchPosts }: Props) => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   const [updatePost, { isSuccess: editSuccess }] = useEditPostMutation();
   const [deletePost] = useDeletePostMutation();
   const [uploadCommentMessage] = useUploadCommentMutation();
@@ -83,7 +84,7 @@ const SinglePost = ({ postId, postIndex, refetchPosts }: Props) => {
         isSuccess && (
           <>
             <div className='post_head'>
-              {user._id === post.user._id && (
+              {user?._id === post.user._id && (
                 <div className='dots_icon'>
                   <FontAwesomeIcon
                     icon={faEllipsis}
@@ -127,7 +128,7 @@ const SinglePost = ({ postId, postIndex, refetchPosts }: Props) => {
                 condition={
                   user?._id &&
                   user?._id !== post.user._id &&
-                  post.user.followers?.indexOf(user?._id) === -1
+                  post.user.followers?.indexOf(user._id) === -1
                 }
                 following={post.user._id}
                 refetch={refetch}
@@ -218,13 +219,13 @@ const SinglePost = ({ postId, postIndex, refetchPosts }: Props) => {
                 >
                   <FontAwesomeIcon
                     icon={
-                      post?.shares.indexOf(user?._id) < 0
+                      post?.shares.indexOf(user._id) < 0
                         ? faRepeat
                         : faArrowRotateLeft
                     }
                   />
                   <div className='identifier'>
-                    {post?.shares.indexOf(user?._id) < 0 ? 'Repost' : 'Undo'}
+                    {post?.shares.indexOf(user._id) < 0 ? 'Repost' : 'Undo'}
                   </div>
                 </div>
                 <div

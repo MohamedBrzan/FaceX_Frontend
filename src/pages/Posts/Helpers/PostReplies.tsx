@@ -25,6 +25,7 @@ import { showUpDropdown } from './PostComment';
 import { useSelector } from 'react-redux';
 import UserImage from '../../../constants/UserAvatar';
 import ActionsDropdown from './ActionsDropdown';
+import State from '../../../types/store/AuthSliceState';
 
 type Props = {
   reply: Reply;
@@ -59,7 +60,7 @@ const PostReplies = ({
   postIndex,
   refetch,
 }: Props) => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   const [toggleReplyExpression] = useToggleReplyExpressionMutation();
   const [editReply, { isSuccess: editSuccess }] = useEditReplyMutation();
   const [deleteReply] = useDeleteReplyMutation();
@@ -107,6 +108,7 @@ const PostReplies = ({
                     replyIndex={replyIndex}
                     replyId={reply._id}
                     textName='reply'
+                    refetchAll={refetch}
                   />
                 )}
               </div>

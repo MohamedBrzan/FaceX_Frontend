@@ -2,14 +2,12 @@ import FilterContent from '../../enums/FilterContent';
 import VisiblePrivacy from '../../enums/VisiblePrivacy';
 import Ad from '../Ad/Ad';
 import Album from '../Album/Album';
-import Blog from '../Blog/Blog';
 import Comment from '../Comment/Comment';
 import Reply from '../Comment/Reply';
 import Hashtag from '../Hashtag/Hashtag';
 import Job from '../Job/Job';
 import Notification from '../Notification/Notification';
 import Payment from '../Payment/Payment';
-import Post from '../Post/Post';
 import Reel from '../Reel/Reel';
 import Video from '../Video/Video';
 
@@ -73,7 +71,7 @@ interface User {
       i: number
     ) => false | import('react/jsx-runtime').JSX.Element
   ): import('react').ReactNode;
-  _id?: string;
+  _id: string;
   name?: {
     first: string;
     last: string;
@@ -118,10 +116,10 @@ interface User {
   };
   tags?: string[];
   blocks?: User[];
-  followers?: User[];
-  followings?: User[];
-  posts?: { published: Post[]; reacted: Post[] };
-  blogs?: { published: Blog[]; reacted: Blog[] };
+  followers?: string[];
+  followings?: string[];
+  posts?: { published: string[]; reacted: string[] };
+  blogs?: { published: string[]; reacted: string[] };
   jobs?: {
     applied: Job[];
     published: Job[];
@@ -131,16 +129,16 @@ interface User {
     approved: Job[];
   };
   shares?: {
-    posts: Post[];
-    blogs: Blog[];
-    reels: Reel[];
-    videos: Video[];
+    posts: string[];
+    blogs: string[];
+    reels: string[];
+    videos: string[];
   };
   saves?: {
-    posts: Post[];
-    blogs: Blog[];
-    reels: Reel[];
-    videos: Video[];
+    posts: string[];
+    blogs: string[];
+    reels: string[];
+    videos: string[];
   };
   ads?: Ad[];
   reels?: { reacted: Reel[]; published: Reel[] };
