@@ -53,7 +53,26 @@ type Preferences = {
 };
 
 interface User {
-  map(arg0: ({ _id, avatar, cover, name, profession, followers }: { _id: any; avatar: any; cover: any; name: any; profession: any; followers: any; }, i: any) => false | import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
+  map(
+    arg0: (
+      {
+        _id,
+        avatar,
+        cover,
+        name,
+        profession,
+        followers,
+      }: {
+        _id: string;
+        avatar: string;
+        cover: string;
+        name: { first: string; last: string };
+        profession: string;
+        followers: string;
+      },
+      i: number
+    ) => false | import('react/jsx-runtime').JSX.Element
+  ): import('react').ReactNode;
   _id?: string;
   name?: {
     first: string;

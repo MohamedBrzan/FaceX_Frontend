@@ -17,7 +17,6 @@ import './CreateMessageForm.scss';
 type Props = {
   postId?: string | undefined;
   commentId?: string | undefined;
-  replyId?: string | undefined;
   uploadFunction: MutationTrigger<
     MutationDefinition<
       unknown,
@@ -57,7 +56,6 @@ const CreateMessageForm = ({
   uploadFunction,
   visiblePrivacy,
   commentId,
-  replyId,
   refetch,
   messageFor,
 }: Props) => {

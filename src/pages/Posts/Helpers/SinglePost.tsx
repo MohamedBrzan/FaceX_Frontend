@@ -15,7 +15,6 @@ import {
   useDeletePostMutation,
   useEditPostMutation,
   useGetPostQuery,
-  useGetPostsQuery,
   useSaveMutation,
   useShareMutation,
   useTogglePostExpressionMutation,
@@ -136,24 +135,22 @@ const SinglePost = ({ postId, postIndex, refetchPosts }: Props) => {
             </div>
 
             <div className='post_body'>
-              {/* <Markdown className='content' remarkPlugins={[remarkGfm]}> */}
               {post.content.split(' ').map((arr, index) => {
                 if (arr.startsWith('@')) {
                   return (
                     <Link to='/' key={index}>
-                      {arr.slice(1) + ' '}{' '}
+                      {arr.slice(1) + ' '}
                     </Link>
                   );
-                } else if (arr.startsWith('#')) {
+                } else if (arr.startsWith('#') || arr.startsWith('http')) {
                   return (
                     <Link to='/' key={index}>
-                      {arr + ' '}{' '}
+                      {arr + ' '}
                     </Link>
                   );
                 }
                 return arr.toString() + ' ';
               })}
-              {/* </Markdown> */}
             </div>
             <div className='post_general'>
               <div className='mini_expressions'>

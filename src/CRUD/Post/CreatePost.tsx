@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import {
@@ -9,14 +9,12 @@ import './Post.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import UserAvatar from '../../constants/UserAvatar';
-import { Link } from 'react-router-dom';
 
 const CreatePost = () => {
   const { user } = useSelector((state) => state.Auth);
   const { refetch } = useGetPostsQuery('');
   const uploadPostRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
-  const [content, setContent] = useState<string>('');
+  const inputRef = useRef<HTMLPreElement>(null);
   const privacyDropDownRef = useRef<HTMLDivElement>(null);
 
   const [uploadPost, { isSuccess }] = useUploadPostMutation();
@@ -122,7 +120,7 @@ const CreatePost = () => {
           </div>
 
           <Form onSubmit={(e) => handleSubmit(e)}>
-            <div
+            {/* <div
               className='textarea_div'
               id='textarea_div_id'
               contentEditable
@@ -130,7 +128,17 @@ const CreatePost = () => {
               ref={inputRef}
               autoFocus
               placeholder='What is in your mind?'
-            ></div>
+            ></div> */}
+
+            <pre
+              className='textarea_div'
+              id='textarea_div_id'
+              contentEditable
+              role='textarea'
+              ref={inputRef}
+              autoFocus
+              placeholder='What is in your mind?'
+            ></pre>
 
             <Button
               type='submit'
