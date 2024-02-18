@@ -2,10 +2,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/esm/Col';
 import Posts from '../Posts/Posts';
-import SideBar from '../../Views/SideBar/SideBar';
-import Aside from '../../Views/Aside/Aside';
 import './Home.scss';
 import { useEffect } from 'react';
+import SideBar from '../../views/SideBar/SideBar';
+import Aside from '../../views/Aside/Aside';
 
 const Home = () => {
   useEffect(() => {

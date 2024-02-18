@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../Views/Footer/Footer';
 import Input from '../../components/Input/Input';
 import appleImg from '../../assets/apple.png';
 import googleImg from '../../assets/google_logo.jpeg';
@@ -13,7 +12,7 @@ import { useSignInMutation } from '../../store/apis/Authentication';
 import Loading from '../../components/Loading/Loading';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../../store/reducers/AuthSlice';
-
+import Footer from '../../views/Footer/Footer';
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

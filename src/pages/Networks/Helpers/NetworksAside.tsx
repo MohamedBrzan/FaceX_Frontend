@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
-import Footer from '../../../Views/Footer/Footer';
+import Footer from '../../../views/Footer/Footer';
 
 const NetworksAside = () => {
   const links = [

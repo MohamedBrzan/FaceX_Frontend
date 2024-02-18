@@ -1,11 +1,12 @@
-import Header from './Views/Header/Header';
 import AppRoutes from './routes/Routes';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { useSelector } from 'react-redux';
+import State from './types/store/AuthSliceState';
+import Header from './views/Header/Header';
 
 function App() {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   return (
     <>
       {user && <Header />}

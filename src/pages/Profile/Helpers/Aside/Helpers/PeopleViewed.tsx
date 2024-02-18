@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import me from '../../../../../assets/me_opentowork.jpeg';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import ChangeButtonTextContent from '../../../../../functions/ChangeButtonTextContent';
 
 const PeopleViewed = () => {
   const data = [
@@ -27,13 +25,6 @@ const PeopleViewed = () => {
     },
   ];
 
-  useEffect(() => {
-    ChangeButtonTextContent(
-      '.people_viewed .viewed .info .follow_btn',
-      'Connected',
-      1
-    );
-  }, []);
   return (
     <section className='people_viewed'>
       <article className='head'>

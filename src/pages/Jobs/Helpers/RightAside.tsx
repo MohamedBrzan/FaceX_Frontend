@@ -2,7 +2,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import image from '../../../assets/cover.jpeg';
-import Footer from '../../../Views/Footer/Footer';
+import Footer from '../../../views/Footer/Footer';
 
 const RightAside = () => {
   return (

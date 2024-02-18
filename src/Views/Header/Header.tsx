@@ -19,9 +19,10 @@ import unknown from '../../assets/unknown.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLogoutMutation } from '../../store/apis/Users';
 import { logoutUser } from '../../store/reducers/AuthSlice';
+import State from '../../types/store/AuthSliceState';
 
 const Header = () => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state:State) => state.Auth);
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
   const dropMenuRef = useRef<HTMLDivElement>(null);

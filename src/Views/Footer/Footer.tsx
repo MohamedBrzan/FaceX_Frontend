@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Footer.scss';
+
+
 const Footer = () => {
   const links = [
     { id: 1, title: 'About', to: '/about' },

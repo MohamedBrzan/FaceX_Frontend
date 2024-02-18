@@ -5,7 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../Views/Footer/Footer';
 import Input from '../../components/Input/Input';
 import appleImg from '../../assets/apple.png';
 import googleImg from '../../assets/google_logo.jpeg';
@@ -19,7 +18,7 @@ import {
 import { useSignUpMutation } from '../../store/apis/Authentication';
 import { useDispatch } from 'react-redux';
 import { signInUser } from '../../store/reducers/AuthSlice';
-
+import Footer from '../../views/Footer/Footer';
 const SignUp = () => {
   const [signUp] = useSignUpMutation();
   const dispatch = useDispatch();
@@ -80,15 +79,10 @@ const SignUp = () => {
     };
 
     await signUp(data).then((res) => {
-      const { avatar, cover, name, followers, followings, _id } = res.data;
+      const { data } = res;
       dispatch(
         signInUser({
-          avatar,
-          cover,
-          name,
-          followers,
-          followings,
-          _id,
+          ...data,
         })
       );
     });

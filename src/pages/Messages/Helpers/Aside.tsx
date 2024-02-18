@@ -1,4 +1,5 @@
-import Footer from '../../../Views/Footer/Footer';
+import Footer from "../../../views/Footer/Footer";
+
 
 const Aside = () => {
   return (
