@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import { faArrowRight, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Aside.scss';
 import { Link } from 'react-router-dom';
-import ChangeButtonTextContent from '../../functions/ChangeButtonTextContent';
 import { useGetUsersQuery } from '../../store/apis/Users';
 import { useSelector } from 'react-redux';
 import FollowBtn from '../../components/FollowBtn/FollowBtn';
@@ -16,9 +14,6 @@ const Aside = () => {
   const { isLoading, data: users, refetch } = useGetUsersQuery('');
   const { user } = useSelector((state: State) => state.Auth);
 
-  useEffect(() => {
-    ChangeButtonTextContent('.add_feed .info .follow_btn', 'Connected', 1);
-  }, []);
   return (
     <aside>
       {isLoading ? (

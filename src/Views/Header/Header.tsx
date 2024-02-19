@@ -17,14 +17,14 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { NavLink } from 'react-router-dom';
 import unknown from '../../assets/unknown.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLogoutMutation } from '../../store/apis/Users';
-import { logoutUser } from '../../store/reducers/AuthSlice';
 import State from '../../types/store/AuthSliceState';
+import { logoutUser } from '../../store/reducers/AuthThunk/LogoutAsyncThunk';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 
 const Header = () => {
-  const { user } = useSelector((state:State) => state.Auth);
-  const dispatch = useDispatch();
-  const [logout] = useLogoutMutation();
+  const { user } = useSelector((state: State) => state.Auth);
+  const dispatch = useDispatch<ThunkDispatch<unknown, unknown, never>>();
+  // const [logout] = useLogoutMutation();
   const dropMenuRef = useRef<HTMLDivElement>(null);
   const dropMenuModalRef = useRef<HTMLDivElement>(null);
 
@@ -144,10 +144,8 @@ const Header = () => {
                 </NavLink>
 
                 <NavLink
-                  to='/'
-                  onClick={async () =>
-                    await logout('').then(() => dispatch(logoutUser()))
-                  }
+                  to='/authentication/sign_in'
+                  onClick={async () => dispatch(logoutUser())}
                 >
                   <small>Logout</small>
                 </NavLink>

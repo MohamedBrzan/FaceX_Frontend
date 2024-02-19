@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes, redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import State from '../types/store/AuthSliceState';
 import Home from '../pages/Home/Home';
@@ -15,22 +15,23 @@ import CreateReel from '../crud/Reel/CreateReel';
 import UploadPost from '../forms/UploadPost/UploadPost';
 import SignUp from '../pages/Authentication/SignUp';
 import SignIn from '../pages/Authentication/SignIn';
+import Networks from '../pages/Networks/Networks';
 
 const AppRoutes = () => {
   const { user } = useSelector((state: State) => state.Auth);
   return (
     <Routes>
-      <Route path='/'>
-        {user ? (
-          <>
+      {user ? (
+        <>
+          <Route path='/'>
             <Route index element={<Home />} />
-            {/* <Route path='/networks' element={<UserNetwork />} /> */}
+            <Route path='/networks' element={<Networks />} />
             <Route path='/jobs' element={<Jobs />} />
             <Route path='/messages' element={<Messages />} />
             <Route path='/notifications' element={<Notifications />} />
             <Route path='/me/profile' element={<Profile />} />
             <Route path='/admin' element={<Admin />} />
-            {/* <Route path='/user/:id' element={<User />} /> */}
+            <Route path='/user/:id' element={<Admin />} />
             //** Create Section **/
             <Route path='/create/'>
               <Route path='ad' element={<CreateAd />} />
@@ -44,28 +45,21 @@ const AppRoutes = () => {
             <Route path='/upload/'>
               <Route path='post' element={<UploadPost />} />
             </Route>
-            //** Authentication Section **/
-            <Route path='/authentication/'>
-              <Route path='sign_up' element={<SignUp />} />
-              <Route path='sign_in' element={<SignIn />} />
-            </Route>
-          </>
-        ) : (
-          <>
-            <Route index element={<SignIn />} />
-            <Route path='/authentication/sign_in' element={<SignIn />} />
-            <Route path='/authentication/sign_up' element={<SignUp />} />
-          </>
-        )}
-      </Route>
-      <Route
-        path='*'
-        element={
-          <Link to='/' className='not_found_link'>
-            Go Back To Home
-          </Link>
-        }
-      />
+          </Route>
+          <Route path='*' element={<Navigate replace to='/' />} />
+        </>
+      ) : (
+        <>
+          <Route path='/authentication/'>
+            <Route index path='sign_in' element={<SignIn />} />
+            <Route path='sign_up' element={<SignUp />} />{' '}
+          </Route>
+          <Route
+            path='*'
+            element={<Navigate replace to='/authentication/sign_in' />}
+          />
+        </>
+      )}
     </Routes>
   );
 };

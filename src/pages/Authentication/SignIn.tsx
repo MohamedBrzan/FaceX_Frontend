@@ -8,17 +8,15 @@ import appleImg from '../../assets/apple.png';
 import googleImg from '../../assets/google_logo.jpeg';
 import facebookImg from '../../assets/facebook.png';
 import './Authentication.scss';
-import { useSignInMutation } from '../../store/apis/Authentication';
-import Loading from '../../components/Loading/Loading';
 import { useDispatch } from 'react-redux';
-import { signInUser } from '../../store/reducers/AuthSlice';
 import Footer from '../../views/Footer/Footer';
+import { loginUser } from '../../store/reducers/AuthThunk/LoginAsyncThunk';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 const SignIn = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<unknown, unknown, never>>();
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [signIn, { isLoading, isError, error }] = useSignInMutation();
 
   return (
     <section className='authentication sign_in'>
@@ -35,15 +33,9 @@ const SignIn = () => {
               password,
             };
 
-            await signIn(loginData).then((res) => {
-              dispatch(signInUser(res?.data));
-            });
-            navigate('/');
+            dispatch(loginUser(loginData));
 
-            if (isError) {
-              console.log(`there's an error here man!!`, error);
-              navigate('/authentication/sign_in');
-            }
+            navigate('/');
           }}
         >
           <FormGroup className='mb-3'>
@@ -76,13 +68,7 @@ const SignIn = () => {
             <Link to='/forget_password'>Forget Password?</Link>
           </div>
           <Button type='submit' className='submit_btn'>
-            {isError ? (
-              'error'
-            ) : isLoading ? (
-              <Loading text='signing in .....' />
-            ) : (
-              'Sign In'
-            )}
+            Sign In
           </Button>
         </Form>
         <div className='hr'>

@@ -1,4 +1,4 @@
-import Expressions from '../Types/Post/Expressions';
+import Expressions from '../types/Post/Expressions';
 
 export default (expressions: Expressions): number => {
   const values = Object.values(expressions);

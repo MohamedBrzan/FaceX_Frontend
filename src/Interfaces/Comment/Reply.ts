@@ -4,7 +4,7 @@ import User from '../User/User';
 import Comment from './Comment';
 
 interface Reply {
-  _id?: string;
+  _id: string;
   user: User;
   ref: Comment;
   reply: string;

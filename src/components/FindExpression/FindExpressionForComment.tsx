@@ -12,10 +12,10 @@ const FindExpressionForComments = (props: Props) => {
 
   let name: string = '';
 
-  Object.keys(expressions).forEach((k) => {
-    for (const subscriber of expressions[k as keyof typeof Expressions]) {
+  Object.keys(expressions).forEach((key: string) => {
+    for (const subscriber of expressions[key as keyof Expressions]!) {
       if (subscriber === user._id) {
-        name = k;
+        name = key;
       }
     }
   });

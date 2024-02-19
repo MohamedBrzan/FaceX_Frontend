@@ -28,5 +28,8 @@ export const UsersApi = createApi({
   }),
 });
 
-export const { useGetUsersQuery, useSendFollowMutation, useLogoutMutation } =
-  UsersApi;
+export const {
+  useGetUsersQuery,
+  useSendFollowMutation,
+  useLogoutMutation,
+} = UsersApi;

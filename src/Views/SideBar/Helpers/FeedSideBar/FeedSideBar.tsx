@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UserCover from '../../../../constants/UserCover';
 import UserAvatar from '../../../../constants/UserAvatar';
+import State from '../../../../types/store/AuthSliceState';
 
 const FeedSideBar = () => {
-  const { user } = useSelector((state) => state.Auth);
+  const { user } = useSelector((state: State) => state.Auth);
   return (
     <article className='feed_identity'>
       <figure className='cover'>

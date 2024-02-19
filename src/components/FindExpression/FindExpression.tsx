@@ -20,11 +20,11 @@ const FindExpression = (props: Props) => {
   const user = JSON.parse(localStorage.getItem('user') ?? '{}');
   let founded: boolean = false;
   let name: string = '';
-  Object.keys(expressions).forEach((k) => {
-    for (const subscriber of expressions[k as keyof typeof Expressions]) {
+  Object.keys(expressions).forEach((key: string) => {
+    for (const subscriber of expressions[key as keyof Expressions]!) {
       if (subscriber._id === user._id) {
         founded = true;
-        name = k;
+        name = key;
       }
     }
   });

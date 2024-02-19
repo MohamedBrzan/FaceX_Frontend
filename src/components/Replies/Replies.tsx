@@ -1,4 +1,3 @@
-import { MutationTrigger } from '@reduxjs/toolkit/dist/query/react/buildHooks';
 import Reply from '../../Interfaces/Comment/Reply';
 import GetUser from '../../constants/GetUser';
 import './Replies.scss';
@@ -6,7 +5,6 @@ import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
-  MutationDefinition,
   QueryActionCreatorResult,
   QueryDefinition,
 } from '@reduxjs/toolkit/query';
@@ -34,25 +32,23 @@ type ReplyData = {
   >;
 };
 
-const Replies = ({ replies, key, toggleExpression, refetch }: ReplyData) => {
+const Replies = ({ replies, key }: ReplyData) => {
   // console.log('Replies', replies);
   const user = GetUser;
 
   return (
     <section className='replies'>
-      {replies?.map(
-        ({ _id, user, reply, expressions, ref, visiblePrivacy }, i: number) => (
-          <section className='reply' key={i}>
-            {DisplayReplyComponentFunc({
-              _id,
-              user,
-              expressions: expressions ?? {},
-              message: reply,
-              key,
-            })}
-          </section>
-        )
-      )}
+      {replies?.map(({ _id, user, reply, expressions }, i: number) => (
+        <section className='reply' key={i}>
+          {DisplayReplyComponentFunc({
+            _id,
+            user,
+            expressions: expressions ?? {},
+            message: reply,
+            key,
+          })}
+        </section>
+      ))}
       <section className='create_reply hidden'>
         <figure className='avatar'>
           <img src={user.avatar} alt='User' />

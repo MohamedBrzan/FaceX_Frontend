@@ -131,18 +131,15 @@ const ActionsDropdown = ({
 
   const handleActive = () => {
     if (textName == 'comment') {
-      commentIndex &&
-        Array.from(document.querySelectorAll('.actions_dropdown'))[
-          commentIndex
-        ]?.classList.remove('active');
+      Array.from(document.querySelectorAll('.actions_dropdown'))[
+        commentIndex!
+      ]?.classList.remove('active');
     } else {
-      const commentCollection =
-        commentIndex &&
-        Array.from(document.querySelectorAll('.actions_dropdown'))[
-          commentIndex
-        ];
-      commentCollection &&
-        commentCollection[replyIndex].classList.remove('active');
+      const commentCollection = Array.from(
+        document.querySelectorAll('.actions_dropdown')
+      )[commentIndex!];
+
+      commentCollection[replyIndex!]!.classList.remove('active');
     }
   };
 

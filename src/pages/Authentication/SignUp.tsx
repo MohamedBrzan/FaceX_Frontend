@@ -15,13 +15,14 @@ import {
   faCircleArrowLeft,
   faCircleArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useSignUpMutation } from '../../store/apis/Authentication';
 import { useDispatch } from 'react-redux';
-import { signInUser } from '../../store/reducers/AuthSlice';
 import Footer from '../../views/Footer/Footer';
+import { registerUser } from '../../store/reducers/AuthThunk/RegisterAsyncThunk';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { loginUser } from '../../store/reducers/AuthThunk/LoginAsyncThunk';
+
 const SignUp = () => {
-  const [signUp] = useSignUpMutation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<unknown, unknown, never>>();
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
@@ -78,14 +79,9 @@ const SignUp = () => {
       password,
     };
 
-    await signUp(data).then((res) => {
-      const { data } = res;
-      dispatch(
-        signInUser({
-          ...data,
-        })
-      );
-    });
+    dispatch(registerUser(data)).then(() =>
+      dispatch(loginUser({ username: email, password }))
+    );
 
     navigate('/');
   };
