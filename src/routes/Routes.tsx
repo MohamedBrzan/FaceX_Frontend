@@ -1,4 +1,4 @@
-import { Link, Navigate, Route, Routes, redirect } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import State from '../types/store/AuthSliceState';
 import Home from '../pages/Home/Home';

@@ -139,7 +139,7 @@ const ActionsDropdown = ({
         document.querySelectorAll('.actions_dropdown')
       )[commentIndex!];
 
-      commentCollection[replyIndex!]!.classList.remove('active');
+      commentCollection[replyIndex]!.classList.remove('active');
     }
   };
 
